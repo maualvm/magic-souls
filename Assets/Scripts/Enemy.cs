@@ -22,10 +22,10 @@ public class Enemy : MonoBehaviour
         stateMachine = new StateMachine();
 
         //States
-        var patrol = new Patrol();
-        var chase = new Chase();
-        var attack = new Attack();
-        var die = new Die();
+        var patrol = new Patrol(enemy.enemyData.enemyType, enemy.element);
+        var chase = new Chase(enemy.enemyData.enemyType, enemy.element);
+        var attack = new Attack(enemy.enemyData.enemyType, enemy.element);
+        var die = new Die(this, enemy);
 
         //Normal transitions
         At(patrol, chase, InDetectionRange());
@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
 
         //Definitions
         void At(IState from, IState to, Func<bool> condition) => stateMachine.AddTransition(from, to, condition);
-        //Add Func<bool> of conditions
         Func<bool> InDetectionRange() => () => Vector3.Distance(transform.position, Target.transform.position) <= enemy.enemyData.DetectRange;
         Func<bool> OutOfDetectionRange() => () => Vector3.Distance(transform.position, Target.transform.position) > enemy.enemyData.DetectRange;
         Func<bool> InAttackRange() => () => Vector3.Distance(transform.position, Target.transform.position) <= enemy.enemyData.AttackRange;
@@ -60,5 +59,15 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
+    }
+
+    public ElementEnemyData GetEnemyData()
+    {
+        return enemy;
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
