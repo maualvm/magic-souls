@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
+/*
+ * Based on https://www.youtube.com/watch?v=V75hgcsCGOM
+ * 
+ */
 public class StateMachine
 {
     private IState CurrentState;
