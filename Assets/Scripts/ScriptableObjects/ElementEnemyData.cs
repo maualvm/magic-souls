@@ -9,5 +9,5 @@ public class ElementEnemyData : ScriptableObject
     public EnemyData enemyData;
     public string element;
 
-    public GameObject Model;
+    public GameObject Prefab;
 }
