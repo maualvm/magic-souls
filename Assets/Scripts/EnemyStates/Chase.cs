@@ -18,6 +18,8 @@ public class Chase : IState
     public void Update()
     {
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is chasing");
+        transform.LookAt(Target);
+
         Direction = Target.position - transform.position;
         Direction = Direction.normalized;
         transform.Translate(Direction * Speed * Time.deltaTime, Space.World);
