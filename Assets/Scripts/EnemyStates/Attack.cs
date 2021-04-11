@@ -62,6 +62,10 @@ public class Attack : IState
         {
             EarthImpAbility();
         }
+        else if (EnemyType == "Imp" && EnemyElement == "Air")
+        {
+            AirImpAbility();
+        }
     }
 
     private void FireImpAbility()
@@ -77,5 +81,10 @@ public class Attack : IState
     private void EarthImpAbility()
     {
         Debug.Log("The Earth Imp stunned you!");
+    }
+
+    private void AirImpAbility()
+    {
+        Debug.Log("The Air Imp pushed you!");
     }
 }
