@@ -17,5 +17,7 @@ MonoBehaviour:
   Speed: 2
   DetectRange: 20
   AttackRange: 10
+  MinWanderTime: 3
+  MaxWanderTime: 5
   AttackDamage: 30
   AbilityCooldown: 3

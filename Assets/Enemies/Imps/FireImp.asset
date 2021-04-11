@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 0bd7f6f5366f672488fe57e2167b0d46, type: 2}
   element: Fire
-  Model: {fileID: 919132149155446097, guid: d05dbbb07f72e154a9ea73e7af5ffd49, type: 3}
+  Prefab: {fileID: 797614652273739934, guid: 8e10d35695d164a4488d7d302bb901c2, type: 3}
