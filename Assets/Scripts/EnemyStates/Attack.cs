@@ -54,10 +54,19 @@ public class Attack : IState
         {
             FireImpAbility();
         }
+        else if (EnemyType == "Imp" && EnemyElement == "Water")
+        {
+            WaterImpAbility();
+        }
     }
 
     private void FireImpAbility()
     {
         Debug.Log("The Fire Imp set you on fire!");
+    }
+
+    private void WaterImpAbility()
+    {
+        Debug.Log("The Water Imp slowed you down!");
     }
 }
