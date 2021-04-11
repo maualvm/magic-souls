@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
         //States
         var patrol = new Patrol(enemy.enemyData.enemyType, enemy.element, enemy.enemyData.MinWanderTime, enemy.enemyData.MaxWanderTime, transform, enemy.enemyData.Speed);
-        var chase = new Chase(enemy.enemyData.enemyType, enemy.element);
+        var chase = new Chase(enemy.enemyData.enemyType, enemy.element, transform, Target.transform, enemy.enemyData.Speed);
         var attack = new Attack(enemy.enemyData.enemyType, enemy.element);
         var die = new Die(this, enemy);
 

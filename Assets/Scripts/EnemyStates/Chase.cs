@@ -3,15 +3,24 @@
 public class Chase : IState
 {
     private string EnemyType, EnemyElement;
-    public Chase(string enemyType, string enemyElement)
+    private Transform transform, Target;
+    private float Speed;
+    private Vector3 Direction;
+    public Chase(string enemyType, string enemyElement, Transform transform, Transform target, float speed)
     {
         EnemyType = enemyType;
         EnemyElement = enemyElement;
+        this.transform = transform;
+        this.Target = target;
+        this.Speed = speed;
     }
 
     public void Update()
     {
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is chasing");
+        Direction = Target.position - transform.position;
+        Direction = Direction.normalized;
+        transform.Translate(Direction * Speed * Time.deltaTime, Space.World);
     }
 
     public void OnEnter()
