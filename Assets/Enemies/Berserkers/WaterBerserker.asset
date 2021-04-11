@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WaterBerserker
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: ccba56a22deeb124e8fe08cef168a73a, type: 2}
-  element: Water
-  Model: {fileID: 0}
+  Element: Water
+  Prefab: {fileID: 0}

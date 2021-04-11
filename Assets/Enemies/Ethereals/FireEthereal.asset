@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FireEthereal
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 7dddca5458979ed47af8d5393c37ab52, type: 2}
-  element: Fire
-  Model: {fileID: 0}
+  Element: Fire
+  Prefab: {fileID: 0}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EarthBerserker
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: ccba56a22deeb124e8fe08cef168a73a, type: 2}
-  element: Earth
-  Model: {fileID: 0}
+  Element: Earth
+  Prefab: {fileID: 0}

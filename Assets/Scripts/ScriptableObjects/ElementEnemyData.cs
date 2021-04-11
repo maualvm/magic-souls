@@ -7,7 +7,7 @@ public class ElementEnemyData : ScriptableObject
 {
 
     public EnemyData enemyData;
-    public string element;
+    public string Element;
 
     public GameObject Prefab;
 }

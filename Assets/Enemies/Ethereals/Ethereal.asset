@@ -21,3 +21,4 @@ MonoBehaviour:
   MaxWanderTime: 5
   AttackDamage: 40
   AbilityCooldown: 2
+  AbilityProbability: 70

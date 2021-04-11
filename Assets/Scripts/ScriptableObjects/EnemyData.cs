@@ -16,5 +16,6 @@ public class EnemyData : ScriptableObject
     public float MaxWanderTime;
 
     public float AttackDamage;
-    public float AbilityCooldown;    
+    public float AbilityCooldown;
+    public float AbilityProbability;
 }
