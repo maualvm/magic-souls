@@ -58,6 +58,10 @@ public class Attack : IState
         {
             WaterImpAbility();
         }
+        else if (EnemyType == "Imp" && EnemyElement == "Earth")
+        {
+            EarthImpAbility();
+        }
     }
 
     private void FireImpAbility()
@@ -68,5 +72,10 @@ public class Attack : IState
     private void WaterImpAbility()
     {
         Debug.Log("The Water Imp slowed you down!");
+    }
+
+    private void EarthImpAbility()
+    {
+        Debug.Log("The Earth Imp stunned you!");
     }
 }
