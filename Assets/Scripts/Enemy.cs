@@ -22,9 +22,9 @@ public class Enemy : MonoBehaviour
         stateMachine = new StateMachine();
 
         //States
-        var patrol = new Patrol(enemy.enemyData.enemyType, enemy.element, enemy.enemyData.MinWanderTime, enemy.enemyData.MaxWanderTime, transform, enemy.enemyData.Speed);
-        var chase = new Chase(enemy.enemyData.enemyType, enemy.element, transform, Target.transform, enemy.enemyData.Speed);
-        var attack = new Attack(enemy.enemyData.enemyType, enemy.element);
+        var patrol = new Patrol(enemy.enemyData.enemyType, enemy.Element, enemy.enemyData.MinWanderTime, enemy.enemyData.MaxWanderTime, transform, enemy.enemyData.Speed);
+        var chase = new Chase(enemy.enemyData.enemyType, enemy.Element, transform, Target.transform, enemy.enemyData.Speed);
+        var attack = new Attack(enemy.enemyData.enemyType, enemy.Element, enemy.enemyData.AttackDamage, enemy.enemyData.AbilityCooldown, enemy.enemyData.AbilityProbability);
         var die = new Die(this, enemy);
 
         //Normal transitions
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         CurrentHealth = enemy.enemyData.MaxHealth;
-        Debug.Log("This is a " + enemy.element + " " + enemy.enemyData.enemyType);
+        Debug.Log("This is a " + enemy.Element + " " + enemy.enemyData.enemyType);
     }
 
     // Update is called once per frame
