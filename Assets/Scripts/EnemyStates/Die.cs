@@ -16,7 +16,7 @@ public class Die : IState
 
     public void OnEnter()
     {
-        Debug.Log("The " + enemyData.element + " " + enemyData.enemyData.enemyType + " died!");
+        Debug.Log("The " + enemyData.Element + " " + enemyData.enemyData.enemyType + " died!");
         enemy.Die();
     }
 
