@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxHealth: 50
   Speed: 3
   DetectRange: 5
-  AttackRange: 1
+  AttackRange: 2
   MinWanderTime: 3
   MaxWanderTime: 5
   AttackDamage: 5

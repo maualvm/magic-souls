@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
         //States
         var patrol = new Patrol(enemy.enemyData.enemyType, enemy.Element, enemy.enemyData.MinWanderTime, enemy.enemyData.MaxWanderTime, transform, enemy.enemyData.Speed);
         var chase = new Chase(enemy.enemyData.enemyType, enemy.Element, transform, Target.transform, enemy.enemyData.Speed);
-        var attack = new Attack(enemy.enemyData.enemyType, enemy.Element, enemy.enemyData.AttackDamage, enemy.enemyData.AbilityCooldown, enemy.enemyData.AbilityProbability);
+        var attack = new Attack(enemy.enemyData.enemyType, enemy.Element, enemy.MeleeAttackDamage, enemy.enemyData.AbilityCooldown, enemy.enemyData.AbilityProbability);
         var die = new Die(this, enemy);
 
         //Normal transitions
