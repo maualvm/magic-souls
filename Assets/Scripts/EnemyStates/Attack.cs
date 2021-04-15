@@ -22,16 +22,6 @@ public abstract class Attack : IState
         //Attack
         DoDamage();
 
-        //Ability
-        if(AbilityTimer > 0)
-        {
-            AbilityTimer -= Time.deltaTime;
-        }
-        else
-        {
-            UseAbility();
-            AbilityTimer = AbilityCooldown;
-        }
     }
 
     public virtual void OnEnter()
