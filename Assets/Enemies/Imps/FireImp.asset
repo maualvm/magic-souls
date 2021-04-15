@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 0bd7f6f5366f672488fe57e2167b0d46, type: 2}
   Element: Fire
+  AttackPreference: 0
+  RangedAttackProbability: 0
+  bAbilityIsRanged: 0
+  MeleeAttackDamage: 5
   MeleeDistance: 1
   MeleeCooldown: 1
-  AttackPreference: 0
+  RangedAttackDamage: 0
   RangedDistance: 0
   RangedCooldown: 0
-  RangedAttackProbability: 0
