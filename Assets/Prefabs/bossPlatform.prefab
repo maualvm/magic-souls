@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 829682288146695107}
   - component: {fileID: 7935062345084842557}
   - component: {fileID: 1761240558742630474}
+  - component: {fileID: 4628078525165226815}
   m_Layer: 0
   m_Name: TorreGrande2
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4628078525165226815
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288909900138301110}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2128726822645930174, guid: 1525c0aacabeb6141aa2e751e481aa11, type: 3}
 --- !u!1 &439331165202192860
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +105,7 @@ GameObject:
   - component: {fileID: 700102018747386778}
   - component: {fileID: 2482051967244956172}
   - component: {fileID: 7244191844803760687}
+  - component: {fileID: 3714223464902465977}
   m_Layer: 0
   m_Name: TorreChica2
   m_TagString: Untagged
@@ -158,6 +174,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3714223464902465977
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439331165202192860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 802743558726497007, guid: 1525c0aacabeb6141aa2e751e481aa11, type: 3}
 --- !u!1 &3287734148149897050
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +236,7 @@ GameObject:
   - component: {fileID: 2609663645940240391}
   - component: {fileID: 2667668309762044088}
   - component: {fileID: 6971042807395587517}
+  - component: {fileID: 5066791299386340396}
   m_Layer: 0
   m_Name: TorreGrande1
   m_TagString: Untagged
@@ -274,6 +305,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5066791299386340396
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111197665508711449}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6851142558658416664, guid: 1525c0aacabeb6141aa2e751e481aa11, type: 3}
 --- !u!1 &6039672944584808865
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +330,7 @@ GameObject:
   - component: {fileID: 2409480826827080844}
   - component: {fileID: 7434273695260282017}
   - component: {fileID: 5727565945704795019}
+  - component: {fileID: 1925237861609125503}
   m_Layer: 0
   m_Name: TorreGrande3
   m_TagString: Untagged
@@ -353,6 +399,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1925237861609125503
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039672944584808865}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7072433789888326546, guid: 1525c0aacabeb6141aa2e751e481aa11, type: 3}
 --- !u!1 &7416019651919989289
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +424,7 @@ GameObject:
   - component: {fileID: 1725658404531417656}
   - component: {fileID: 2598074100324125743}
   - component: {fileID: 764279333680228420}
+  - component: {fileID: 1531752172201942943}
   m_Layer: 0
   m_Name: TorreChica1
   m_TagString: Untagged
@@ -432,6 +493,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1531752172201942943
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416019651919989289}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 247794933846093979, guid: 1525c0aacabeb6141aa2e751e481aa11, type: 3}
 --- !u!1 &7570371410073674309
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +518,7 @@ GameObject:
   - component: {fileID: 6816816392093216258}
   - component: {fileID: 2709694655532888085}
   - component: {fileID: 7813079802122587573}
+  - component: {fileID: 5747039557744605619}
   m_Layer: 0
   m_Name: TorreChica3
   m_TagString: Untagged
@@ -511,6 +587,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5747039557744605619
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570371410073674309}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8329130598168516739, guid: 1525c0aacabeb6141aa2e751e481aa11, type: 3}
 --- !u!1 &8494521480466011655
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +612,7 @@ GameObject:
   - component: {fileID: 2740230773610764302}
   - component: {fileID: 7257947383549319246}
   - component: {fileID: 8733445315238088834}
+  - component: {fileID: 6418698957885873172}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -590,3 +681,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6418698957885873172
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8494521480466011655}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3909233067320746374, guid: 1525c0aacabeb6141aa2e751e481aa11, type: 3}
