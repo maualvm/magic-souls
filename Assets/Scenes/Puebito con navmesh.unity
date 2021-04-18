@@ -2182,34 +2182,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e1a9d884e6ef6674ea2e1d11af8bc4e9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcbd048402f8af54e8572888abed236f, type: 3}
---- !u!1 &706458570 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 797614652273739934, guid: 8e10d35695d164a4488d7d302bb901c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1155681506}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &706458571
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706458570}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.4
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.2
-  m_BaseOffset: 0.55
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1001 &721697020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4017,11 +3989,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireImp
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149394270435, guid: 8e10d35695d164a4488d7d302bb901c2,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e10d35695d164a4488d7d302bb901c2, type: 3}
@@ -6681,7 +6648,7 @@ PrefabInstance:
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 269.2
+      value: 284.4
       objectReference: {fileID: 0}
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}

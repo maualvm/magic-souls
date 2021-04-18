@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
@@ -11,10 +12,10 @@ public class Enemy : MonoBehaviour
  
     [SerializeField]
     private float CurrentHealth;
-
     private float RangedAttackProbability;
-
     private string AttackPreference;
+
+    private NavMeshAgent navMeshAgent;
 
     private StateMachine stateMachine;
 
@@ -23,6 +24,13 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         //Get all necessary components
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        if(navMeshAgent == null)
+        {
+            Debug.LogError("NavMesh Agent component missing!");
+            return;
+        }
+        navMeshAgent.speed = enemy.enemyData.Speed;
         RangedAttackProbability = enemy.RangedAttackProbability;
 
         switch(enemy.AttackPreference)
@@ -41,7 +49,7 @@ public class Enemy : MonoBehaviour
         stateMachine = new StateMachine();
 
         //States
-        var patrol = new Patrol(enemy.enemyData.enemyType, enemy.Element, enemy.enemyData.MinWanderTime, enemy.enemyData.MaxWanderTime, transform, enemy.enemyData.Speed);
+        var patrol = new Patrol(enemy, transform, navMeshAgent);
         var chase = new Chase(enemy.enemyData.enemyType, enemy.Element, transform, Target.transform, enemy.enemyData.Speed);
         var melee_attack = new MeleeAttack(enemy.enemyData.enemyType, enemy.Element, enemy.MeleeAttackDamage, enemy.enemyData.AbilityCooldown, enemy.enemyData.AbilityProbability, 
             enemy.bAbilityIsRanged);
