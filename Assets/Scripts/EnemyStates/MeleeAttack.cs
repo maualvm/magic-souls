@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MeleeAttack : Attack
 {
-    public MeleeAttack(string enemyType, string enemyElement, float damage, float abilityCooldown, float abilityProbability, bool bAbilityIsRanged) 
-        : base(enemyType, enemyElement, damage, abilityCooldown, abilityProbability, bAbilityIsRanged)
+    public MeleeAttack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target) 
+        : base(elementEnemyData, navMeshAgent, target)
     {
-
+        StoppingDistance = elementEnemyData.MeleeDistance;
     }
 
     public override void Update()
     {
         base.Update();
+        navMeshAgent.SetDestination(Target.transform.position);
 
         //Only try to use ability if it's melee
-        if(!bAbilityIsRanged)
+        if (!bAbilityIsRanged)
         {
             if (AbilityTimer > 0)
             {
@@ -33,6 +35,7 @@ public class MeleeAttack : Attack
     {
         base.OnEnter();
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting the melee atack");
+        navMeshAgent.stoppingDistance = StoppingDistance;
     }
 
     public override void OnExit()

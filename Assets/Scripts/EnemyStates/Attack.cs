@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class Attack : IState
 {
     protected string EnemyType, EnemyElement;
-    protected float Damage, AbilityCooldown, AbilityTimer, AbilityProbability;
+    protected float AbilityCooldown, AbilityTimer, AbilityProbability, StoppingDistance;
     protected bool bAbilityIsRanged;
-    public Attack(string enemyType, string enemyElement, float damage, float abilityCooldown, float abilityProbability, bool bAbilityIsRanged)
+    protected NavMeshAgent navMeshAgent;
+    protected GameObject Target;
+    public Attack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target)
     {
-        EnemyType = enemyType;
-        EnemyElement = enemyElement;
-        this.Damage = damage;
-        this.AbilityCooldown = abilityCooldown;
-        this.AbilityProbability = abilityProbability;
-        this.bAbilityIsRanged = bAbilityIsRanged;
+        EnemyType = elementEnemyData.enemyData.enemyType;
+        EnemyElement = elementEnemyData.Element;
+        this.AbilityCooldown = elementEnemyData.enemyData.AbilityCooldown;
+        this.AbilityProbability = elementEnemyData.enemyData.AbilityProbability;
+        this.bAbilityIsRanged = elementEnemyData.bAbilityIsRanged;
+        this.navMeshAgent = navMeshAgent;
+        this.Target = target;
     }
 
     public virtual void Update()

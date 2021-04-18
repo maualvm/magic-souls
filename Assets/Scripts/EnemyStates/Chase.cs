@@ -20,9 +20,9 @@ public class Chase : IState
 
     public void Update()
     {
-        navMeshAgent.SetDestination(Target.position);
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is chasing");
         transform.LookAt(Target);
+        navMeshAgent.SetDestination(Target.position);
     }
 
     public void OnEnter()
