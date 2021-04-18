@@ -22,10 +22,6 @@ public abstract class Attack : IState
     public virtual void Update()
     {
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is attacking");
-
-        //Attack
-        DoDamage();
-
     }
 
     public virtual void OnEnter()
@@ -68,6 +64,7 @@ public abstract class Attack : IState
     protected void FireImpAbility()
     {
         Debug.Log("The Fire Imp set you on fire!");
+        //Target.SetOnFire();
     }
 
     protected void WaterImpAbility()

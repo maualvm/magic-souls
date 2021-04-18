@@ -5,16 +5,30 @@ using UnityEngine.AI;
 
 public class MeleeAttack : Attack
 {
+    private float MeleeTimer, MeleeCooldown, Damage;
+
     public MeleeAttack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target) 
         : base(elementEnemyData, navMeshAgent, target)
     {
         StoppingDistance = elementEnemyData.MeleeDistance;
+        MeleeCooldown = elementEnemyData.MeleeCooldown;
+        Damage = elementEnemyData.MeleeAttackDamage;
     }
 
     public override void Update()
     {
         base.Update();
         navMeshAgent.SetDestination(Target.transform.position);
+
+        if(MeleeTimer > 0)
+        {
+            MeleeTimer -= Time.deltaTime;
+        }
+        else
+        {
+            DoDamage();
+            MeleeTimer = MeleeCooldown;
+        }
 
         //Only try to use ability if it's melee
         if (!bAbilityIsRanged)
@@ -36,6 +50,7 @@ public class MeleeAttack : Attack
         base.OnEnter();
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting the melee atack");
         navMeshAgent.stoppingDistance = StoppingDistance;
+        MeleeTimer = MeleeCooldown;
     }
 
     public override void OnExit()
@@ -46,6 +61,7 @@ public class MeleeAttack : Attack
 
     public override void DoDamage() 
     {
-        Debug.Log("The enemy meleed the player");
+        Debug.Log("The enemy did " + Damage + " damage to the player");
+        //Target.ReceiveDamage(Damage);
     }
 }
