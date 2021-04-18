@@ -1,33 +1,34 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class Chase : IState
 {
     private string EnemyType, EnemyElement;
     private Transform transform, Target;
-    private float Speed;
-    private Vector3 Direction;
-    public Chase(string enemyType, string enemyElement, Transform transform, Transform target, float speed)
+    private float StoppingDistance;
+    private NavMeshAgent navMeshAgent;
+    public Chase(ElementEnemyData elementEnemyData, Transform transform, Transform target, NavMeshAgent navMeshAgent)
     {
-        EnemyType = enemyType;
-        EnemyElement = enemyElement;
+        EnemyType = elementEnemyData.enemyData.enemyType;
+        EnemyElement = elementEnemyData.Element;
+        StoppingDistance = elementEnemyData.enemyData.AttackRange;
         this.transform = transform;
         this.Target = target;
-        this.Speed = speed;
+        this.navMeshAgent = navMeshAgent;
+        
     }
 
     public void Update()
     {
+        navMeshAgent.SetDestination(Target.position);
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is chasing");
         transform.LookAt(Target);
-
-        Direction = Target.position - transform.position;
-        Direction = Direction.normalized;
-        transform.Translate(Direction * Speed * Time.deltaTime, Space.World);
     }
 
     public void OnEnter()
     {
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting to chase");
+        navMeshAgent.stoppingDistance = StoppingDistance;
     }
 
     public void OnExit()

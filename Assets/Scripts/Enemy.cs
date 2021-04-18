@@ -49,8 +49,8 @@ public class Enemy : MonoBehaviour
         stateMachine = new StateMachine();
 
         //States
-        var patrol = new Patrol(enemy, transform, navMeshAgent);
-        var chase = new Chase(enemy.enemyData.enemyType, enemy.Element, transform, Target.transform, enemy.enemyData.Speed);
+        var patrol = new Patrol(enemy, navMeshAgent);
+        var chase = new Chase(enemy, transform, Target.transform, navMeshAgent);
         var melee_attack = new MeleeAttack(enemy.enemyData.enemyType, enemy.Element, enemy.MeleeAttackDamage, enemy.enemyData.AbilityCooldown, enemy.enemyData.AbilityProbability, 
             enemy.bAbilityIsRanged);
         var ranged_attack = new RangedAttack(enemy.enemyData.enemyType, enemy.Element, enemy.MeleeAttackDamage, enemy.enemyData.AbilityCooldown, enemy.enemyData.AbilityProbability, 
