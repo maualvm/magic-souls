@@ -3563,7 +3563,7 @@ MonoBehaviour:
   - name: EarthImps
     impFuego: {fileID: 4302263794298377145, guid: a51ebd843275cc142acd2a7e700cc380,
       type: 3}
-    count: 2
+    count: 5
     rate: 1
   timeBetweenWaves: 5
   spawnPoints:
@@ -3571,6 +3571,11 @@ MonoBehaviour:
   - {fileID: 685656250}
   - {fileID: 1144991797}
   - {fileID: 280981222}
+  - {fileID: 1130652352}
+  - {fileID: 1130652352}
+  - {fileID: 1130652352}
+  - {fileID: 1130652352}
+  - {fileID: 1130652352}
   - {fileID: 1130652352}
 --- !u!1001 &653701181
 PrefabInstance:
