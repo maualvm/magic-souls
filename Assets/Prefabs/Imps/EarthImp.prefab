@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 3976604880691833214}
   m_Layer: 0
   m_Name: EarthImp
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

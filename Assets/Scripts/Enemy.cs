@@ -115,4 +115,10 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public void ReceiveDamage(float Damage)
+    {
+
+        CurrentHealth -= Damage;
+    }
 }
