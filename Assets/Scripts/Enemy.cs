@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         var patrol = new Patrol(enemy, navMeshAgent);
         var chase = new Chase(enemy, transform, Target.transform, navMeshAgent);
         var melee_attack = new MeleeAttack(enemy, navMeshAgent, Target);
-        var ranged_attack = new RangedAttack(enemy, navMeshAgent, Target);
+        var ranged_attack = new RangedAttack(enemy, navMeshAgent, Target, transform);
         var die = new Die(this, enemy);
 
         //Normal transitions
