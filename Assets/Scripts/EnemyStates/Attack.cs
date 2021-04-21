@@ -1,50 +1,43 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
-public class Attack : IState
+public abstract class Attack : IState
 {
-    private string EnemyType, EnemyElement;
-    private float Damage, AbilityCooldown, AbilityTimer, AbilityProbability;
-    public Attack(string enemyType, string enemyElement, float damage, float abilityCooldown, float abilityProbability)
+    protected string EnemyType, EnemyElement;
+    protected float AbilityCooldown, AbilityTimer, AbilityProbability, StoppingDistance;
+    protected bool bAbilityIsRanged;
+    protected NavMeshAgent navMeshAgent;
+    protected GameObject Target;
+    public Attack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target)
     {
-        EnemyType = enemyType;
-        EnemyElement = enemyElement;
-        this.Damage = damage;
-        this.AbilityCooldown = abilityCooldown;
-        this.AbilityProbability = abilityProbability;
+        EnemyType = elementEnemyData.enemyData.enemyType;
+        EnemyElement = elementEnemyData.Element;
+        this.AbilityCooldown = elementEnemyData.enemyData.AbilityCooldown;
+        this.AbilityProbability = elementEnemyData.enemyData.AbilityProbability;
+        this.bAbilityIsRanged = elementEnemyData.bAbilityIsRanged;
+        this.navMeshAgent = navMeshAgent;
+        this.Target = target;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is attacking");
-
-        //Attack
-
-
-        //Ability
-        if(AbilityTimer > 0)
-        {
-            AbilityTimer -= Time.deltaTime;
-        }
-        else
-        {
-            UseAbility();
-            AbilityTimer = AbilityCooldown;
-        }
     }
 
-    public void OnEnter()
+    public virtual void OnEnter()
     {
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting to atack");
         AbilityTimer = AbilityCooldown;
     }
 
-    public void OnExit()
+    public virtual void OnExit()
     {
         Debug.Log("The " + EnemyElement + " " + EnemyType + " is stopping the attack");
     }
 
+    public abstract void DoDamage();
 
-    private void UseAbility()
+    protected void UseAbility()
     {
         //Early return if the ability wasn't triggered
         if (Random.Range(0, 100) > AbilityProbability)
@@ -68,22 +61,23 @@ public class Attack : IState
         }
     }
 
-    private void FireImpAbility()
+    protected void FireImpAbility()
     {
         Debug.Log("The Fire Imp set you on fire!");
+        //Target.SetOnFire();
     }
 
-    private void WaterImpAbility()
+    protected void WaterImpAbility()
     {
         Debug.Log("The Water Imp slowed you down!");
     }
 
-    private void EarthImpAbility()
+    protected void EarthImpAbility()
     {
         Debug.Log("The Earth Imp stunned you!");
     }
 
-    private void AirImpAbility()
+    protected void AirImpAbility()
     {
         Debug.Log("The Air Imp pushed you!");
     }

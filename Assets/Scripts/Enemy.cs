@@ -2,14 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    ElementEnemyData enemy;
+    private ElementEnemyData enemy;
  
     [SerializeField]
-    float CurrentHealth;
+    private float CurrentHealth;
+    private float RangedAttackProbability;
+    private string AttackPreference;
+
+    private NavMeshAgent navMeshAgent;
 
     private StateMachine stateMachine;
 
@@ -18,20 +24,47 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         //Get all necessary components
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        if(navMeshAgent == null)
+        {
+            Debug.LogError("NavMesh Agent component missing!");
+            return;
+        }
+        navMeshAgent.speed = enemy.enemyData.Speed;
+
+        RangedAttackProbability = enemy.RangedAttackProbability;
+
+        switch(enemy.AttackPreference)
+        {
+            case AttackTypes.Melee:
+                AttackPreference = "melee";
+                break;
+            case AttackTypes.Ranged:
+                AttackPreference = "ranged";
+                break;
+            case AttackTypes.Both:
+                AttackPreference = ObtainAttackPreference();
+                break;
+        }
 
         stateMachine = new StateMachine();
 
         //States
-        var patrol = new Patrol(enemy.enemyData.enemyType, enemy.Element, enemy.enemyData.MinWanderTime, enemy.enemyData.MaxWanderTime, transform, enemy.enemyData.Speed);
-        var chase = new Chase(enemy.enemyData.enemyType, enemy.Element, transform, Target.transform, enemy.enemyData.Speed);
-        var attack = new Attack(enemy.enemyData.enemyType, enemy.Element, enemy.enemyData.AttackDamage, enemy.enemyData.AbilityCooldown, enemy.enemyData.AbilityProbability);
+        var patrol = new Patrol(enemy, navMeshAgent);
+        var chase = new Chase(enemy, transform, Target.transform, navMeshAgent);
+        var melee_attack = new MeleeAttack(enemy, navMeshAgent, Target);
+        var ranged_attack = new RangedAttack(enemy, navMeshAgent, Target, transform);
         var die = new Die(this, enemy);
 
         //Normal transitions
         At(patrol, chase, InDetectionRange());
         At(chase, patrol, OutOfDetectionRange());
-        At(chase, attack, InAttackRange());
-        At(attack, chase, OutOfAttackRange());
+        At(chase, melee_attack, InMeleeAttack());
+        At(chase, ranged_attack, InRangedAttack());
+        At(melee_attack, chase, OutOfAttackRange());
+        At(melee_attack, ranged_attack, InRangedAttack());
+        At(ranged_attack, chase, OutOfAttackRange());
+        At(ranged_attack, melee_attack, InMeleeAttack());
 
         //Transitions that can happen at any time
         stateMachine.AddAnyTransition(die, IsDead());
@@ -43,7 +76,8 @@ public class Enemy : MonoBehaviour
         void At(IState from, IState to, Func<bool> condition) => stateMachine.AddTransition(from, to, condition);
         Func<bool> InDetectionRange() => () => Vector3.Distance(transform.position, Target.transform.position) <= enemy.enemyData.DetectRange;
         Func<bool> OutOfDetectionRange() => () => Vector3.Distance(transform.position, Target.transform.position) > enemy.enemyData.DetectRange;
-        Func<bool> InAttackRange() => () => Vector3.Distance(transform.position, Target.transform.position) <= enemy.enemyData.AttackRange;
+        Func<bool> InMeleeAttack() => () => Vector3.Distance(transform.position, Target.transform.position) <= enemy.enemyData.AttackRange && AttackPreference == "melee";
+        Func<bool> InRangedAttack() => () => Vector3.Distance(transform.position, Target.transform.position) <= enemy.enemyData.AttackRange && AttackPreference == "ranged";
         Func<bool> OutOfAttackRange() => () => Vector3.Distance(transform.position, Target.transform.position) > enemy.enemyData.AttackRange;
         Func<bool> IsDead() => () => CurrentHealth <= 0;
     }
@@ -59,6 +93,17 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
+
+
+    }
+
+    private string ObtainAttackPreference()
+    {
+        float val = Random.Range(0, 100);
+        if (val >= RangedAttackProbability)
+            return "melee";
+        else
+            return "ranged";
     }
 
     public ElementEnemyData GetEnemyData()
@@ -69,5 +114,11 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void ReceiveDamage(float Damage)
+    {
+
+        CurrentHealth -= Damage;
     }
 }
