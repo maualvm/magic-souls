@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 6c9a9e950b1812c44b90c7fd39225096, type: 2}
   CurrentHealth: 0
-  Target: {fileID: 0}
+  Target: {fileID: 1702442847585835845, guid: 70e027772b42c884aa0a78c2fc8f350f, type: 3}
 --- !u!64 &2709008620625632967
 MeshCollider:
   m_ObjectHideFlags: 0
