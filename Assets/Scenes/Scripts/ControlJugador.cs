@@ -1,71 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ControlJugador : MonoBehaviour
 {
-    private float _posicionPiso;
-    private bool _saltandoArriba, _saltandoAbajo;
-
     [SerializeField]
     private Vector3 VelocidadMovimiento;
-    
-    [SerializeField]
-    private float TopeSalto;
 
+    [SerializeField]
+    private float stamina = 100f;
+
+    private DateTime _wait;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _wait = DateTime.Now;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var brinca = Input.GetAxis("Jump") > 0.0f;
-        if (!_saltandoArriba && !_saltandoAbajo && brinca)
-        {
-            _saltandoArriba = true;
-            _posicionPiso = transform.position.y;
-        }
-        if (_saltandoArriba && (transform.position.y - _posicionPiso) > TopeSalto)
-        {
-            _saltandoAbajo = true;
-            _saltandoArriba = false;
-        }
-        if(_saltandoAbajo && transform.position.y <= _posicionPiso)
-        {
-            _saltandoAbajo = false;
-            transform.position = new Vector3(transform.position.x, _posicionPiso, transform.position.z);
-        }
         var xFactor = Input.GetAxis("Horizontal");
         var zFactor = Input.GetAxis("Vertical");
-
-        var jumpVal = 0.0f;
-        if (_saltandoArriba)
-        {
-            jumpVal = VelocidadMovimiento.y;
-        } else if (_saltandoAbajo)
-        {
-            jumpVal = VelocidadMovimiento.y *- 1;
+        if(Input.GetKeyDown(KeyCode.LeftShift) && stamina > 0) {
+            VelocidadMovimiento.x += 1.5f;
+            VelocidadMovimiento.z += 1.5f;
+            stamina -= 5 / Time.deltaTime;
         }
+        if(Input.GetKeyUp(KeyCode.LeftShift) && stamina < 100) {
+            VelocidadMovimiento.x -= 1.5f;
+            VelocidadMovimiento.z -= 1.5f;
+            stamina += 5 / Time.deltaTime;
+            
+        }
+        var finalMoveVector = new Vector3(VelocidadMovimiento.x *xFactor, 0, VelocidadMovimiento.z *zFactor);
 
-        var finalMoveVector = new Vector3(VelocidadMovimiento.x *xFactor, jumpVal , VelocidadMovimiento.z *zFactor);
         gameObject.transform.Translate(finalMoveVector * Time.deltaTime, Space.World);
-       
-    }
-
-    private void OnTriggerEnter(Collider other){
-        var renderer = other.gameObject.GetComponent<MeshRenderer>();
-        if(renderer != null) {
-            renderer.enabled = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other){
-        var renderer = other.gameObject.GetComponent<MeshRenderer>();
-        if(renderer != null) {
-            renderer.enabled = true;
-        }
     }
 }
