@@ -10,6 +10,9 @@ public class ImpSpawner : MonoBehaviour
     {
         public string name;
         public Transform impFuego;
+        public Transform impTierra;
+        public Transform impAire;
+        public Transform impAgua;
         public int count; // countdown to next wave
         public float rate; //spawn rate
     }
@@ -102,6 +105,7 @@ public class ImpSpawner : MonoBehaviour
         for(int i = 0; i < _wave.count; i++)
         {
             SpawnImp(_wave.impFuego);
+            SpawnImp(_wave.impTierra);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -113,8 +117,19 @@ public class ImpSpawner : MonoBehaviour
     void SpawnImp(Transform _imp)
     {
         Debug.Log("Spawning imp: " + _imp.name);
-       
-        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(_imp, _sp.position, _sp.rotation);
+
+
+        if (_imp.name.Contains("Fuego"))
+        {
+            Transform _sp = spawnPoints[Random.Range(0, 5)];
+            Instantiate(_imp, _sp.position, _sp.rotation);
+        }
+
+        if (_imp.name.Contains("Earth"))
+        {
+            Transform _sp2 = spawnPoints[Random.Range(6, 10)];
+            Instantiate(_imp, _sp2.position, _sp2.rotation);
+        }
+            
     }
 }
