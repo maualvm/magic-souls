@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 8005817438453239927}
   - component: {fileID: 2379806486497895786}
   m_Layer: 0
-  m_Name: pot3 (1)
+  m_Name: pot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &9174197854753647384
 Transform:
