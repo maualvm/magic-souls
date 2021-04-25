@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
 
     public GameObject Target;
 
+    public static event Action<String> EnemyKilled;
+
     private void Awake()
     {
         //Get all necessary components
@@ -113,6 +115,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        EnemyKilled?.Invoke(enemy.Element);
         Destroy(gameObject);
     }
 
