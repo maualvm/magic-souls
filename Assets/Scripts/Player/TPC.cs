@@ -20,7 +20,12 @@ public class TPC : MonoBehaviour
     public bool canMove = true;
     public bool canRun = true;
 
+    [SerializeField]
     private int estoEsUnaprueba;
+    [SerializeField]
+    private float maxHealth = 100;
+    [SerializeField]
+    private float currentHealth;
 
     void Start()
     {
@@ -29,11 +34,15 @@ public class TPC : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         estoEsUnaprueba = 10000;
+        Respawn();
     }
 
     void Update()
     {
         estoEsUnaprueba++;
+        if(currentHealth <= 0) {
+            Die();
+        }
             
         
         if (characterController.isGrounded)
@@ -85,5 +94,19 @@ public class TPC : MonoBehaviour
            
 
         }
+    }
+
+    public void Die() {
+        Debug.Log("Se murio");
+        transform.Translate(0, 10, 0);
+    }
+    public void ReceiveDamage(float Damage)
+    {
+
+        currentHealth -= Damage;
+    }
+
+    public void Respawn() {
+        currentHealth = maxHealth;
     }
 }

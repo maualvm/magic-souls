@@ -62,6 +62,6 @@ public class MeleeAttack : Attack
     public override void DoDamage() 
     {
         Debug.Log("The enemy did " + Damage + " damage to the player");
-        //Target.ReceiveDamage(Damage);
+        Target.GetComponent<TPC>().ReceiveDamage(Damage);
     }
 }
