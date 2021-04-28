@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2826603987428049719}
   - component: {fileID: 5092658823634654623}
   - component: {fileID: 6372069678893125389}
-  - component: {fileID: 4694469673052643172}
+  - component: {fileID: 8712008662019842936}
   m_Layer: 0
   m_Name: impFuego
   m_TagString: Enemy
@@ -135,7 +135,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4694469673052643172
+--- !u!114 &8712008662019842936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -19,13 +19,19 @@ public class Enemy : MonoBehaviour
 
     private StateMachine stateMachine;
 
-    public GameObject Target;
+    private GameObject Target;
 
     public static event Action<String> EnemyKilled;
 
     private void Awake()
     {
         //Get all necessary components
+        Target = GameObject.Find("Jugador");
+        if (Target == null)
+        {
+            Debug.LogError("Target not found!");
+            return;
+        }
         navMeshAgent = GetComponent<NavMeshAgent>();
         if(navMeshAgent == null)
         {
@@ -95,7 +101,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
-
+        Debug.Log(this.name + "is " + Vector3.Distance(transform.position, Target.transform.position) + " away from the Player");
 
     }
 
