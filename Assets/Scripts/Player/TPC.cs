@@ -1,24 +1,33 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 
 public class TPC : MonoBehaviour
 {
-    public float speed = 7.5f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
-    public Transform playerCameraParent;
-    public float lookSpeed = 2.0f;
-    public float lookXLimit = 60.0f;
-    public float stamina = 100f;
+    [SerializeField]
+    private float speed = 7.5f;
+    [SerializeField]
+    private float jumpSpeed = 8.0f;
+    [SerializeField]
+    private float gravity = 20.0f;
+    [SerializeField]
+    private Transform playerCameraParent;
+    [SerializeField]
+    private float lookSpeed = 2.0f;
+    [SerializeField]
+    private float lookXLimit = 60.0f;
+    [SerializeField]
+    private float stamina = 100f;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     Vector2 rotation = Vector2.zero;
 
-    [HideInInspector]
-    public bool canMove = true;
-    public bool canRun = true;
+    private bool canMove = true;
+    private bool canRun = true;
+
+    public static event Action PlayerKilled;
 
     void Start()
     {
@@ -81,5 +90,10 @@ public class TPC : MonoBehaviour
            
 
         }
+    }
+
+    public void Die()
+    {
+        PlayerKilled?.Invoke();
     }
 }
