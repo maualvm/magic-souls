@@ -20,16 +20,22 @@ public class TPC : MonoBehaviour
     public bool canMove = true;
     public bool canRun = true;
 
+    private float maxHealth = 100;
+    private float currentHealth;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
+        Respawn();
     }
 
     void Update()
     {
-        
+        if(currentHealth <= 0) {
+            Die();
+        }
             
         
         if (characterController.isGrounded)
@@ -81,5 +87,13 @@ public class TPC : MonoBehaviour
            
 
         }
+    }
+
+    public void Die() {
+        transform.position = new Vector3(-345, 1, -650);
+    }
+
+    public void Respawn() {
+        currentHealth = maxHealth;
     }
 }
