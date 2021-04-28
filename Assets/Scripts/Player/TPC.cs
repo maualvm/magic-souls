@@ -20,16 +20,20 @@ public class TPC : MonoBehaviour
     public bool canMove = true;
     public bool canRun = true;
 
+    private int estoEsUnaprueba;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
+
+        estoEsUnaprueba = 10000;
     }
 
     void Update()
     {
-        
+        estoEsUnaprueba++;
             
         
         if (characterController.isGrounded)
