@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class TPC : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField]
     private float speed = 7.5f;
@@ -28,9 +28,6 @@ public class TPC : MonoBehaviour
     private bool canRun = true;
 
     public static event Action PlayerKilled;
-
-    [SerializeField]
-    private int estoEsUnaprueba;
     [SerializeField]
     private float maxHealth = 100;
     [SerializeField]
@@ -42,13 +39,11 @@ public class TPC : MonoBehaviour
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
 
-        estoEsUnaprueba = 10000;
         Respawn();
     }
 
     void Update()
     {
-        estoEsUnaprueba++;
         if(currentHealth <= 0) {
             Die();
         }

@@ -29,13 +29,13 @@ public class InventorySystem : MonoBehaviour
     private void OnEnable()
     {
         Enemy.EnemyKilled += AddSouls;
-        TPC.PlayerKilled += ResetSouls;
+        Player.PlayerKilled += ResetSouls;
     }
 
     private void OnDisable()
     {
         Enemy.EnemyKilled -= AddSouls;
-        TPC.PlayerKilled -= ResetSouls;
+        Player.PlayerKilled -= ResetSouls;
     }
 
     private void AddSouls(string element)
