@@ -1425,6 +1425,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 127655739}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &127771587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 127771588}
+  m_Layer: 0
+  m_Name: ImpWaterSpawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &127771588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127771587}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 513046931}
+  - {fileID: 914736155}
+  - {fileID: 1291750880}
+  - {fileID: 1787806559}
+  - {fileID: 376342720}
+  m_Father: {fileID: 652542650}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &129905032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6962119243284288588, guid: 3f012e72d2798ce46be30807e627ceb7,
@@ -3374,6 +3409,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1275873698}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &376342719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 376342720}
+  m_Layer: 0
+  m_Name: ImpWaterSpawner5
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &376342720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376342719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.31, y: -15.22, z: -101.79}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127771588}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &379085745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 15790786327168378, guid: 078ecc0207faec344876fee599122c1e,
@@ -4265,6 +4330,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 503636181}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &513046930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513046931}
+  m_Layer: 0
+  m_Name: ImpWaterSpawner1
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513046931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513046930}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.79, y: -15.22, z: 9.68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127771588}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &523169346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5235,6 +5330,11 @@ MonoBehaviour:
   - {fileID: 9102931}
   - {fileID: 464930927}
   - {fileID: 225412428}
+  - {fileID: 513046931}
+  - {fileID: 914736155}
+  - {fileID: 1291750880}
+  - {fileID: 1787806559}
+  - {fileID: 376342720}
 --- !u!114 &645188637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5283,6 +5383,7 @@ Transform:
   - {fileID: 307611605}
   - {fileID: 267120231}
   - {fileID: 6962655352040405140}
+  - {fileID: 127771588}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7751,6 +7852,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1411303995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &914736154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 914736155}
+  m_Layer: 0
+  m_Name: ImpWaterSpawner2
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &914736155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914736154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.97, y: -15.22, z: -11.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127771588}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &921783337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10524,6 +10655,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 078ecc0207faec344876fee599122c1e, type: 3}
+--- !u!1 &1291750879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1291750880}
+  m_Layer: 0
+  m_Name: ImpWaterSpawner3
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1291750880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291750879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.25, y: -11.37, z: -22.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127771588}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1292177133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5359504888842395855, guid: edb4377f76c581e47ab2c96158dad10b,
@@ -14366,6 +14527,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 893810226}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1787806558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1787806559}
+  m_Layer: 0
+  m_Name: ImpWaterSpawner4
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1787806559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787806558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.79, y: -15.22, z: -47.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127771588}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1789336113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15549,6 +15740,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1486007537649355793, guid: a3b0191d2354a54468a019d94244b37b,
         type: 3}
+    - target: {fileID: 830368377, guid: 70e027772b42c884aa0a78c2fc8f350f, type: 3}
+      propertyPath: bleedingFX
+      value: 
+      objectReference: {fileID: 1664070504769183265, guid: c990ffc460ce50b429b6acf9bcbd0629,
+        type: 3}
+    - target: {fileID: 830368377, guid: 70e027772b42c884aa0a78c2fc8f350f, type: 3}
+      propertyPath: exhaustedFX
+      value: 
+      objectReference: {fileID: 3209362305348617554, guid: 0e723e961613fdd4482af1386ff884e2,
+        type: 3}
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}
       propertyPath: m_RootOrder
@@ -15557,7 +15758,7 @@ PrefabInstance:
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 156.1
+      value: 161.2
       objectReference: {fileID: 0}
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}
@@ -15567,7 +15768,7 @@ PrefabInstance:
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 206.1
+      value: 247.99294
       objectReference: {fileID: 0}
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}

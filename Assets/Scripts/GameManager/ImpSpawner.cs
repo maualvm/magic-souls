@@ -106,6 +106,7 @@ public class ImpSpawner : MonoBehaviour
         {
             SpawnImp(_wave.impFuego);
             SpawnImp(_wave.impTierra);
+            SpawnImp(_wave.impAgua);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -121,15 +122,21 @@ public class ImpSpawner : MonoBehaviour
 
         if (_imp.name.Contains("Fuego"))
         {
-            Transform _sp = spawnPoints[Random.Range(0, 5)];
+            Transform _sp = spawnPoints[Random.Range(0, 4)];
             Instantiate(_imp, _sp.position, _sp.rotation);
         }
 
         if (_imp.name.Contains("Earth"))
         {
-            Transform _sp2 = spawnPoints[Random.Range(6, 10)];
+            Transform _sp2 = spawnPoints[Random.Range(5, 9)];
             Instantiate(_imp, _sp2.position, _sp2.rotation);
         }
-            
+
+        if (_imp.name.Contains("Water"))
+        {
+            Transform _sp2 = spawnPoints[Random.Range(10, 14)];
+            Instantiate(_imp, _sp2.position, _sp2.rotation);
+        }
+
     }
 }

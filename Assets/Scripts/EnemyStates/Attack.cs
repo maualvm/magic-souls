@@ -70,11 +70,13 @@ public abstract class Attack : IState
     protected void WaterImpAbility()
     {
         Debug.Log("The Water Imp slowed you down!");
+        Target.GetComponent<Player>().SetExhausted();
     }
 
     protected void EarthImpAbility()
     {
         Debug.Log("The Earth Imp stunned you!");
+        Target.GetComponent<Player>().ApplyBleed();
     }
 
     protected void AirImpAbility()

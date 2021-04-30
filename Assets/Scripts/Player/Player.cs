@@ -24,9 +24,19 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject onFireFX;
+    [SerializeField]
+    private GameObject bleedingFX;
+    [SerializeField]
+    private GameObject exhaustedFX;
 
-    private bool onFire;
-    private float onFireTimer;
+    public bool onFire;
+    public float onFireTimer;
+
+    public bool bleeding;
+    public float bleedingTimer;
+
+    public bool isExhausted;
+    public float exhaustedTimer;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -59,8 +69,7 @@ public class Player : MonoBehaviour
 
         if (onFire)
         {
-            onFireFX.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            currentHealth = currentHealth -1 * Time.deltaTime;
+            currentHealth = currentHealth -5 * Time.deltaTime;
             onFireTimer = onFireTimer +1 * Time.deltaTime;
 
             if(onFireTimer >= 5)
@@ -70,8 +79,37 @@ public class Player : MonoBehaviour
                 Destroy(GameObject.Find("PlayerOnFire(Clone)")) ;
             }
         }
-            
-        
+
+        if (bleeding)
+        {
+            currentHealth = currentHealth - 5 * Time.deltaTime;
+            bleedingTimer = bleedingTimer + 1 * Time.deltaTime;
+
+            if (bleedingTimer >= 9)
+            {
+                bleeding = false;
+                bleedingTimer = 0f;
+               Destroy(GameObject.Find("PlayerBleeding(Clone)"));
+            }
+        }
+
+        if (isExhausted)
+        {
+            speed = 2f;
+            exhaustedTimer = exhaustedTimer + 1 * Time.deltaTime;
+
+            if (exhaustedTimer >= 5)
+            {
+                isExhausted = false;
+                exhaustedTimer = 0f;
+                Destroy(GameObject.Find("PlayerExhaust(Clone)"));
+                speed = 7.5f;
+            }
+        }
+
+
+
+
         if (characterController.isGrounded)
         {
             
@@ -149,6 +187,31 @@ public class Player : MonoBehaviour
         onFireTimer = 0;
         onFire = true;
         Debug.Log("Jugador is on fire!!");
+
+    }
+
+    public void ApplyBleed()
+    {
+        if (bleeding)
+            return;
+        //else
+        GameObject childObject = Instantiate(bleedingFX, new Vector3 (transform.position.x, transform.position.y+0.5f, transform.position.z), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        childObject.transform.parent = this.transform;
+        bleedingTimer = 0;
+        bleeding = true;
+        Debug.Log("Jugador is bleeding!!");
+    }
+
+    public void SetExhausted()
+    {
+        if (isExhausted)
+            return;
+        //else
+        GameObject childObject = Instantiate(exhaustedFX, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+        childObject.transform.parent = this.transform;
+        exhaustedTimer = 0;
+        isExhausted = true;
+        Debug.Log("Jugador is exhausted!!");
 
     }
 }
