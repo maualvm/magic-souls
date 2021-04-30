@@ -64,7 +64,7 @@ public abstract class Attack : IState
     protected void FireImpAbility()
     {
         Debug.Log("The Fire Imp set you on fire!");
-        //Target.SetOnFire();
+        Target.GetComponent<Player>().SetOnFire();
     }
 
     protected void WaterImpAbility()

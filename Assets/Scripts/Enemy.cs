@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
-        Debug.Log(this.name + "is " + Vector3.Distance(transform.position, Target.transform.position) + " away from the Player");
+        //Debug.Log(this.name + "is " + Vector3.Distance(transform.position, Target.transform.position) + " away from the Player");
 
     }
 

@@ -15544,6 +15544,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 830368377, guid: 70e027772b42c884aa0a78c2fc8f350f, type: 3}
+      propertyPath: onFireFX
+      value: 
+      objectReference: {fileID: 1486007537649355793, guid: a3b0191d2354a54468a019d94244b37b,
+        type: 3}
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}
       propertyPath: m_RootOrder

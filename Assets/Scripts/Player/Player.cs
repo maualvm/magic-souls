@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -19,6 +21,12 @@ public class Player : MonoBehaviour
     private float lookXLimit = 60.0f;
     [SerializeField]
     private float stamina = 100f;
+
+    [SerializeField]
+    private GameObject onFireFX;
+
+    private bool onFire;
+    private float onFireTimer;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -40,12 +48,27 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         Respawn();
+
     }
 
     void Update()
     {
         if(currentHealth <= 0) {
             Die();
+        }
+
+        if (onFire)
+        {
+            onFireFX.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            currentHealth = currentHealth -1 * Time.deltaTime;
+            onFireTimer = onFireTimer +1 * Time.deltaTime;
+
+            if(onFireTimer >= 5)
+            {
+                onFire = false;
+                onFireTimer = 0f;
+                Destroy(GameObject.Find("PlayerOnFire(Clone)")) ;
+            }
         }
             
         
@@ -76,7 +99,7 @@ public class Player : MonoBehaviour
             {
                 moveDirection.y = jumpSpeed;
             }
-            Debug.Log($"{curSpeedX}");
+            //Debug.Log($"{curSpeedX}");
         }
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
@@ -113,5 +136,19 @@ public class Player : MonoBehaviour
 
     public void Respawn() {
         currentHealth = maxHealth;
+        onFire = false;
+    }
+
+    public void SetOnFire()
+    {
+        if (onFire)
+            return;
+       //else
+        GameObject childObject = Instantiate(onFireFX, transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+        childObject.transform.parent = this.transform;
+        onFireTimer = 0;
+        onFire = true;
+        Debug.Log("Jugador is on fire!!");
+
     }
 }
