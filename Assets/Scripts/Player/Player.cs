@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     private bool canRun = true;
 
     public static event Action PlayerKilled;
+    public static event Action<float, float> PlayerDamaged;
+
     [SerializeField]
     private float maxHealth = 100;
     [SerializeField]
@@ -109,6 +111,7 @@ public class Player : MonoBehaviour
     {
 
         currentHealth -= Damage;
+        PlayerDamaged?.Invoke(currentHealth, maxHealth);
     }
 
     public void Respawn() {
