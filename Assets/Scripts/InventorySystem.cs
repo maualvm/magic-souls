@@ -16,7 +16,7 @@ public class InventorySystem : MonoBehaviour
     [SerializeField]
     private int AirSouls;
 
-    public static event Action<int> IncreasedSouls, IncreasedFireSouls, IncreasedWaterSouls, IncreasedEarthSouls, IncreasedAirSouls;
+    public static event Action<int> ModifiedSouls, ModifiedFireSouls, ModifiedWaterSouls, ModifiedEarthSouls, ModifiedAirSouls;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,26 +45,26 @@ public class InventorySystem : MonoBehaviour
     {
         Debug.Log("Obtained one " + element + " soul.");
         TotalSouls++;
-        IncreasedSouls?.Invoke(TotalSouls);
+        ModifiedSouls?.Invoke(TotalSouls);
         if (element == "Fire")
         {
             FireSouls++;
-            IncreasedFireSouls?.Invoke(FireSouls);
+            ModifiedFireSouls?.Invoke(FireSouls);
         }
         else if (element == "Water")
         {
             WaterSouls++;
-            IncreasedWaterSouls?.Invoke(WaterSouls);
+            ModifiedWaterSouls?.Invoke(WaterSouls);
         }
         else if (element == "Earth")
         {
             EarthSouls++;
-            IncreasedEarthSouls?.Invoke(EarthSouls);
+            ModifiedEarthSouls?.Invoke(EarthSouls);
         }
         else if (element == "Air")
         {
             AirSouls++;
-            IncreasedAirSouls?.Invoke(AirSouls);
+            ModifiedAirSouls?.Invoke(AirSouls);
         }
     }
 
@@ -75,5 +75,10 @@ public class InventorySystem : MonoBehaviour
         WaterSouls = 0;
         EarthSouls = 0;
         AirSouls = 0;
+        ModifiedSouls?.Invoke(TotalSouls);
+        ModifiedFireSouls?.Invoke(TotalSouls);
+        ModifiedWaterSouls?.Invoke(TotalSouls);
+        ModifiedEarthSouls?.Invoke(TotalSouls);
+        ModifiedAirSouls?.Invoke(TotalSouls);
     }
 }

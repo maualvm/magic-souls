@@ -117,6 +117,7 @@ public class Player : MonoBehaviour
         Debug.Log("Se murio");
         transform.Translate(0, 10, 0);
         PlayerKilled?.Invoke();
+        Cursor.lockState = CursorLockMode.None;
     }
     public void ReceiveDamage(float Damage)
     {

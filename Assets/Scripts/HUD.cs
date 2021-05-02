@@ -55,11 +55,14 @@ public class HUD : MonoBehaviour
     [SerializeField]
     Sprite EarthSpellSelected;
 
+    [SerializeField]
+    GameObject DeathScreen;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        DeathScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -87,22 +90,24 @@ public class HUD : MonoBehaviour
     {
         Player.PlayerDamaged += HandleHealthChange;
         Player.StaminaChanged += HandleStaminaChange;
-        InventorySystem.IncreasedSouls += HandleGeneralSoulsChange;
-        InventorySystem.IncreasedFireSouls += HandleFireSoulsChange;
-        InventorySystem.IncreasedWaterSouls += HandleWaterSoulsChange;
-        InventorySystem.IncreasedEarthSouls += HandleEarthSoulsChange;
-        InventorySystem.IncreasedAirSouls += HandleAirSoulsChange;
+        Player.PlayerKilled += HandlePlayerDeath;
+        InventorySystem.ModifiedSouls += HandleGeneralSoulsChange;
+        InventorySystem.ModifiedFireSouls += HandleFireSoulsChange;
+        InventorySystem.ModifiedWaterSouls += HandleWaterSoulsChange;
+        InventorySystem.ModifiedEarthSouls += HandleEarthSoulsChange;
+        InventorySystem.ModifiedAirSouls += HandleAirSoulsChange;
     }
 
     private void OnDisable()
     {
         Player.PlayerDamaged -= HandleHealthChange;
         Player.StaminaChanged -= HandleStaminaChange;
-        InventorySystem.IncreasedSouls += HandleGeneralSoulsChange;
-        InventorySystem.IncreasedFireSouls += HandleFireSoulsChange;
-        InventorySystem.IncreasedWaterSouls += HandleWaterSoulsChange;
-        InventorySystem.IncreasedEarthSouls += HandleEarthSoulsChange;
-        InventorySystem.IncreasedAirSouls += HandleAirSoulsChange;
+        Player.PlayerKilled -= HandlePlayerDeath;
+        InventorySystem.ModifiedSouls -= HandleGeneralSoulsChange;
+        InventorySystem.ModifiedFireSouls -= HandleFireSoulsChange;
+        InventorySystem.ModifiedWaterSouls -= HandleWaterSoulsChange;
+        InventorySystem.ModifiedEarthSouls -= HandleEarthSoulsChange;
+        InventorySystem.ModifiedAirSouls -= HandleAirSoulsChange;
     }
 
     private void HandleHealthChange(float newHealth, float maxHealth)
@@ -169,4 +174,10 @@ public class HUD : MonoBehaviour
     {
         AirSoulsCount.text = count.ToString();
     }
+
+    private void HandlePlayerDeath()
+    {
+        DeathScreen.SetActive(true);
+    }
+
 }
