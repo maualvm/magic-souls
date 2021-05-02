@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class InventorySystem : MonoBehaviour
     private int EarthSouls;
     [SerializeField]
     private int AirSouls;
+
+    public static event Action<int> IncreasedSouls, IncreasedFireSouls, IncreasedWaterSouls, IncreasedEarthSouls, IncreasedAirSouls;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,21 +45,26 @@ public class InventorySystem : MonoBehaviour
     {
         Debug.Log("Obtained one " + element + " soul.");
         TotalSouls++;
-        if(element == "Fire")
+        IncreasedSouls?.Invoke(TotalSouls);
+        if (element == "Fire")
         {
             FireSouls++;
+            IncreasedFireSouls?.Invoke(FireSouls);
         }
         else if (element == "Water")
         {
             WaterSouls++;
+            IncreasedWaterSouls?.Invoke(WaterSouls);
         }
         else if (element == "Earth")
         {
             EarthSouls++;
+            IncreasedEarthSouls?.Invoke(EarthSouls);
         }
         else if (element == "Air")
         {
             AirSouls++;
+            IncreasedAirSouls?.Invoke(AirSouls);
         }
     }
 

@@ -24,6 +24,23 @@ public class HUD : MonoBehaviour
 
     [SerializeField]
     float StaminaUpdateSpeed;
+
+    [SerializeField]
+    TMP_Text GeneralSoulsCount;
+
+    [SerializeField]
+    TMP_Text FireSoulsCount;
+
+    [SerializeField]
+    TMP_Text WaterSoulsCount;
+
+    [SerializeField]
+    TMP_Text EarthSoulsCount;
+
+    [SerializeField]
+    TMP_Text AirSoulsCount;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,12 +57,22 @@ public class HUD : MonoBehaviour
     {
         Player.PlayerDamaged += HandleHealthChange;
         Player.StaminaChanged += HandleStaminaChange;
+        InventorySystem.IncreasedSouls += HandleGeneralSoulsChange;
+        InventorySystem.IncreasedFireSouls += HandleFireSoulsChange;
+        InventorySystem.IncreasedWaterSouls += HandleWaterSoulsChange;
+        InventorySystem.IncreasedEarthSouls += HandleEarthSoulsChange;
+        InventorySystem.IncreasedAirSouls += HandleAirSoulsChange;
     }
 
     private void OnDisable()
     {
         Player.PlayerDamaged -= HandleHealthChange;
         Player.StaminaChanged -= HandleStaminaChange;
+        InventorySystem.IncreasedSouls += HandleGeneralSoulsChange;
+        InventorySystem.IncreasedFireSouls += HandleFireSoulsChange;
+        InventorySystem.IncreasedWaterSouls += HandleWaterSoulsChange;
+        InventorySystem.IncreasedEarthSouls += HandleEarthSoulsChange;
+        InventorySystem.IncreasedAirSouls += HandleAirSoulsChange;
     }
 
     private void HandleHealthChange(float newHealth, float maxHealth)
@@ -90,5 +117,26 @@ public class HUD : MonoBehaviour
         }
 
         StaminaImage.fillAmount = newStamina / 100;
+    }
+
+    private void HandleGeneralSoulsChange(int count)
+    {
+        GeneralSoulsCount.text = count.ToString();
+    }
+    private void HandleFireSoulsChange(int count)
+    {
+        FireSoulsCount.text = count.ToString();
+    }
+    private void HandleWaterSoulsChange(int count)
+    {
+        WaterSoulsCount.text = count.ToString();
+    }
+    private void HandleEarthSoulsChange(int count)
+    {
+        EarthSoulsCount.text = count.ToString();
+    }
+    private void HandleAirSoulsChange(int count)
+    {
+        AirSoulsCount.text = count.ToString();
     }
 }
