@@ -40,6 +40,21 @@ public class HUD : MonoBehaviour
     [SerializeField]
     TMP_Text AirSoulsCount;
 
+    [SerializeField]
+    Image SpellSelectionWheel;
+
+    [SerializeField]
+    Sprite WaterSpellSelected;
+
+    [SerializeField]
+    Sprite FireSpellSelected;
+
+    [SerializeField]
+    Sprite AirSpellSelected;
+
+    [SerializeField]
+    Sprite EarthSpellSelected;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +65,22 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SpellSelectionWheel.sprite = WaterSpellSelected;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SpellSelectionWheel.sprite = FireSpellSelected;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SpellSelectionWheel.sprite = AirSpellSelected;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SpellSelectionWheel.sprite = EarthSpellSelected;
+        }
     }
 
     private void OnEnable()
