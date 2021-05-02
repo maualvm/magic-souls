@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     private float lookXLimit = 60.0f;
     [SerializeField]
     private float stamina = 100f;
+    [SerializeField]
+    private float maxStamina = 100f;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
 
     public static event Action PlayerKilled;
     public static event Action<float, float> PlayerDamaged;
+    public static event Action<float, float> StaminaChanged;
 
     [SerializeField]
     private float maxHealth = 100;
@@ -64,12 +67,14 @@ public class Player : MonoBehaviour
             }
             if(Input.GetKey(KeyCode.LeftShift) && canRun) {
                 speed = 12.5f;
-                stamina -= 10 * Time.deltaTime;
+                //stamina -= 10 * Time.deltaTime;
+                ChangeStamina(-10 * Time.deltaTime);
             }
             if(!canRun && stamina < 100) {
                 speed = 7.5f;
-                stamina += 5 * Time.deltaTime;
-                if(stamina >= 25)
+                //stamina += 5 * Time.deltaTime;
+                ChangeStamina(5 * Time.deltaTime);
+                if (stamina >= 25)
                     canRun = true;
             }
             moveDirection = (forward * curSpeedX) + (right * curSpeedY);
@@ -100,6 +105,12 @@ public class Player : MonoBehaviour
            
 
         }
+    }
+
+    private void ChangeStamina(float changeAmount)
+    {
+        stamina += changeAmount;
+        StaminaChanged?.Invoke(stamina, maxStamina);
     }
 
     public void Die() {

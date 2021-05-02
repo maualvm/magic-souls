@@ -15,6 +15,15 @@ public class HUD : MonoBehaviour
 
     [SerializeField]
     float HealthUpdateSpeed;
+
+    [SerializeField]
+    Image StaminaImage;
+
+    [SerializeField]
+    TMP_Text StaminaText;
+
+    [SerializeField]
+    float StaminaUpdateSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,17 +33,19 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(HealthImage.fillAmount);
+
     }
 
     private void OnEnable()
     {
         Player.PlayerDamaged += HandleHealthChange;
+        Player.StaminaChanged += HandleStaminaChange;
     }
 
     private void OnDisable()
     {
-        Player.PlayerDamaged -= HandleHealthChange;   
+        Player.PlayerDamaged -= HandleHealthChange;
+        Player.StaminaChanged -= HandleStaminaChange;
     }
 
     private void HandleHealthChange(float newHealth, float maxHealth)
@@ -57,5 +68,27 @@ public class HUD : MonoBehaviour
         }
 
         HealthImage.fillAmount = newHealth / 100;
+    }
+
+    private void HandleStaminaChange(float newStamina, float maxStamina)
+    {
+        StartCoroutine(ChangeStamina(newStamina, maxStamina));
+    }
+
+    private IEnumerator ChangeStamina(float newStamina, float maxStamina)
+    {
+        StaminaText.text = Mathf.Round(newStamina) + "/" + maxStamina;
+
+        float PreviousStamina = StaminaImage.fillAmount;
+        float TimeElapsed = 0f;
+
+        while (TimeElapsed < StaminaUpdateSpeed)
+        {
+            TimeElapsed += Time.deltaTime;
+            StaminaImage.fillAmount = Mathf.Lerp(PreviousStamina, newStamina / 100, TimeElapsed / StaminaUpdateSpeed);
+            yield return null;
+        }
+
+        StaminaImage.fillAmount = newStamina / 100;
     }
 }
