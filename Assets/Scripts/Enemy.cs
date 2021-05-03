@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject Target;
 
-    public static event Action<String> EnemyKilled;
+    public static event Action<String, int> EnemyKilled;
 
     private void Awake()
     {
@@ -101,8 +101,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
-        Debug.Log(this.name + "is " + Vector3.Distance(transform.position, Target.transform.position) + " away from the Player");
-
     }
 
     private string ObtainAttackPreference()
@@ -121,7 +119,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        EnemyKilled?.Invoke(enemy.Element);
+        EnemyKilled?.Invoke(enemy.Element, 1);
         Destroy(gameObject);
     }
 

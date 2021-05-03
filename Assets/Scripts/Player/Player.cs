@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
             {
                 moveDirection.y = jumpSpeed;
             }
-            Debug.Log($"{curSpeedX}");
         }
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
