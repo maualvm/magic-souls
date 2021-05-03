@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     public static event Action PlayerKilled;
     public static event Action<float, float> PlayerDamaged;
     public static event Action<float, float> StaminaChanged;
+    public static event Action<bool> TriggeredShop;
 
     [SerializeField]
     private float maxHealth = 100;
@@ -128,5 +129,23 @@ public class Player : MonoBehaviour
 
     public void Respawn() {
         currentHealth = maxHealth;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Shop")
+        {
+            TriggeredShop?.Invoke(true);
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Shop")
+        {
+            TriggeredShop?.Invoke(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
