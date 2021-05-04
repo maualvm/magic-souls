@@ -93,9 +93,13 @@ public class InventorySystem : MonoBehaviour
 
     private void TryToBuyItem(Item.ItemType itemType, int itemCost, string itemElement)
     {
-        if(TrySpendSouls(itemCost, itemElement))
+        if (TrySpendSouls(itemCost, itemElement))
         {
             BoughtItem?.Invoke(itemType);
+        }
+        else
+        {
+            TooltipWarningScreenSpaceUI.ShowTooltip_Static("You don't have " + itemCost + " " + itemElement + " Souls!", 1);
         }
     }
 

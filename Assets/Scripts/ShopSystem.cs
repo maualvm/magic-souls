@@ -117,7 +117,8 @@ public class ShopSystem : MonoBehaviour
             shopItemTransform.Find("soul_Image").GetComponent<Image>().sprite = GameAssets.i.AirSoul;
         }
 
-        shopItemTransform.GetComponent<Button>().onClick.AddListener(() => TryBuyItem?.Invoke(itemType, itemCost, itemElement));
+        Button shopBtn = shopItemTransform.GetComponent<Button>();
+        shopBtn.onClick.AddListener(() => TryBuyItem?.Invoke(itemType, itemCost, itemElement));
     }
 
     private void CreateMaxedOutLabel(int positionIndex)

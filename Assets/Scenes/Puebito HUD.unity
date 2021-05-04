@@ -12734,43 +12734,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1012174507}
     m_Modifications:
-    - target: {fileID: 994090733, guid: b724fdc04fe37944d99fe7c9161b9686, type: 3}
-      propertyPath: MaxedOutTemplate
-      value: 
-      objectReference: {fileID: 1598702487}
-    - target: {fileID: 1435869130, guid: b724fdc04fe37944d99fe7c9161b9686, type: 3}
-      propertyPath: m_LocalPosition.z
+    - target: {fileID: 1435869129, guid: b724fdc04fe37944d99fe7c9161b9686, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 465626225698228206, guid: b724fdc04fe37944d99fe7c9161b9686,
-        type: 3}
-      propertyPath: m_CullTransparentMesh
+    - target: {fileID: 1784516126, guid: b724fdc04fe37944d99fe7c9161b9686, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1781065972425417759, guid: b724fdc04fe37944d99fe7c9161b9686,
+    - target: {fileID: 1417279189945089883, guid: b724fdc04fe37944d99fe7c9161b9686,
         type: 3}
-      propertyPath: m_Pivot.y
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781065972425417759, guid: b724fdc04fe37944d99fe7c9161b9686,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781065972425417759, guid: b724fdc04fe37944d99fe7c9161b9686,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781065972425417759, guid: b724fdc04fe37944d99fe7c9161b9686,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.022958608
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781065972425417759, guid: b724fdc04fe37944d99fe7c9161b9686,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 287.00006
       objectReference: {fileID: 0}
     - target: {fileID: 7869378155319870090, guid: b724fdc04fe37944d99fe7c9161b9686,
         type: 3}
@@ -12837,19 +12812,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8706192714913849011, guid: b724fdc04fe37944d99fe7c9161b9686,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b724fdc04fe37944d99fe7c9161b9686, type: 3}
---- !u!224 &1598702487 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9111047609079139385, guid: b724fdc04fe37944d99fe7c9161b9686,
-    type: 3}
-  m_PrefabInstance: {fileID: 1598702486}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1598974613
 PrefabInstance:
   m_ObjectHideFlags: 0
