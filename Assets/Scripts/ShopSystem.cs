@@ -24,7 +24,8 @@ public class ShopSystem : MonoBehaviour
     public static event Action<Item.ItemType, int, string> TryBuyItem;
     public static event Action<string, int> SpellLevelUp;
     public static event Action<string> StrongPotionBought, WeakPotionBought;
-    public static event Action HealthPotionBought, StaminaPotionBought, ShieldBought;
+    public static event Action<int> HealthPotionBought, StaminaPotionBought;
+    public static event Action ShieldBought;
 
     private void Awake()
     {
@@ -252,10 +253,10 @@ public class ShopSystem : MonoBehaviour
                 WeakPotionBought?.Invoke("Air");
                 break;
             case Item.ItemType.HealthPotion:
-                HealthPotionBought?.Invoke();
+                HealthPotionBought?.Invoke(1);
                 break;
             case Item.ItemType.StaminaPotion:
-                StaminaPotionBought?.Invoke();
+                StaminaPotionBought?.Invoke(1);
                 break;
             case Item.ItemType.Shield:
                 ShieldBought?.Invoke();

@@ -41,6 +41,12 @@ public class HUD : MonoBehaviour
     TMP_Text AirSoulsCount;
 
     [SerializeField]
+    TMP_Text HealthPotionsCount;
+
+    [SerializeField]
+    TMP_Text StaminaPotionsCount;
+
+    [SerializeField]
     Image SpellSelectionWheel;
 
     [SerializeField]
@@ -96,6 +102,8 @@ public class HUD : MonoBehaviour
         InventorySystem.ModifiedWaterSouls += HandleWaterSoulsChange;
         InventorySystem.ModifiedEarthSouls += HandleEarthSoulsChange;
         InventorySystem.ModifiedAirSouls += HandleAirSoulsChange;
+        InventorySystem.ModifiedHealthPotions += HandleHealthPotionChange;
+        InventorySystem.ModifiedStaminaPotions += HandleStaminaPotionChange;
     }
 
     private void OnDisable()
@@ -108,6 +116,8 @@ public class HUD : MonoBehaviour
         InventorySystem.ModifiedWaterSouls -= HandleWaterSoulsChange;
         InventorySystem.ModifiedEarthSouls -= HandleEarthSoulsChange;
         InventorySystem.ModifiedAirSouls -= HandleAirSoulsChange;
+        InventorySystem.ModifiedHealthPotions -= HandleHealthPotionChange;
+        InventorySystem.ModifiedStaminaPotions -= HandleStaminaPotionChange;
     }
 
     private void HandleHealthChange(float newHealth, float maxHealth)
@@ -173,6 +183,16 @@ public class HUD : MonoBehaviour
     private void HandleAirSoulsChange(int count)
     {
         AirSoulsCount.text = count.ToString();
+    }
+
+    private void HandleHealthPotionChange(int count)
+    {
+        HealthPotionsCount.text = count.ToString();
+    }
+
+    private void HandleStaminaPotionChange(int count)
+    {
+        StaminaPotionsCount.text = count.ToString();
     }
 
     private void HandlePlayerDeath()

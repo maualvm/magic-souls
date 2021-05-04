@@ -22,7 +22,7 @@ public class InventorySystem : MonoBehaviour
     [SerializeField]
     private int StaminaPotions;
 
-    public static event Action<int> ModifiedSouls, ModifiedFireSouls, ModifiedWaterSouls, ModifiedEarthSouls, ModifiedAirSouls;
+    public static event Action<int> ModifiedSouls, ModifiedFireSouls, ModifiedWaterSouls, ModifiedEarthSouls, ModifiedAirSouls, ModifiedHealthPotions, ModifiedStaminaPotions;
     public static event Action<Item.ItemType> BoughtItem;
     // Start is called before the first frame update
     void Start()
@@ -41,6 +41,8 @@ public class InventorySystem : MonoBehaviour
         Enemy.EnemyKilled += ModifySouls;
         Player.PlayerKilled += ResetSouls;
         ShopSystem.TryBuyItem += TryToBuyItem;
+        ShopSystem.HealthPotionBought += ModifyHealthPotions;
+        ShopSystem.StaminaPotionBought += ModifyStaminaPotions;
     }
 
     private void OnDisable()
@@ -48,6 +50,8 @@ public class InventorySystem : MonoBehaviour
         Enemy.EnemyKilled -= ModifySouls;
         Player.PlayerKilled -= ResetSouls;
         ShopSystem.TryBuyItem -= TryToBuyItem;
+        ShopSystem.HealthPotionBought -= ModifyHealthPotions;
+        ShopSystem.StaminaPotionBought -= ModifyStaminaPotions;
     }
 
     private void ModifySouls(string element, int amount)
@@ -75,6 +79,18 @@ public class InventorySystem : MonoBehaviour
             AirSouls += amount;
             ModifiedAirSouls?.Invoke(AirSouls);
         }
+    }
+
+    private void ModifyHealthPotions(int amount)
+    {
+        HealthPotions += amount;
+        ModifiedHealthPotions?.Invoke(HealthPotions);
+    }
+
+    private void ModifyStaminaPotions(int amount)
+    {
+        StaminaPotions += amount;
+        ModifiedStaminaPotions?.Invoke(StaminaPotions);
     }
 
     private void ResetSouls()
