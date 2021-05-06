@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6720869083890981695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6720869083890981693}
+  - component: {fileID: 6720869083890981694}
+  m_Layer: 0
+  m_Name: GameAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6720869083890981693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6720869083890981695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 209.80324, y: 128.39905, z: 59.96875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6720869083890981694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6720869083890981695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabbde3fc8674da4480c3129e390cb00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GeneralSoul: {fileID: 21300000, guid: 96f6b1f648df6714c9fec83fa7ca1046, type: 3}
+  FireSoul: {fileID: 21300000, guid: b1cc5a0b74678624781f018afe931f3e, type: 3}
+  WaterSoul: {fileID: 21300000, guid: 559e7ea7da27a004484424a722e1e089, type: 3}
+  EarthSoul: {fileID: 21300000, guid: 6581f4d6de8c30f4eab63be279dbb1e4, type: 3}
+  AirSoul: {fileID: 21300000, guid: da4b2c44c7dab1041af857957f0b96d7, type: 3}
+  FireSprite: {fileID: 21300000, guid: 9bdf2961655b6d54c9f794f81cec0edc, type: 3}
+  WaterSprite: {fileID: 21300000, guid: 2cc4a02d3d0eeb14fb91ea922d4951c3, type: 3}
+  EarthSprite: {fileID: 21300000, guid: e4f62afd078873f49a644e25ad88a1bc, type: 3}
+  AirSprite: {fileID: 21300000, guid: b963358210d3dc346876036a6375a0f4, type: 3}
+  FirePotionSprite_Strong: {fileID: 21300000, guid: d71e394b2956fe64da2dd67aa0f305c8,
+    type: 3}
+  WaterPotionSprite_Strong: {fileID: 21300000, guid: 4ac95e2f2d262e84ea938f9161f6d238,
+    type: 3}
+  EarthPotionSprite_Strong: {fileID: 21300000, guid: 061564a813fc5ec42858a7857521fe68,
+    type: 3}
+  AirPotionSprite_Strong: {fileID: 21300000, guid: dac06cd758ea8714a80110117f21d48d,
+    type: 3}
+  FirePotionSprite_Weak: {fileID: 21300000, guid: 45e4fc2b885cd1a438c8ccb875917dd4,
+    type: 3}
+  WaterPotionSprite_Weak: {fileID: 21300000, guid: 808c8e06c4948224dbae0b124eb3f76b,
+    type: 3}
+  EarthPotionSprite_Weak: {fileID: 21300000, guid: 895bcca547cda9c4aaf3ad2e254545ad,
+    type: 3}
+  AirPotionSprite_Weak: {fileID: 21300000, guid: 0c9a8e973d6d4674790df1b1c4f20d6b,
+    type: 3}
+  HealthPotionSprite: {fileID: 21300000, guid: 94d7545779f9d5e439ab63314a531960, type: 3}
+  StaminaPotionSprite: {fileID: 21300000, guid: fc6fba6cce617ee48802aadd945b1878,
+    type: 3}
+  ShieldSprite: {fileID: 21300000, guid: ad122ba62a60a5740a2ba2f2d0323ddf, type: 3}

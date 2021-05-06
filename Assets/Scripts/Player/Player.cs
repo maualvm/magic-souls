@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private float lookXLimit = 60.0f;
     [SerializeField]
     private float stamina = 100f;
+    [SerializeField]
+    private float maxStamina = 100f;
 
     [SerializeField]
     private GameObject onFireFX;
@@ -46,6 +48,10 @@ public class Player : MonoBehaviour
     private bool canRun = true;
 
     public static event Action PlayerKilled;
+    public static event Action<float, float> PlayerDamaged;
+    public static event Action<float, float> StaminaChanged;
+    public static event Action<bool> TriggeredShop;
+
     [SerializeField]
     private float maxHealth = 100;
     [SerializeField]
@@ -133,12 +139,14 @@ public class Player : MonoBehaviour
             }
             if(Input.GetKey(KeyCode.LeftShift) && canRun) {
                 speed = 12.5f;
-                stamina -= 10 * Time.deltaTime;
+                //stamina -= 10 * Time.deltaTime;
+                ChangeStamina(-10 * Time.deltaTime);
             }
             if(!canRun && stamina < 100) {
                 speed = 7.5f;
-                stamina += 5 * Time.deltaTime;
-                if(stamina >= 25)
+                //stamina += 5 * Time.deltaTime;
+                ChangeStamina(5 * Time.deltaTime);
+                if (stamina >= 25)
                     canRun = true;
             }
 
@@ -148,7 +156,6 @@ public class Player : MonoBehaviour
             {
                 moveDirection.y = jumpSpeed;
             }
-            //Debug.Log($"{curSpeedX}");
         }
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
@@ -188,9 +195,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ChangeStamina(float changeAmount)
+    {
+        stamina += changeAmount;
+        StaminaChanged?.Invoke(stamina, maxStamina);
+    }
+
     public void Die() {
         PlayerKilled?.Invoke();
         Respawn();
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void Respawn() {
@@ -248,5 +262,24 @@ public class Player : MonoBehaviour
     public void ReceiveDamage(float Damage)
     {
         currentHealth -= Damage;
+        PlayerDamaged?.Invoke(currentHealth, maxHealth);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Shop")
+        {
+            TriggeredShop?.Invoke(true);
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Shop")
+        {
+            TriggeredShop?.Invoke(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
