@@ -384,7 +384,15 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 60
   stamina: 100
-  estoEsUnaprueba: 0
+  onFireFX: {fileID: 0}
+  bleedingFX: {fileID: 0}
+  exhaustedFX: {fileID: 0}
+  onFire: 0
+  onFireTimer: 0
+  bleeding: 0
+  bleedingTimer: 0
+  isExhausted: 0
+  exhaustedTimer: 0
   maxHealth: 100
   currentHealth: 0
 --- !u!1 &1800488555888021514

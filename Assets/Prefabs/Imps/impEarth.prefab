@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 892427288773564137}
   m_Layer: 0
   m_Name: impEarth
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,4 +149,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 1b3d72833475bd0468d2e7deac5b138d, type: 2}
   CurrentHealth: 0
-  Target: {fileID: 1702442847585835845, guid: 70e027772b42c884aa0a78c2fc8f350f, type: 3}
