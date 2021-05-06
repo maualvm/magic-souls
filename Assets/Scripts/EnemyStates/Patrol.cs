@@ -17,7 +17,7 @@ public class Patrol : IState
 
     public void Update()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is patroling");
+        //Debug.Log("The " + EnemyElement + " " + EnemyType + " is patroling");
         if(WanderTime > 0)
         {
             WanderTime -= Time.deltaTime;
@@ -30,13 +30,13 @@ public class Patrol : IState
 
     public void OnEnter()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting to patrol");
+        //Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting to patrol");
         WanderTime = Random.Range(MinTime, MaxTime);
     }
 
     public void OnExit()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is leaving patrol");
+        //Debug.Log("The " + EnemyElement + " " + EnemyType + " is leaving patrol");
         
     }
 
