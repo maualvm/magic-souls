@@ -129,5 +129,6 @@ public class Enemy : MonoBehaviour
     {
 
         CurrentHealth -= Damage;
+        
     }
 }
