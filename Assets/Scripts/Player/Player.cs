@@ -71,8 +71,22 @@ public class Player : MonoBehaviour
 
     public string currentSpell = "Water";
 
+    private Camera camera;
+
+    private void OnEnable()
+    {
+        HUD.Respawned += Respawn;
+    }
+
+
+    private void OnDisable()
+    {
+        HUD.Respawned -= Respawn;
+    }
+
     void Start()
     {
+        camera = GameObject.Find("MainCamera").GetComponent<Camera>();
         characterController = GetComponent<CharacterController>();
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
@@ -89,7 +103,9 @@ public class Player : MonoBehaviour
 
         if (onFire)
         {
-            currentHealth = currentHealth -5 * Time.deltaTime;
+
+            float damage = 5 * Time.deltaTime;
+            ReceiveDamage(damage);
             onFireTimer = onFireTimer +1 * Time.deltaTime;
 
             if(onFireTimer >= 5)
@@ -102,7 +118,8 @@ public class Player : MonoBehaviour
 
         if (bleeding)
         {
-            currentHealth = currentHealth - 5 * Time.deltaTime;
+            float damage = 5 * Time.deltaTime;
+            ReceiveDamage(damage);
             bleedingTimer = bleedingTimer + 1 * Time.deltaTime;
 
             if (bleedingTimer >= 9)
@@ -183,8 +200,9 @@ public class Player : MonoBehaviour
 
     public void Shoot() {
         RaycastHit hit;
-        if (Physics.Raycast(playerCameraParent.transform.position, playerCameraParent.transform.forward, out hit, range)) {
-            Debug.DrawRay(playerCameraParent.transform.position, playerCameraParent.transform.forward * hit.distance, Color.yellow, 5);
+
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range)) {
+            Debug.DrawRay(camera.transform.position, camera.transform.forward * hit.distance, Color.yellow, 5);
             Debug.Log(hit.transform.name);
             Enemy enemy = hit.transform.GetComponent<Enemy>(); 
             if(enemy != null) {
@@ -203,12 +221,15 @@ public class Player : MonoBehaviour
 
     public void Die() {
         PlayerKilled?.Invoke();
-        Respawn();
         Cursor.lockState = CursorLockMode.None;
     }
 
     public void Respawn() {
+        Cursor.lockState = CursorLockMode.Locked;
         currentHealth = maxHealth;
+        PlayerDamaged?.Invoke(currentHealth, maxHealth);
+        stamina = maxStamina;
+        StaminaChanged?.Invoke(stamina, maxStamina);
         var respawnPosition = new Vector3(152.2615f, 1, 142.5762f);
         // turn off characterController so that it does not override transform.position
         characterController.enabled = false;
@@ -216,8 +237,11 @@ public class Player : MonoBehaviour
         characterController.enabled = true;
 
         onFire = false;
+        onFireTimer = 5;
         bleeding = false;
+        bleedingTimer = 10;
         isExhausted = false;
+        exhaustedTimer = 5;
     }
 
     public void SetOnFire()

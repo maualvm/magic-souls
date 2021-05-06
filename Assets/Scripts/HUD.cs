@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class HUD : MonoBehaviour
 {
@@ -64,11 +65,15 @@ public class HUD : MonoBehaviour
     [SerializeField]
     GameObject DeathScreen;
 
+    [SerializeField]
+    Button RespawnBtn;
 
+    public static event Action Respawned;
     // Start is called before the first frame update
     void Start()
     {
         DeathScreen.SetActive(false);
+        RespawnBtn.onClick.AddListener(() => Respawn());
     }
 
     // Update is called once per frame
@@ -127,7 +132,7 @@ public class HUD : MonoBehaviour
 
     private IEnumerator ChangeHealth(float newHealth, float maxHealth)
     {
-        HealthText.text = newHealth + "/" + maxHealth;
+        HealthText.text = Mathf.Round(newHealth) + "/" + maxHealth;
 
         float PreviousHealth = HealthImage.fillAmount;
         float TimeElapsed = 0f;
@@ -200,4 +205,10 @@ public class HUD : MonoBehaviour
         DeathScreen.SetActive(true);
     }
 
+    private void Respawn()
+    {
+        DeathScreen.SetActive(false);
+        Respawned?.Invoke();
+    }
+    
 }
