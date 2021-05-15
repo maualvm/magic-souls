@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59d0e700ad66bb34e832149d5abe1e5d
+guid: f0789ffcbc99b71459d7f50609356975
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
@@ -7,11 +7,17 @@ ModelImporter:
       74: -1437223564310770781
     second: Armature|0Tpose
   - first:
-      74: 2845521091603894573
-    second: Armature|AttackL
+      74: 2238237420874289173
+    second: Armature|AttackBoth
   - first:
-      74: -3063955830402039394
-    second: Armature|AttackR
+      74: 21120514395870912
+    second: Armature|AttackLeft
+  - first:
+      74: -4523083797507840679
+    second: Armature|AttackRight
+  - first:
+      74: -6765416008712910284
+    second: Armature|GargoyleAction
   - first:
       74: -8945691123924629249
     second: Armature|Idle
@@ -21,6 +27,12 @@ ModelImporter:
   - first:
       74: 6503710843971187167
     second: Armature|Run (1)
+  - first:
+      74: -236022367644965580
+    second: Armature|Idle (1)
+  - first:
+      74: 2480127828261321592
+    second: Armature|AttackLeft (1)
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -79,11 +91,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|AttackL
-      takeName: Armature|AttackL
+      name: Armature|AttackBoth
+      takeName: Armature|AttackBoth
       internalID: 0
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -108,11 +120,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|AttackR
-      takeName: Armature|AttackR
+      name: Armature|AttackLeft
+      takeName: Armature|AttackLeft
       internalID: 0
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|AttackRight
+      takeName: Armature|AttackRight
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|GargoyleAction
+      takeName: Armature|GargoyleAction
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -148,7 +218,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -177,7 +247,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -245,7 +315,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Root
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -253,7 +323,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
