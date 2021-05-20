@@ -69,6 +69,7 @@ public class HUD : MonoBehaviour
     Button RespawnBtn;
 
     public static event Action Respawned;
+    public static event Action<String> SpellChanged;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,18 +83,22 @@ public class HUD : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             SpellSelectionWheel.sprite = WaterSpellSelected;
+            SpellChanged?.Invoke("Water");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             SpellSelectionWheel.sprite = FireSpellSelected;
+            SpellChanged?.Invoke("Fire");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SpellSelectionWheel.sprite = AirSpellSelected;
+            SpellChanged?.Invoke("Air");
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             SpellSelectionWheel.sprite = EarthSpellSelected;
+            SpellChanged?.Invoke("Earth");
         }
     }
 
