@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     private StateMachine stateMachine;
 
+    private Animator animator;
+
     private GameObject Target;
 
     public static event Action<String, int> EnemyKilled;
@@ -95,12 +97,42 @@ public class Enemy : MonoBehaviour
     {
         CurrentHealth = enemy.enemyData.MaxHealth;
         Debug.Log("This is a " + enemy.Element + " " + enemy.enemyData.enemyType);
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         stateMachine.Update();
+        Debug.Log(this.stateMachine.CurrentState.ToString());
+        var state =  this.stateMachine.CurrentState.ToString();
+        switch (state)
+        {
+            case "Patrol":
+                animator.SetBool("isRunning", true);
+                animator.SetBool("isAttacking", false);
+
+                break;
+            case "Chase":
+                animator.SetBool("isRunning", true);
+                animator.SetBool("isAttacking", false);
+
+                break;
+            case "MeleeAttack":
+                animator.SetBool("isAttacking", true);
+                animator.SetBool("isRunning", false);
+                break;
+            case "ranged_attack":
+                animator.SetBool("isAttacking", true);
+                animator.SetBool("isRunning", false);
+
+                break;
+            case "die":
+                animator.SetBool("isDying", true);
+                break;
+
+        }
     }
 
     private string ObtainAttackPreference()
