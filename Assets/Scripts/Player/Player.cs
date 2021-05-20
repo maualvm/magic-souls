@@ -220,12 +220,16 @@ public class Player : MonoBehaviour
     }
 
     public void Die() {
+        canMove = false;
+        canRun = false;
         PlayerKilled?.Invoke();
         Cursor.lockState = CursorLockMode.None;
     }
 
     public void Respawn() {
         Cursor.lockState = CursorLockMode.Locked;
+        canMove = true;
+        canRun = true;
         currentHealth = maxHealth;
         PlayerDamaged?.Invoke(currentHealth, maxHealth);
         stamina = maxStamina;
@@ -286,6 +290,8 @@ public class Player : MonoBehaviour
     public void ReceiveDamage(float Damage)
     {
         currentHealth -= Damage;
+        if (currentHealth < 0)
+            currentHealth = 0;
         PlayerDamaged?.Invoke(currentHealth, maxHealth);
     }
 
