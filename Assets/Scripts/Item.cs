@@ -93,4 +93,67 @@ public class Item
             case ItemType.Shield:               return GameAssets.i.ShieldSprite;
         }
     }
+
+    public static string GetDescription(ItemType itemType)
+    {
+        switch (itemType)
+        {
+            default:
+            case ItemType.FireSpell_2: 
+                return "Upgrades your fire spell to level 2.";
+            case ItemType.FireSpell_3: 
+                return "Upgrades your fire spell to level 3.";
+            case ItemType.FireSpell_4: 
+                return "Upgrades your fire spell to level 4.";
+            case ItemType.WaterSpell_2: 
+                return "Upgrades your water spell to level 2.";
+            case ItemType.WaterSpell_3: 
+                return "Upgrades your water spell to level 3.";
+            case ItemType.WaterSpell_4: 
+                return "Upgrades your water spell to level 4.";
+            case ItemType.EarthSpell_2: 
+                return "Upgrades your earth spell to level 2.";
+            case ItemType.EarthSpell_3: 
+                return "Upgrades your earth spell to level 3.";
+            case ItemType.EarthSpell_4: 
+                return "Upgrades your earth spell to level 4.";
+            case ItemType.AirSpell_2: 
+                return "Upgrades your air spell to level 2.";
+            case ItemType.AirSpell_3: 
+                return "Upgrades your air spell to level 3.";
+            case ItemType.AirSpell_4: 
+                return "Upgrades your air spell to level 4.";
+            case ItemType.FirePotion_Strong: 
+                return "Gives you resistance against fire effects.\nDuration: 5 minutes\n" +
+                    "Note: The effect of the potion will be applied immediately after buying it.";
+            case ItemType.WaterPotion_Strong:
+                return "Gives you resistance against water effects.\nDuration: 5 minutes\n" +
+                    "Note: The effect of the potion will be applied immediately after buying it.";
+            case ItemType.EarthPotion_Strong:
+                return "Gives you resistance against earth effects.\nDuration: 5 minutes\n" +
+                    "Note: The effect of the potion will be applied immediately after buying it.";
+            case ItemType.AirPotion_Strong:
+                return "Gives you resistance against air effects.\nDuration: 5 minutes\n" +
+                    "Note: The effect of the potion will be applied immediately after buying it.";
+            case ItemType.FirePotion_Weak:
+                return "Gives you resistance against fire effects.\nDuration: 2 minutes\n" +
+                    "Note: The effect of the potion will be applied immediately after buying it.";
+            case ItemType.WaterPotion_Weak:
+                return "Gives you resistance against water effects.\nDuration: 2 minutes\n" +
+                    "Note: The effect of the potion will be applied immediately after buying it.";
+            case ItemType.EarthPotion_Weak:
+                return "Gives you resistance against earth effects.\nDuration: 2 minutes\n" +
+                    "Note: The effect of the potion will be applied immediately after buying it.";
+            case ItemType.AirPotion_Weak:
+                return "Gives you resistance against air effects.\nDuration: 2 minutes\n" +
+                    "Note: The effect of the potion will be applied immediately after buying it.";
+            case ItemType.HealthPotion:
+                return "Restores 15 HP.";
+            case ItemType.StaminaPotion: 
+                return "Restores 15 Stamina Points.";
+            case ItemType.Shield:
+                return "Blocks 10% of received damage.\nDuration: 2 minutes\n" +
+                    "Note: The effect of the shield will be applied immediately after buying it.";
+        }
+    }
 }

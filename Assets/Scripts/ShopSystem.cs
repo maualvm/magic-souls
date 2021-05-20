@@ -39,36 +39,36 @@ public class ShopSystem : MonoBehaviour
     void Start()
     {
         CreateItemButton(Item.ItemType.FireSpell_2, Item.GetSprite(Item.ItemType.FireSpell_2), "Fire Spell Lvl 2",
-            Item.GetCost(Item.ItemType.FireSpell_2), "Fire", 0);
+            Item.GetCost(Item.ItemType.FireSpell_2), "Fire", 0, Item.GetDescription(Item.ItemType.FireSpell_2));
         CreateItemButton(Item.ItemType.WaterSpell_2, Item.GetSprite(Item.ItemType.WaterSpell_2), "Water Spell Lvl 2",
-            Item.GetCost(Item.ItemType.WaterSpell_2), "Water", 1);
+            Item.GetCost(Item.ItemType.WaterSpell_2), "Water", 1, Item.GetDescription(Item.ItemType.WaterSpell_2));
         CreateItemButton(Item.ItemType.EarthSpell_2, Item.GetSprite(Item.ItemType.EarthSpell_2), "Earth Spell Lvl 2",
-            Item.GetCost(Item.ItemType.EarthSpell_2), "Earth", 2);
+            Item.GetCost(Item.ItemType.EarthSpell_2), "Earth", 2, Item.GetDescription(Item.ItemType.EarthSpell_2));
         CreateItemButton(Item.ItemType.AirSpell_2, Item.GetSprite(Item.ItemType.AirSpell_2), "Air Spell Lvl 2",
-            Item.GetCost(Item.ItemType.AirSpell_2), "Air", 3);
+            Item.GetCost(Item.ItemType.AirSpell_2), "Air", 3, Item.GetDescription(Item.ItemType.AirSpell_2));
         CreateItemButton(Item.ItemType.FirePotion_Strong, Item.GetSprite(Item.ItemType.FirePotion_Strong), "Fire Potion (Strong)",
-            Item.GetCost(Item.ItemType.FirePotion_Strong), "Fire", 4);
+            Item.GetCost(Item.ItemType.FirePotion_Strong), "Fire", 4, Item.GetDescription(Item.ItemType.FirePotion_Strong));
         CreateItemButton(Item.ItemType.WaterPotion_Strong, Item.GetSprite(Item.ItemType.WaterPotion_Strong), "Water Potion (Strong)",
-            Item.GetCost(Item.ItemType.WaterPotion_Strong), "Water", 5);
+            Item.GetCost(Item.ItemType.WaterPotion_Strong), "Water", 5, Item.GetDescription(Item.ItemType.WaterPotion_Strong));
         CreateItemButton(Item.ItemType.EarthPotion_Strong, Item.GetSprite(Item.ItemType.EarthPotion_Strong), "Earth Potion (Strong)",
-            Item.GetCost(Item.ItemType.EarthPotion_Strong), "Earth", 6);
+            Item.GetCost(Item.ItemType.EarthPotion_Strong), "Earth", 6, Item.GetDescription(Item.ItemType.EarthPotion_Strong));
         CreateItemButton(Item.ItemType.AirPotion_Strong, Item.GetSprite(Item.ItemType.AirPotion_Strong), "Air Potion (Strong)",
-            Item.GetCost(Item.ItemType.AirPotion_Strong), "Air", 7);
+            Item.GetCost(Item.ItemType.AirPotion_Strong), "Air", 7, Item.GetDescription(Item.ItemType.AirPotion_Strong));
         CreateItemButton(Item.ItemType.FirePotion_Weak, Item.GetSprite(Item.ItemType.FirePotion_Weak), "Fire Potion (Weak)",
-            Item.GetCost(Item.ItemType.FirePotion_Weak), "Fire", 8);
+            Item.GetCost(Item.ItemType.FirePotion_Weak), "Fire", 8, Item.GetDescription(Item.ItemType.FirePotion_Weak));
         CreateItemButton(Item.ItemType.WaterPotion_Weak, Item.GetSprite(Item.ItemType.WaterPotion_Weak), "Water Potion (Weak)",
-            Item.GetCost(Item.ItemType.WaterPotion_Weak), "Water", 9);
+            Item.GetCost(Item.ItemType.WaterPotion_Weak), "Water", 9, Item.GetDescription(Item.ItemType.WaterPotion_Weak));
         CreateItemButton(Item.ItemType.EarthPotion_Weak, Item.GetSprite(Item.ItemType.EarthPotion_Weak), "Earth Potion (Weak)",
-            Item.GetCost(Item.ItemType.EarthPotion_Weak), "Earth", 10);
+            Item.GetCost(Item.ItemType.EarthPotion_Weak), "Earth", 10, Item.GetDescription(Item.ItemType.EarthPotion_Weak));
         CreateItemButton(Item.ItemType.AirPotion_Weak, Item.GetSprite(Item.ItemType.AirPotion_Weak), "Air Potion (Weak)",
-            Item.GetCost(Item.ItemType.AirPotion_Weak), "Air", 11);
+            Item.GetCost(Item.ItemType.AirPotion_Weak), "Air", 11, Item.GetDescription(Item.ItemType.AirPotion_Weak));
 
         CreateItemButton(Item.ItemType.HealthPotion, Item.GetSprite(Item.ItemType.HealthPotion), "Health Potion",
-            Item.GetCost(Item.ItemType.HealthPotion), "General", 12);
+            Item.GetCost(Item.ItemType.HealthPotion), "General", 12, Item.GetDescription(Item.ItemType.HealthPotion));
         CreateItemButton(Item.ItemType.StaminaPotion, Item.GetSprite(Item.ItemType.StaminaPotion), "Stamina Potion",
-            Item.GetCost(Item.ItemType.StaminaPotion), "General", 13);
+            Item.GetCost(Item.ItemType.StaminaPotion), "General", 13, Item.GetDescription(Item.ItemType.StaminaPotion));
         CreateItemButton(Item.ItemType.Shield, Item.GetSprite(Item.ItemType.Shield), "Shield",
-            Item.GetCost(Item.ItemType.Shield), "General", 14);
+            Item.GetCost(Item.ItemType.Shield), "General", 14, Item.GetDescription(Item.ItemType.Shield));
     }
 
     private void OnEnable()
@@ -83,9 +83,12 @@ public class ShopSystem : MonoBehaviour
         InventorySystem.BoughtItem -= HandleItemBought;
     }
 
-    private void CreateItemButton(Item.ItemType itemType, Sprite itemSprite, string itemName, int itemCost, string itemElement, int positionIndex)
+    private void CreateItemButton(Item.ItemType itemType, Sprite itemSprite, string itemName, int itemCost, string itemElement, int positionIndex, string description)
     {
         Transform shopItemTransform = Instantiate(ShopItemTemplate, Container);
+
+        shopItemTransform.GetComponent<ShopItemUI>().SetDescription(description);
+
         shopItemTransform.gameObject.SetActive(true);
         shopItemTransform.gameObject.name = itemType.ToString();
         RectTransform shopItemRectTransform = shopItemTransform.GetComponent<RectTransform>();
@@ -164,13 +167,13 @@ public class ShopSystem : MonoBehaviour
                 SpellLevelUp?.Invoke("Fire", 2);
                 Destroy(Container.Find("FireSpell_2").gameObject);
                 CreateItemButton(Item.ItemType.FireSpell_3, Item.GetSprite(Item.ItemType.FireSpell_3), "Fire Spell Lvl 3",
-                    Item.GetCost(Item.ItemType.FireSpell_3), "Fire", 0);
+                    Item.GetCost(Item.ItemType.FireSpell_3), "Fire", 0, Item.GetDescription(Item.ItemType.FireSpell_3));
                 break;
             case Item.ItemType.FireSpell_3:
                 SpellLevelUp?.Invoke("Fire", 3);
                 Destroy(Container.Find("FireSpell_3").gameObject);
                 CreateItemButton(Item.ItemType.FireSpell_4, Item.GetSprite(Item.ItemType.FireSpell_4), "Fire Spell Lvl 4",
-                    Item.GetCost(Item.ItemType.FireSpell_4), "Fire", 0);
+                    Item.GetCost(Item.ItemType.FireSpell_4), "Fire", 0, Item.GetDescription(Item.ItemType.FireSpell_4));
                 break;
             case Item.ItemType.FireSpell_4:
                 SpellLevelUp?.Invoke("Fire", 4);
@@ -181,13 +184,13 @@ public class ShopSystem : MonoBehaviour
                 SpellLevelUp?.Invoke("Water", 2);
                 Destroy(Container.Find("WaterSpell_2").gameObject);
                 CreateItemButton(Item.ItemType.WaterSpell_3, Item.GetSprite(Item.ItemType.WaterSpell_3), "Water Spell Lvl 3",
-                    Item.GetCost(Item.ItemType.WaterSpell_3), "Water", 1);
+                    Item.GetCost(Item.ItemType.WaterSpell_3), "Water", 1, Item.GetDescription(Item.ItemType.WaterSpell_3));
                 break;
             case Item.ItemType.WaterSpell_3:
                 SpellLevelUp?.Invoke("Water", 3);
                 Destroy(Container.Find("WaterSpell_3").gameObject);
                 CreateItemButton(Item.ItemType.WaterSpell_4, Item.GetSprite(Item.ItemType.WaterSpell_4), "Water Spell Lvl 4",
-                    Item.GetCost(Item.ItemType.WaterSpell_4), "Water", 1);
+                    Item.GetCost(Item.ItemType.WaterSpell_4), "Water", 1, Item.GetDescription(Item.ItemType.WaterSpell_4));
                 break;
             case Item.ItemType.WaterSpell_4:
                 SpellLevelUp?.Invoke("Water", 4);
@@ -198,13 +201,13 @@ public class ShopSystem : MonoBehaviour
                 SpellLevelUp?.Invoke("Earth", 2);
                 Destroy(Container.Find("EarthSpell_2").gameObject);
                 CreateItemButton(Item.ItemType.EarthSpell_3, Item.GetSprite(Item.ItemType.EarthSpell_3), "Earth Spell Lvl 3",
-                    Item.GetCost(Item.ItemType.EarthSpell_3), "Earth", 2);
+                    Item.GetCost(Item.ItemType.EarthSpell_3), "Earth", 2, Item.GetDescription(Item.ItemType.EarthSpell_3));
                 break;
             case Item.ItemType.EarthSpell_3:
                 SpellLevelUp?.Invoke("Earth", 3);
                 Destroy(Container.Find("EarthSpell_3").gameObject);
                 CreateItemButton(Item.ItemType.EarthSpell_4, Item.GetSprite(Item.ItemType.EarthSpell_4), "Earth Spell Lvl 4",
-                    Item.GetCost(Item.ItemType.EarthSpell_4), "Earth", 2);
+                    Item.GetCost(Item.ItemType.EarthSpell_4), "Earth", 2, Item.GetDescription(Item.ItemType.EarthSpell_4));
                 break;
             case Item.ItemType.EarthSpell_4:
                 SpellLevelUp?.Invoke("Earth", 4);
@@ -215,13 +218,13 @@ public class ShopSystem : MonoBehaviour
                 SpellLevelUp?.Invoke("Air", 2);
                 Destroy(Container.Find("AirSpell_2").gameObject);
                 CreateItemButton(Item.ItemType.AirSpell_3, Item.GetSprite(Item.ItemType.AirSpell_3), "Air Spell Lvl 3",
-                    Item.GetCost(Item.ItemType.AirSpell_3), "Air", 3);
+                    Item.GetCost(Item.ItemType.AirSpell_3), "Air", 3, Item.GetDescription(Item.ItemType.AirSpell_3));
                 break;
             case Item.ItemType.AirSpell_3:
                 SpellLevelUp?.Invoke("Air", 3);
                 Destroy(Container.Find("AirSpell_3").gameObject);
                 CreateItemButton(Item.ItemType.AirSpell_4, Item.GetSprite(Item.ItemType.AirSpell_4), "Air Spell Lvl 4",
-                    Item.GetCost(Item.ItemType.AirSpell_4), "Air", 3);
+                    Item.GetCost(Item.ItemType.AirSpell_4), "Air", 3, Item.GetDescription(Item.ItemType.AirSpell_4));
                 break;
             case Item.ItemType.AirSpell_4:
                 SpellLevelUp?.Invoke("Air", 4);
