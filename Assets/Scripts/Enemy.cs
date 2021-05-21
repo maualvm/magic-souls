@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     private GameObject Target;
 
     public static event Action<String, int> EnemyKilled;
+    public static event Action<float, float> EnemyHealthChanged;
 
     private void Awake()
     {
@@ -96,6 +97,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         CurrentHealth = enemy.enemyData.MaxHealth;
+        EnemyHealthChanged?.Invoke(CurrentHealth, enemy.enemyData.MaxHealth);
         Debug.Log("This is a " + enemy.Element + " " + enemy.enemyData.enemyType);
 
         animator = GetComponent<Animator>();
@@ -162,6 +164,6 @@ public class Enemy : MonoBehaviour
         if(CurrentHealth > enemy.enemyData.MaxHealth) {
             CurrentHealth = enemy.enemyData.MaxHealth;
         }
-        
+        EnemyHealthChanged?.Invoke(CurrentHealth, enemy.enemyData.MaxHealth);
     }
 }
