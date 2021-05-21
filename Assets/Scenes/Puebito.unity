@@ -508,10 +508,10 @@ Transform:
   - {fileID: 6707104}
   - {fileID: 454558652}
   - {fileID: 2111551295}
-  - {fileID: 2045274455}
+  - {fileID: 610929146}
   - {fileID: 1891674904}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &52375820
 PrefabInstance:
@@ -1762,6 +1762,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 152044312}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &167547798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167547799}
+  m_Layer: 0
+  m_Name: berserkerSpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &167547799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167547798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1920091763}
+  - {fileID: 1910347798}
+  - {fileID: 692926063}
+  m_Father: {fileID: 745329837}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &173785945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6962119243284288588, guid: 3f012e72d2798ce46be30807e627ceb7,
@@ -1774,6 +1807,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 133486056}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &188657566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 188657567}
+  m_Layer: 0
+  m_Name: berserkerSpawner3
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &188657567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188657566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 59.88, y: -14.3, z: 30.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1645048081}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &194152725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5051,6 +5114,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 601834231}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &610929145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610929146}
+  m_Layer: 0
+  m_Name: berserkerSpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &610929146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610929145}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1042.3289, y: 184.31027, z: 986.6365}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1323446490}
+  - {fileID: 1077114641}
+  - {fileID: 2086561830}
+  m_Father: {fileID: 51227478}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &621937351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7691898299745844804, guid: b724fdc04fe37944d99fe7c9161b9686,
@@ -5287,6 +5383,7 @@ GameObject:
   - component: {fileID: 645188635}
   - component: {fileID: 645188636}
   - component: {fileID: 645188637}
+  - component: {fileID: 645188638}
   m_Layer: 0
   m_Name: _GM
   m_TagString: Untagged
@@ -5321,7 +5418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - name: EarthImps
+  - name: Imps
     impFuego: {fileID: 1147731564011342092, guid: 896ebb38c1fbc8e4f9c4c5c2e5aa7a9e,
       type: 3}
     impTierra: {fileID: 7165664920439043548, guid: 1e0193be04fc93a42badb270d1c59906,
@@ -5372,6 +5469,45 @@ MonoBehaviour:
   AirSouls: 0
   HealthPotions: 0
   StaminaPotions: 0
+--- !u!114 &645188638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645188634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f76f10096388343a70aca9fecf800e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Berserkers
+    berserkerFuego: {fileID: 6014976281466480056, guid: 034381807ef8f6a47894c42b3f277ad5,
+      type: 3}
+    berserkerTierra: {fileID: 531820501116846013, guid: 601570af6781e9d46a8cc4fc98676ef3,
+      type: 3}
+    berserkerAire: {fileID: 4137404939510955758, guid: 24fedda2d169fec4dbe823f19c41e785,
+      type: 3}
+    berserkerAgua: {fileID: 4306604955271617770, guid: 60a9dcb865312f24ba9dd121c35e7f88,
+      type: 3}
+    count: 3
+    rate: 1
+  timeBetweenWaves: 5
+  waveCountdown: 0
+  spawnPoints:
+  - {fileID: 1920091763}
+  - {fileID: 1910347798}
+  - {fileID: 692926063}
+  - {fileID: 1323446490}
+  - {fileID: 1077114641}
+  - {fileID: 2086561830}
+  - {fileID: 1642413760}
+  - {fileID: 2071967176}
+  - {fileID: 188657567}
+  FireAreaTrigger: {fileID: 835319759}
+  WaterAreaTrigger: {fileID: 2045274454}
+  EarthAreaTrigger: {fileID: 1891674903}
 --- !u!1 &652542649
 GameObject:
   m_ObjectHideFlags: 0
@@ -5404,8 +5540,10 @@ Transform:
   - {fileID: 267120231}
   - {fileID: 6962655352040405140}
   - {fileID: 127771588}
+  - {fileID: 1645048081}
+  - {fileID: 2045274455}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &653018196 stripped
 Transform:
@@ -6056,6 +6194,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 687835962}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &692926062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 692926063}
+  m_Layer: 0
+  m_Name: berserkerSpawn3
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &692926063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692926062}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -69, y: 385.8, z: -562.1}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 167547799}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &702901305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6601,9 +6769,10 @@ Transform:
   - {fileID: 293595350}
   - {fileID: 10038991}
   - {fileID: 817866553}
+  - {fileID: 167547799}
   - {fileID: 835319760}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &750448543
 PrefabInstance:
@@ -7271,7 +7440,7 @@ Transform:
   m_LocalScale: {x: 150, y: 50, z: 150}
   m_Children: []
   m_Father: {fileID: 745329837}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &835319761
 MonoBehaviour:
@@ -8718,7 +8887,7 @@ Transform:
   - {fileID: 1705712441}
   - {fileID: 1598702487}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1015183298
 PrefabInstance:
@@ -9045,6 +9214,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1059378867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1077114640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1077114641}
+  m_Layer: 0
+  m_Name: berserkerSpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1077114641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077114640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 56.39, y: 4.2, z: -30.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 610929146}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1077495099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11133,7 +11332,7 @@ GameObject:
   m_Name: Lago1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1320890133
@@ -11159,7 +11358,7 @@ MeshCollider:
   m_GameObject: {fileID: 1320890132}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -11211,6 +11410,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320890132}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1323446489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1323446490}
+  m_Layer: 0
+  m_Name: berserkerSpawnPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1323446490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323446489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.41, y: 3.13, z: 3.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 610929146}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1336583887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11776,7 +12005,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1439363525 stripped
 Transform:
@@ -12864,7 +13093,7 @@ PrefabInstance:
     - target: {fileID: 8104366358607642835, guid: 25acd8ef46a783840aee1d028cf25e51,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8104366358607642835, guid: 25acd8ef46a783840aee1d028cf25e51,
         type: 3}
@@ -13814,6 +14043,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1642413759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642413760}
+  m_Layer: 0
+  m_Name: berserkerSpawner1
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642413760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642413759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.79, y: -15.22, z: 20.83}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1645048081}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1645048080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1645048081}
+  m_Layer: 0
+  m_Name: berserkerWaterSpawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1645048081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645048080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1642413760}
+  - {fileID: 2071967176}
+  - {fileID: 188657567}
+  m_Father: {fileID: 652542650}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1660574169
 PrefabInstance:
@@ -15639,6 +15931,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1598974613}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1910347797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910347798}
+  m_Layer: 0
+  m_Name: berserkerSpawn2
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1910347798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910347797}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -30.3, y: 385.2, z: -527.99}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 167547799}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1916021909 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5359504888842395855, guid: edb4377f76c581e47ab2c96158dad10b,
@@ -15651,6 +15973,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1931999425}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1920091762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1920091763}
+  m_Layer: 0
+  m_Name: berserkerSpawn1
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1920091763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920091762}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.5, y: 389.6, z: -562.22}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 167547799}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1931999425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16564,11 +16916,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045274454}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1191.7, y: 184.31027, z: 1142}
+  m_LocalPosition: {x: 38.46363, y: -18.821228, z: -30.17456}
   m_LocalScale: {x: 150, y: 50, z: 150}
   m_Children: []
-  m_Father: {fileID: 51227478}
-  m_RootOrder: 4
+  m_Father: {fileID: 652542650}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2045274456
 MonoBehaviour:
@@ -16868,12 +17220,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edb4377f76c581e47ab2c96158dad10b, type: 3}
+--- !u!1 &2071967175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2071967176}
+  m_Layer: 0
+  m_Name: berserkerSpawner2
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2071967176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071967175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.52, y: -15.22, z: -3.26}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1645048081}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2071986878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 15790786327168378, guid: 078ecc0207faec344876fee599122c1e,
     type: 3}
   m_PrefabInstance: {fileID: 1208049128}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2086561829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2086561830}
+  m_Layer: 0
+  m_Name: berserkerSpawnPoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2086561830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086561829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 72.87, y: 2.33, z: 15.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 610929146}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2087259142
 PrefabInstance:
   m_ObjectHideFlags: 0

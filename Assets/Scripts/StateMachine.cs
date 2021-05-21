@@ -7,7 +7,7 @@ using System.Collections.Generic;
  */
 public class StateMachine
 {
-    private IState CurrentState;
+    public IState CurrentState;
 
     private Dictionary<Type, List<Transition>> Transitions = new Dictionary<Type, List<Transition>>();
     private List<Transition> CurrentTransitions = new List<Transition>();
