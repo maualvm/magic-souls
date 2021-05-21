@@ -75,6 +75,7 @@ public class HUD : MonoBehaviour
     {
         DeathScreen.SetActive(false);
         RespawnBtn.onClick.AddListener(() => Respawn());
+        SpellSelectionWheel.sprite = WaterSpellSelected;
     }
 
     // Update is called once per frame

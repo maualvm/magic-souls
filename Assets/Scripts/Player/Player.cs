@@ -78,12 +78,14 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         HUD.Respawned += Respawn;
+        HUD.SpellChanged += ChangeSpell;
     }
 
 
     private void OnDisable()
     {
         HUD.Respawned -= Respawn;
+        HUD.SpellChanged -= ChangeSpell;
     }
 
     void Start()
@@ -284,6 +286,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ChangeSpell(string element)
+    {
+        currentSpell = element;
+    }
+
     public void Shoot() {
         RaycastHit hit;
 
@@ -301,40 +308,38 @@ public class Player : MonoBehaviour
                 switch (currentSpell)
                 {
                     case "Water":
-                        if(enemyElement == "Water") {
-                            GetSpellDamage("Water");
+                        GetSpellDamage("Water");
+                        if (enemyElement == "Water") {
+                            
                             total_damage = base_damage * -1;
                         }
                         else if(enemyElement == "Fire") {
-                            GetSpellDamage("Fire");
                             total_damage = base_damage * 2;
                         }
                         else {
-                           total_damage = base_damage;
+                            total_damage = base_damage;
                         }
                     break;
 
                     case "Fire":
+                        GetSpellDamage("Fire");
                         if(enemyElement == "Fire") {
-                            GetSpellDamage("Fire");
                             total_damage = base_damage * -1;
                         }
                         else if(enemyElement == "Earth") {
-                            GetSpellDamage("Earth");
                             total_damage = base_damage * 2;
                         }
                         else {
-                           total_damage = base_damage;
+                            total_damage = base_damage;
                         }
                     break;
 
                     case "Earth":
+                        GetSpellDamage("Earth");
                         if(enemyElement == "Earth") {
-                            GetSpellDamage("Earth");
                             total_damage = base_damage * -1;
                         }
                         else if(enemyElement == "Water") {
-                            GetSpellDamage("Water");
                             total_damage = base_damage * 2;
                         }
                         else {
@@ -376,11 +381,8 @@ public class Player : MonoBehaviour
         gameObject.transform.position = respawnPosition;
         characterController.enabled = true;
 
-        onFire = false;
         onFireTimer = 5;
-        bleeding = false;
         bleedingTimer = 10;
-        isExhausted = false;
         exhaustedTimer = 5;
     }
 
