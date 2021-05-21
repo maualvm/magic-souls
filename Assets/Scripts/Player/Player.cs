@@ -61,13 +61,15 @@ public class Player : MonoBehaviour
     protected GameObject Target;
 
     public float base_damage = 5f;
-    public float damage = 10f;
+
+    public float generic_damage;
+    public float total_damage = 5f;
     public float range = 100f;
 
-    public int waterLevel;
-    public int fireLevel;
-    public int earthLevel;
-    public int airLevel;
+    public int waterLevel = 1;
+    public int fireLevel = 1;
+    public int earthLevel = 1;
+    public int airLevel = 1;
 
     public string currentSpell = "Water";
 
@@ -198,6 +200,90 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void GetSpellDamage(string typeOfSpell) {
+        
+        if(typeOfSpell == "Fire") {
+            switch (fireLevel) {
+                case 1:
+                    base_damage = 5f;
+                break;
+                case 2:
+                    base_damage = 10f;
+                break;
+                case 3:
+                    base_damage = 25f;
+                break;
+                case 4:
+                    base_damage = 50f;
+                break;
+                default:
+                    base_damage = 50f;
+                break;
+            }
+        }
+
+        if(typeOfSpell == "Water") {
+            switch (waterLevel) {
+                case 1:
+                    base_damage = 5f;
+                break;
+                case 2:
+                    base_damage = 10f;
+                break;
+                case 3:
+                    base_damage = 25f;
+                break;
+                case 4:
+                    base_damage = 50f;
+                break;
+                default:
+                    base_damage = 50f;
+                break;
+            }
+        }
+
+        if(typeOfSpell == "Earth") {
+            switch (earthLevel) {
+                case 1:
+                    base_damage = 5f;
+                break;
+                case 2:
+                    base_damage = 10f;
+                break;
+                case 3:
+                    base_damage = 25f;
+                break;
+                case 4:
+                    base_damage = 50f;
+                break;
+                default:
+                    base_damage = 50f;
+                break;
+            }
+
+        }
+
+        if(typeOfSpell == "Air") {
+            switch (airLevel) {
+                case 1:
+                    base_damage = 5f;
+                break;
+                case 2:
+                    base_damage = 10f;
+                break;
+                case 3:
+                    base_damage = 25f;
+                break;
+                case 4:
+                    base_damage = 50f;
+                break;
+                default:
+                    base_damage = 50f;
+                break;
+            }
+        }
+    }
+
     public void Shoot() {
         RaycastHit hit;
 
@@ -205,10 +291,60 @@ public class Player : MonoBehaviour
             Debug.DrawRay(camera.transform.position, camera.transform.forward * hit.distance, Color.yellow, 5);
             Debug.Log(hit.transform.name);
             Enemy enemy = hit.transform.GetComponent<Enemy>(); 
+
+            // The player hits an enemy, so we calculate the corresponding damage
             if(enemy != null) {
-                var enemyElement = enemy.gameObject.GetComponent<Enemy>().GetEnemyData().Element; 
+                var enemyElement = enemy.gameObject.GetComponent<Enemy>().GetEnemyData().Element;
+
+                // Set the base_damage according to the spell level 
                 
-                enemy.ReceiveDamage(damage);
+                switch (currentSpell)
+                {
+                    case "Water":
+                        if(enemyElement == "Water") {
+                            GetSpellDamage("Water");
+                            total_damage = base_damage * -1;
+                        }
+                        else if(enemyElement == "Fire") {
+                            GetSpellDamage("Fire");
+                            total_damage = base_damage * 2;
+                        }
+                        else {
+                           total_damage = base_damage;
+                        }
+                    break;
+
+                    case "Fire":
+                        if(enemyElement == "Fire") {
+                            GetSpellDamage("Fire");
+                            total_damage = base_damage * -1;
+                        }
+                        else if(enemyElement == "Earth") {
+                            GetSpellDamage("Earth");
+                            total_damage = base_damage * 2;
+                        }
+                        else {
+                           total_damage = base_damage;
+                        }
+                    break;
+
+                    case "Earth":
+                        if(enemyElement == "Earth") {
+                            GetSpellDamage("Earth");
+                            total_damage = base_damage * -1;
+                        }
+                        else if(enemyElement == "Water") {
+                            GetSpellDamage("Water");
+                            total_damage = base_damage * 2;
+                        }
+                        else {
+                           total_damage = base_damage;
+                        }
+                    break;
+                    
+                }
+                Debug.Log($"The player dealt {total_damage} to the enemy of type {enemyElement}!\nThe player used spell of type {currentSpell}");
+                enemy.ReceiveDamage(total_damage);
             }
         }
     }

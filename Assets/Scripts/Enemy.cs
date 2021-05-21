@@ -159,6 +159,9 @@ public class Enemy : MonoBehaviour
     {
 
         CurrentHealth -= Damage;
+        if(CurrentHealth > enemy.enemyData.MaxHealth) {
+            CurrentHealth = enemy.enemyData.MaxHealth;
+        }
         
     }
 }
