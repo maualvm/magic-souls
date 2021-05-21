@@ -66,10 +66,10 @@ public class Player : MonoBehaviour
     public float total_damage = 5f;
     public float range = 100f;
 
-    public int waterLevel; //lvl1=5, lvl2=10, lvl3=25, lvl4=50
-    public int fireLevel; //lvl1=5, lvl2=10, lvl3=25, lvl4=50
-    public int earthLevel; //lvl1=5, lvl2=10, lvl3=25, lvl4=50
-    public int airLevel; //lvl1=5, lvl2=10, lvl3=25, lvl4=50
+    public int waterLevel = 1;
+    public int fireLevel = 1;
+    public int earthLevel = 1;
+    public int airLevel = 1;
 
     public string currentSpell = "Water";
 
@@ -317,6 +317,20 @@ public class Player : MonoBehaviour
                     case "Fire":
                         if(enemyElement == "Fire") {
                             GetSpellDamage("Fire");
+                            total_damage = base_damage * -1;
+                        }
+                        else if(enemyElement == "Earth") {
+                            GetSpellDamage("Earth");
+                            total_damage = base_damage * 2;
+                        }
+                        else {
+                           total_damage = base_damage;
+                        }
+                    break;
+
+                    case "Earth":
+                        if(enemyElement == "Earth") {
+                            GetSpellDamage("Earth");
                             total_damage = base_damage * -1;
                         }
                         else if(enemyElement == "Water") {
