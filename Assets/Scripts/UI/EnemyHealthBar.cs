@@ -11,6 +11,13 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField]
     float UpdateSpeed;
 
+    private Transform cameraTransform;
+
+    private void Start()
+    {
+        cameraTransform = Camera.main.transform;
+    }
+
     private void OnEnable()
     {
         Enemy.EnemyHealthChanged += HandleHealthChange;
@@ -21,9 +28,10 @@ public class EnemyHealthBar : MonoBehaviour
         Enemy.EnemyHealthChanged -= HandleHealthChange;
     }
 
-    private void HandleHealthChange(float newHealth, float maxHealth)
+    private void HandleHealthChange(float newHealth, float maxHealth, Enemy enemy)
     {
-        StartCoroutine(ChangeHealth(newHealth, maxHealth));
+        if(enemy == GetComponentInParent<Enemy>())
+            StartCoroutine(ChangeHealth(newHealth, maxHealth));
     }
 
     private IEnumerator ChangeHealth(float newHealth, float maxHealth)
@@ -44,7 +52,7 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.LookAt(Camera.main.transform);
+        transform.LookAt(cameraTransform);
         transform.Rotate(0, 180, 0);
     }
 }
