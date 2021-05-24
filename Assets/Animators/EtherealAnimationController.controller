@@ -95,7 +95,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -3063955830402039394, guid: 59d0e700ad66bb34e832149d5abe1e5d,
+  m_Motion: {fileID: -4523083797507840679, guid: 764f7c114eb748448996e8e4b56198a2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -108,7 +108,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ImpAnimationController
+  m_Name: EtherealAnimationController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isRunning
@@ -169,7 +169,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8945691123924629249, guid: 59d0e700ad66bb34e832149d5abe1e5d,
+  m_Motion: {fileID: -8945691123924629249, guid: 764f7c114eb748448996e8e4b56198a2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -197,7 +197,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -7551964380084998518, guid: 59d0e700ad66bb34e832149d5abe1e5d,
+  m_Motion: {fileID: -7551964380084998518, guid: 764f7c114eb748448996e8e4b56198a2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -225,8 +225,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 2845521091603894573, guid: 59d0e700ad66bb34e832149d5abe1e5d,
-    type: 3}
+  m_Motion: {fileID: 21120514395870912, guid: 764f7c114eb748448996e8e4b56198a2, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
