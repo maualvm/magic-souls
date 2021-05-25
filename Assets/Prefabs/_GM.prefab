@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &802499440390860900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 802499440390860901}
+  - component: {fileID: 802499440390860898}
+  - component: {fileID: 802499440390860899}
+  - component: {fileID: 802499440390860896}
+  - component: {fileID: 802499440390860897}
+  - component: {fileID: 802499440390860894}
+  m_Layer: 0
+  m_Name: _GM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &802499440390860901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802499440390860900}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 212.8, y: 0, z: 186.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &802499440390860898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802499440390860900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc4ba00861b8d0409b35e5e51ccb36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Imps
+    impFuego: {fileID: 1147731564011342092, guid: 896ebb38c1fbc8e4f9c4c5c2e5aa7a9e,
+      type: 3}
+    impTierra: {fileID: 7165664920439043548, guid: 1e0193be04fc93a42badb270d1c59906,
+      type: 3}
+    impAire: {fileID: 674566485949624979, guid: 78d50f389f8398b489097b3f4096448c,
+      type: 3}
+    impAgua: {fileID: 5661703667078776471, guid: db9a3b4d5cd2bac45a2b8d723e717a46,
+      type: 3}
+    count: 5
+    rate: 1
+  timeBetweenWaves: 5
+  waveCountdown: 0
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  FireAreaTrigger: {fileID: 0}
+  WaterAreaTrigger: {fileID: 0}
+  EarthAreaTrigger: {fileID: 0}
+--- !u!114 &802499440390860899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802499440390860900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419cc6e7715f44449af465db0fe75700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalSouls: 0
+  FireSouls: 0
+  WaterSouls: 0
+  EarthSouls: 0
+  AirSouls: 0
+  HealthPotions: 0
+  StaminaPotions: 0
+--- !u!114 &802499440390860896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802499440390860900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f76f10096388343a70aca9fecf800e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Berserkers
+    berserkerFuego: {fileID: 6014976281466480056, guid: 034381807ef8f6a47894c42b3f277ad5,
+      type: 3}
+    berserkerTierra: {fileID: 531820501116846013, guid: 601570af6781e9d46a8cc4fc98676ef3,
+      type: 3}
+    berserkerAire: {fileID: 4137404939510955758, guid: 24fedda2d169fec4dbe823f19c41e785,
+      type: 3}
+    berserkerAgua: {fileID: 4306604955271617770, guid: 60a9dcb865312f24ba9dd121c35e7f88,
+      type: 3}
+    count: 3
+    rate: 1
+  timeBetweenWaves: 5
+  waveCountdown: 0
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  FireAreaTrigger: {fileID: 0}
+  WaterAreaTrigger: {fileID: 0}
+  EarthAreaTrigger: {fileID: 0}
+--- !u!114 &802499440390860897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802499440390860900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5168d01ceff2b42ad5f46da942c6b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Gargoyles
+    gargoyleFuego: {fileID: 8957619088885927093, guid: aeeda97298e7e994686d72161e1d288d,
+      type: 3}
+    gargoyleTierra: {fileID: 8957619088885927093, guid: 257842689514b8a4197dfe6616817370,
+      type: 3}
+    gargoyleAire: {fileID: 8957619088885927093, guid: 777dcdb5f65ca7d46ba7643ca15e60c8,
+      type: 3}
+    gargoyleAgua: {fileID: 8957619088885927093, guid: b54884de533f55741ad96a87d6725001,
+      type: 3}
+    count: 4
+    rate: 1
+  timeBetweenWaves: 5
+  waveCountdown: 0
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  FireAreaTrigger: {fileID: 0}
+  WaterAreaTrigger: {fileID: 0}
+  EarthAreaTrigger: {fileID: 0}
+--- !u!114 &802499440390860894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802499440390860900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220c44e22debe4c409cdc0fbe71de90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Ethereals
+    etherealFuego: {fileID: 3022195089672619017, guid: a7a3bb0c9073f614380561b927fe18ad,
+      type: 3}
+    etherealTierra: {fileID: 3022195089672619017, guid: d328a748216b8814a9dc086aae5977c6,
+      type: 3}
+    etherealAire: {fileID: 3022195089672619017, guid: 75c96755752ca4c43befaef632354be4,
+      type: 3}
+    etherealAgua: {fileID: 3022195089672619017, guid: 6f5280f5de1b4124b8262d74e9c010e0,
+      type: 3}
+    count: 1
+    rate: 1
+  timeBetweenWaves: 5
+  waveCountdown: 0
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  FireAreaTrigger: {fileID: 0}
+  WaterAreaTrigger: {fileID: 0}
+  EarthAreaTrigger: {fileID: 0}

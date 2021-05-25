@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 00b077539800af94da699e906f2da459
   - enabled: 1
-    path: Assets/Scenes/Puebito.unity
+    path: Assets/Scenes/PuebloFulir.unity
     guid: 60a603abb827fdc4ebfa204192830b27
   - enabled: 1
     path: Assets/Scenes/Instructions.unity

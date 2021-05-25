@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Puebito");
+        SceneManager.LoadScene("PuebloFulir");
     }
     public void Instructions()
     {
