@@ -30,6 +30,7 @@ public class ImpSpawner : MonoBehaviour
     public GameObject FireAreaTrigger;
     public GameObject WaterAreaTrigger;
     public GameObject EarthAreaTrigger;
+    public GameObject AirAreaTrigger;
 
     private SpawnState state = SpawnState.COUTNING;
 
@@ -46,7 +47,7 @@ public class ImpSpawner : MonoBehaviour
 
     void Update()
     {
-        if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
             state = SpawnState.WAITING;
         }
@@ -92,6 +93,9 @@ public class ImpSpawner : MonoBehaviour
 
     bool EnemyIsAlive()
     {
+
+        
+
         searchCoundown -= Time.deltaTime;
         if (searchCoundown <= 0)
         {
@@ -101,10 +105,12 @@ public class ImpSpawner : MonoBehaviour
                 return false;
             }
 
-            if(!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+            if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
             {
                 MatarEnemigos();
             }
+
+
         }
         return true;
     }
@@ -119,6 +125,7 @@ public class ImpSpawner : MonoBehaviour
             SpawnImp(_wave.impFuego);
             SpawnImp(_wave.impTierra);
             SpawnImp(_wave.impAgua);
+            SpawnImp(_wave.impAire);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -150,15 +157,20 @@ public class ImpSpawner : MonoBehaviour
             Instantiate(_imp, _sp2.position, _sp2.rotation);
         }
 
+        if (_imp.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        {
+            Transform _sp2 = spawnPoints[Random.Range(15, 18)];
+            Instantiate(_imp, _sp2.position, _sp2.rotation);
+        }
+
     }
 
     void MatarEnemigos()
     {
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Enemy");
-
         for (int i = 0; i < temp.Length; i++)
         {
-            Destroy(temp[i]);
+           Destroy(temp[i]);
         }
     }
 }

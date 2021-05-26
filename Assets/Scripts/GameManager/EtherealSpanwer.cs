@@ -30,6 +30,7 @@ public class EtherealSpanwer : MonoBehaviour
     public GameObject FireAreaTrigger;
     public GameObject WaterAreaTrigger;
     public GameObject EarthAreaTrigger;
+    public GameObject AirAreaTrigger;
 
     private SpawnState state = SpawnState.COUTNING;
 
@@ -46,7 +47,7 @@ public class EtherealSpanwer : MonoBehaviour
 
     void Update()
     {
-        if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
             state = SpawnState.WAITING;
         }
@@ -102,7 +103,7 @@ public class EtherealSpanwer : MonoBehaviour
                 return false;
             }
 
-            if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+            if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
             {
                 MatarEnemigos();
             }
@@ -120,6 +121,7 @@ public class EtherealSpanwer : MonoBehaviour
             SpawnGargoyle(_wave.etherealFuego);
             SpawnGargoyle(_wave.etherealTierra);
             SpawnGargoyle(_wave.etherealAgua);
+            SpawnGargoyle(_wave.etherealAire);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -148,6 +150,12 @@ public class EtherealSpanwer : MonoBehaviour
         if (_ethereal.name.Contains("Water") && WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
             Transform _sp2 = spawnPoints[2];
+            Instantiate(_ethereal, _sp2.position, _sp2.rotation);
+        }
+
+        if (_ethereal.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        {
+            Transform _sp2 = spawnPoints[3];
             Instantiate(_ethereal, _sp2.position, _sp2.rotation);
         }
 
