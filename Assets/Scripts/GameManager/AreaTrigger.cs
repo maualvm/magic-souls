@@ -1,10 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AreaTrigger : MonoBehaviour
 {
     public bool canSpawn;
+
+    public static event Action<string> EnteredArea;
+
+    [SerializeField]
+    string area;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +22,7 @@ public class AreaTrigger : MonoBehaviour
         if(other.tag == "Player")
         {
             canSpawn = true;
+            EnteredArea?.Invoke(area);
         }
     }
 
@@ -24,6 +31,7 @@ public class AreaTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             canSpawn = false;
+            EnteredArea?.Invoke("Town");
         }
     }
 }

@@ -5,7 +5,8 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("PuebloFulir");
+        //SceneManager.LoadScene("PuebloFulir");
+        SceneManager.LoadScene("audio");
     }
     public void Instructions()
     {

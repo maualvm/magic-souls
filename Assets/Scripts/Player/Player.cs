@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     private bool canMove = true;
     private bool canRun = true;
 
-    public static event Action PlayerKilled;
+    public static event Action PlayerKilled, PlayerRespawned;
     public static event Action<float, float> PlayerDamaged;
     public static event Action<float, float> StaminaChanged;
     public static event Action<bool> TriggeredShop;
@@ -369,6 +369,7 @@ public class Player : MonoBehaviour
 
     public void Respawn() {
         Cursor.lockState = CursorLockMode.Locked;
+        PlayerRespawned?.Invoke();
         canMove = true;
         canRun = true;
         currentHealth = maxHealth;
