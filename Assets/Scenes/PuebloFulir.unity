@@ -19692,6 +19692,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 830368377, guid: 70e027772b42c884aa0a78c2fc8f350f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2009894548}
+    - target: {fileID: 830368377, guid: 70e027772b42c884aa0a78c2fc8f350f, type: 3}
       propertyPath: onFireFX
       value: 
       objectReference: {fileID: 1486007537649355793, guid: a3b0191d2354a54468a019d94244b37b,
@@ -20084,6 +20088,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1072540143434763544, guid: 6521c24461c2662498bec0b52c6ab12d,
     type: 3}
   m_PrefabInstance: {fileID: 1569088004}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2009894548 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5024885573256591778, guid: 70e027772b42c884aa0a78c2fc8f350f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1999334277}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2021786017
 GameObject:
