@@ -308,6 +308,7 @@ public class Player : MonoBehaviour
                 switch (currentSpell)
                 {
                     case "Water":
+                        AudioManager.PlaySound(AudioManager.Sound.WaterAttack, hit.point);
                         GetSpellDamage("Water");
                         if (enemyElement == "Water") {
                             
@@ -322,6 +323,7 @@ public class Player : MonoBehaviour
                     break;
 
                     case "Fire":
+                        AudioManager.PlaySound(AudioManager.Sound.FireAttack, hit.point);
                         GetSpellDamage("Fire");
                         if(enemyElement == "Fire") {
                             total_damage = base_damage * -1;
@@ -335,6 +337,7 @@ public class Player : MonoBehaviour
                     break;
 
                     case "Earth":
+                        AudioManager.PlaySound(AudioManager.Sound.EarthAttack, hit.point);
                         GetSpellDamage("Earth");
                         if(enemyElement == "Earth") {
                             total_damage = base_damage * -1;
@@ -361,6 +364,7 @@ public class Player : MonoBehaviour
     }
 
     public void Die() {
+        AudioManager.PlaySound(AudioManager.Sound.PlayerDeath, transform.position);
         canMove = false;
         canRun = false;
         PlayerKilled?.Invoke();
@@ -428,6 +432,8 @@ public class Player : MonoBehaviour
 
     public void ReceiveDamage(float Damage)
     {
+        if(Damage > 0)
+            AudioManager.PlaySound(AudioManager.Sound.PlayerDamaged, transform.position);
         currentHealth -= Damage;
         if (currentHealth < 0)
             currentHealth = 0;
