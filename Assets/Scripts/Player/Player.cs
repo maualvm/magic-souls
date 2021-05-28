@@ -278,19 +278,19 @@ public class Player : MonoBehaviour
         if(typeOfSpell == "Air") {
             switch (airLevel) {
                 case 1:
-                    base_damage = 5f;
-                break;
-                case 2:
                     base_damage = 10f;
                 break;
+                case 2:
+                    base_damage = 200f;
+                break;
                 case 3:
-                    base_damage = 25f;
+                    base_damage = 350f;
                 break;
                 case 4:
-                    base_damage = 50f;
+                    base_damage = 800f;
                 break;
                 default:
-                    base_damage = 50f;
+                    base_damage = 800f;
                 break;
             }
         }
@@ -351,6 +351,17 @@ public class Player : MonoBehaviour
                         }
                         else {
                            total_damage = base_damage;
+                        }
+                    break;
+
+                    case "Air":
+                        total_damage = 0;
+                        var rb = enemy.GetComponent<Rigidbody>();
+                        if(rb != null) {
+                            Vector3 direction = enemy.transform.position - transform.position;
+                            direction.y = 0;
+                            GetSpellDamage("Air");
+                            rb.AddForce(direction.normalized * base_damage, ForceMode.Impulse);
                         }
                     break;
                     
