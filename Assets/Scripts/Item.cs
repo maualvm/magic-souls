@@ -149,8 +149,8 @@ public class Item
                     "Note: The effect of the potion will be applied immediately after buying it.";
             case ItemType.HealthPotion:
                 return "Restores 15 HP.";
-            case ItemType.StaminaPotion: 
-                return "Restores 15 Stamina Points.";
+            case ItemType.StaminaPotion:
+                return "Gives you increased stamina regeneration speed.\nDuration: 30 seconds\n";
             case ItemType.Shield:
                 return "Blocks 10% of received damage.\nDuration: 2 minutes\n" +
                     "Note: The effect of the shield will be applied immediately after buying it.";

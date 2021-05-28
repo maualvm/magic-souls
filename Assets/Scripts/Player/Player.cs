@@ -8,7 +8,13 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 7.5f;
+    private float normalSpeed = 7.5f;
+    [SerializeField]
+    private float RunningSpeed = 20f;
+    [SerializeField]
+    private int RegenSpeed = 5;
+
+    private float speed;
     [SerializeField]
     private float jumpSpeed = 8.0f;
     [SerializeField]
@@ -94,6 +100,7 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
+        speed = normalSpeed;
 
         Respawn();
 
@@ -144,7 +151,7 @@ public class Player : MonoBehaviour
                 isExhausted = false;
                 exhaustedTimer = 0f;
                 Destroy(GameObject.Find("PlayerExhaust(Clone)"));
-                speed = 7.5f;
+                speed = normalSpeed;
             }
         }
 
@@ -164,22 +171,23 @@ public class Player : MonoBehaviour
                 if(stamina <= 100 && stamina > 0) {
                     canRun = true;
                 }
-                speed = 7.5f;
+                speed = normalSpeed;
 
                 if(curSpeedX == 0 && curSpeedY == 0 && characterController.isGrounded) {
-                    ChangeStamina(30 * Time.deltaTime);
+                    ChangeStamina(RegenSpeed * 3);
 
                 } else {
-                    ChangeStamina(5 * Time.deltaTime);
+                    ChangeStamina(RegenSpeed);
                 }
             }
 
             // If the player decides to run, discharge stamina and change speed to running
             if(canRun && Input.GetKey(KeyCode.LeftShift)) {
-                speed = 8.5f;
-                ChangeStamina(-10 * Time.deltaTime);
+                speed = RunningSpeed;
+                ChangeStamina(-10);
                 if(stamina <= 0) {
                     canRun = false;
+                    speed = normalSpeed;
                 }
             }
 
@@ -379,7 +387,7 @@ public class Player : MonoBehaviour
 
     private void ChangeStamina(float changeAmount)
     {
-        stamina += changeAmount;
+        stamina += changeAmount * Time.deltaTime;
         StaminaChanged?.Invoke(stamina, maxStamina);
     }
 
