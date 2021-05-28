@@ -153,20 +153,32 @@ public class Player : MonoBehaviour
             Vector3 right = transform.TransformDirection(Vector3.right);
             float curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
             float curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
-            if(stamina <= 0) {
-                canRun = false;
-            }
-            if(Input.GetKey(KeyCode.LeftShift) && canRun) {
-                speed = 12.5f;
-                //stamina -= 10 * Time.deltaTime;
-                ChangeStamina(-10 * Time.deltaTime);
-            }
-            if(!canRun && stamina < 100) {
-                speed = 7.5f;
-                //stamina += 5 * Time.deltaTime;
-                ChangeStamina(5 * Time.deltaTime);
-                if (stamina >= 25)
+
+            // If the player is not trying to run, always regenerate stamina until 100 and set speed to normal
+            if(!Input.GetKey(KeyCode.LeftShift)) {
+                if(stamina >= 100) {
+                    stamina = 100;
+                }
+                if(stamina <= 100 && stamina > 0) {
                     canRun = true;
+                }
+                speed = 7.5f;
+
+                if(curSpeedX == 0 && curSpeedY == 0 && characterController.isGrounded) {
+                    ChangeStamina(30 * Time.deltaTime);
+
+                } else {
+                    ChangeStamina(5 * Time.deltaTime);
+                }
+            }
+
+            // If the player decides to run, discharge stamina and change speed to running
+            if(canRun && Input.GetKey(KeyCode.LeftShift)) {
+                speed = 8.5f;
+                ChangeStamina(-10 * Time.deltaTime);
+                if(stamina <= 0) {
+                    canRun = false;
+                }
             }
 
             moveDirection = (forward * curSpeedX) + (right * curSpeedY);
