@@ -30,6 +30,7 @@ public class BerserkerSpanwer : MonoBehaviour
     public GameObject FireAreaTrigger;
     public GameObject WaterAreaTrigger;
     public GameObject EarthAreaTrigger;
+    public GameObject AirAreaTrigger;
 
     private SpawnState state = SpawnState.COUTNING;
 
@@ -46,7 +47,7 @@ public class BerserkerSpanwer : MonoBehaviour
 
     void Update()
     {
-        if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
             state = SpawnState.WAITING;
         }
@@ -102,7 +103,7 @@ public class BerserkerSpanwer : MonoBehaviour
                 return false;
             }
 
-            if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+            if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
             {
                 MatarEnemigos();
             }
@@ -120,6 +121,7 @@ public class BerserkerSpanwer : MonoBehaviour
             SpawnBerserker(_wave.berserkerFuego);
             SpawnBerserker(_wave.berserkerTierra);
             SpawnBerserker(_wave.berserkerAgua);
+            SpawnBerserker(_wave.berserkerAire);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -148,6 +150,12 @@ public class BerserkerSpanwer : MonoBehaviour
         if (_berserker.name.Contains("Water") && WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
             Transform _sp2 = spawnPoints[Random.Range(6, 8)];
+            Instantiate(_berserker, _sp2.position, _sp2.rotation);
+        }
+
+        if (_berserker.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        {
+            Transform _sp2 = spawnPoints[Random.Range(9, 10)];
             Instantiate(_berserker, _sp2.position, _sp2.rotation);
         }
 

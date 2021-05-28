@@ -30,6 +30,7 @@ public class GargoyleSpanwer : MonoBehaviour
     public GameObject FireAreaTrigger;
     public GameObject WaterAreaTrigger;
     public GameObject EarthAreaTrigger;
+    public GameObject AirAreaTrigger;
 
     private SpawnState state = SpawnState.COUTNING;
 
@@ -46,7 +47,7 @@ public class GargoyleSpanwer : MonoBehaviour
 
     void Update()
     {
-        if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
             state = SpawnState.WAITING;
         }
@@ -102,7 +103,7 @@ public class GargoyleSpanwer : MonoBehaviour
                 return false;
             }
 
-            if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+            if (!FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
             {
                 MatarEnemigos();
             }
@@ -120,6 +121,7 @@ public class GargoyleSpanwer : MonoBehaviour
             SpawnGargoyle(_wave.gargoyleFuego);
             SpawnGargoyle(_wave.gargoyleTierra);
             SpawnGargoyle(_wave.gargoyleAgua);
+            SpawnGargoyle(_wave.gargoyleAire);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
@@ -148,6 +150,12 @@ public class GargoyleSpanwer : MonoBehaviour
         if (_gargoyle.name.Contains("Water") && WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
             Transform _sp2 = spawnPoints[Random.Range(8, 11)];
+            Instantiate(_gargoyle, _sp2.position, _sp2.rotation);
+        }
+
+        if (_gargoyle.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        {
+            Transform _sp2 = spawnPoints[Random.Range(12, 14)];
             Instantiate(_gargoyle, _sp2.position, _sp2.rotation);
         }
 

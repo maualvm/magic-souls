@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     private float maxStamina = 100f;
 
     [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
     private GameObject onFireFX;
     [SerializeField]
     private GameObject bleedingFX;
@@ -109,6 +112,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(currentHealth <= 0) {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isDying", true);
             Die();
         }
 
@@ -191,6 +198,29 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && !animator.GetBool("isAttacking"))
+            {
+                animator.SetBool("isAttacking", false);
+                animator.SetBool("isIdle", false);
+                animator.SetBool("isDying", false);
+                animator.SetBool("isRunning", true);
+            } else
+            {
+                if(currentHealth > 0)
+                {
+                    animator.SetBool("isAttacking", false);
+                    animator.SetBool("isDying", false);
+                    animator.SetBool("isRunning", false);
+                    animator.SetBool("isIdle", true);
+                }
+                
+            }
+
+            if(currentHealth <= 0)
+            {
+                animator.SetBool("isRunning", false);
+            }
+
             moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
             if (Input.GetButton("Jump") && canMove)
@@ -219,6 +249,10 @@ public class Player : MonoBehaviour
 
         if(Input.GetButtonDown("Fire1")) {
             Shoot();
+            animator.SetBool("isDying", false);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isAttacking", true);
         }
     }
 
@@ -415,6 +449,11 @@ public class Player : MonoBehaviour
         onFireTimer = 5;
         bleedingTimer = 10;
         exhaustedTimer = 5;
+
+        animator.SetBool("isDying", false);
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isIdle", true);
     }
 
     public void SetOnFire()
