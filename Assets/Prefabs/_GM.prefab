@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 802499440390860901}
   - component: {fileID: 802499440390860898}
-  - component: {fileID: 802499440390860899}
   - component: {fileID: 802499440390860896}
   - component: {fileID: 802499440390860897}
   - component: {fileID: 802499440390860894}
@@ -77,28 +76,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   FireAreaTrigger: {fileID: 0}
   WaterAreaTrigger: {fileID: 0}
   EarthAreaTrigger: {fileID: 0}
---- !u!114 &802499440390860899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802499440390860900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 419cc6e7715f44449af465db0fe75700, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TotalSouls: 0
-  FireSouls: 0
-  WaterSouls: 0
-  EarthSouls: 0
-  AirSouls: 0
-  HealthPotions: 0
-  StaminaPotions: 0
+  AirAreaTrigger: {fileID: 0}
 --- !u!114 &802499440390860896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,9 +121,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   FireAreaTrigger: {fileID: 0}
   WaterAreaTrigger: {fileID: 0}
   EarthAreaTrigger: {fileID: 0}
+  AirAreaTrigger: {fileID: 0}
 --- !u!114 &802499440390860897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,9 +166,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   FireAreaTrigger: {fileID: 0}
   WaterAreaTrigger: {fileID: 0}
   EarthAreaTrigger: {fileID: 0}
+  AirAreaTrigger: {fileID: 0}
 --- !u!114 &802499440390860894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +203,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   FireAreaTrigger: {fileID: 0}
   WaterAreaTrigger: {fileID: 0}
   EarthAreaTrigger: {fileID: 0}
+  AirAreaTrigger: {fileID: 0}

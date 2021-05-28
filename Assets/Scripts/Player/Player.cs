@@ -90,7 +90,6 @@ public class Player : MonoBehaviour
         HUD.SpellChanged += ChangeSpell;
     }
 
-
     private void OnDisable()
     {
         HUD.Respawned -= Respawn;
@@ -358,7 +357,7 @@ public class Player : MonoBehaviour
                 var enemyElement = enemy.gameObject.GetComponent<Enemy>().GetEnemyData().Element;
 
                 // Set the base_damage according to the spell level 
-                
+                var rb = enemy.GetComponent<Rigidbody>();
                 switch (currentSpell)
                 {
                     case "Water":
@@ -403,11 +402,12 @@ public class Player : MonoBehaviour
 
                     case "Air":
                         total_damage = 0;
-                        var rb = enemy.GetComponent<Rigidbody>();
+                        
                         if(rb != null) {
                             Vector3 direction = enemy.transform.position - transform.position;
                             direction.y = 0;
                             GetSpellDamage("Air");
+                            rb.isKinematic = false;
                             rb.AddForce(direction.normalized * base_damage, ForceMode.Impulse);
                         }
                     break;
@@ -500,6 +500,8 @@ public class Player : MonoBehaviour
         currentHealth -= Damage;
         if (currentHealth < 0)
             currentHealth = 0;
+        else if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
         PlayerDamaged?.Invoke(currentHealth, maxHealth);
     }
 

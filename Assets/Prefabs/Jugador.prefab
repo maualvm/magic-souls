@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1988967323}
   - component: {fileID: 1988967322}
   - component: {fileID: 1988967325}
-  m_Layer: 0
-  m_Name: Main Camera
+  m_Layer: 2
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1993949673}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CameraParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,8 @@ GameObject:
   - component: {fileID: 1702442847585835847}
   - component: {fileID: 830368378}
   - component: {fileID: 830368377}
-  m_Layer: 0
+  - component: {fileID: 7170651932460765680}
+  m_Layer: 2
   m_Name: Jugador
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -208,7 +209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d46603053224d47a9848631caf92e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7.5
+  normalSpeed: 7.5
+  RunningSpeed: 20
+  RegenSpeed: 5
   jumpSpeed: 8
   gravity: 20
   playerCameraParent: {fileID: 1993949673}
@@ -216,9 +219,13 @@ MonoBehaviour:
   lookXLimit: 60
   stamina: 100
   maxStamina: 100
-  onFireFX: {fileID: 0}
-  bleedingFX: {fileID: 0}
-  exhaustedFX: {fileID: 0}
+  animator: {fileID: 5024885573256591778}
+  onFireFX: {fileID: 1486007537649355793, guid: a3b0191d2354a54468a019d94244b37b,
+    type: 3}
+  bleedingFX: {fileID: 1664070504769183265, guid: c990ffc460ce50b429b6acf9bcbd0629,
+    type: 3}
+  exhaustedFX: {fileID: 3209362305348617554, guid: 0e723e961613fdd4482af1386ff884e2,
+    type: 3}
   onFire: 0
   onFireTimer: 0
   bleeding: 0
@@ -236,6 +243,25 @@ MonoBehaviour:
   earthLevel: 1
   airLevel: 1
   currentSpell: Water
+--- !u!114 &7170651932460765680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702442847585835845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419cc6e7715f44449af465db0fe75700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalSouls: 0
+  FireSouls: 0
+  WaterSouls: 0
+  EarthSouls: 0
+  AirSouls: 0
+  HealthPotions: 0
+  StaminaPotions: 0
 --- !u!95 &5024885573256591778
 Animator:
   serializedVersion: 3
