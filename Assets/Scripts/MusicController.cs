@@ -10,7 +10,7 @@ public class MusicAudioClip
     public AudioManager.Music music;
     public AudioClip audioClip;
 }
-public class MusicController : Singleton<MusicController>
+public class MusicController : MonoBehaviour
 {
     [SerializeField]
     AudioSource audioSource;
