@@ -28,8 +28,7 @@ public class MusicController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //cambiar audio por PuebloFulir en el merge
-        if (SceneManager.GetActiveScene().name == "audio")
+        if (SceneManager.GetActiveScene().name == "PuebloFulir")
             AudioManager.PlayMusic(AudioManager.Music.Town, audioSource);
         else
             AudioManager.PlayMusic(AudioManager.Music.Menu, audioSource);

@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         AudioManager.PlaySound(AudioManager.Sound.Confirm);
-        StartCoroutine(ChangeScene("audio"));
+        StartCoroutine(ChangeScene("PuebloFulir"));
     }
     public void Instructions()
     {

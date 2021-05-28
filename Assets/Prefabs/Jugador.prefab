@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalSpeed: 7.5
-  RunningSpeed: 20
+  RunningSpeed: 15
   RegenSpeed: 5
   jumpSpeed: 8
   gravity: 20
