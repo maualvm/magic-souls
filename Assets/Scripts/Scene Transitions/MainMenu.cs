@@ -1,18 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("PuebloFulir");
+        AudioManager.PlaySound(AudioManager.Sound.Confirm);
+        StartCoroutine(ChangeScene("audio"));
     }
     public void Instructions()
     {
-        SceneManager.LoadScene("Instructions");
+        AudioManager.PlaySound(AudioManager.Sound.Confirm);
+        StartCoroutine(ChangeScene("Instructions"));
     }
     public void Credits()
     {
-        SceneManager.LoadScene("Credits");
+        AudioManager.PlaySound(AudioManager.Sound.Confirm);
+        StartCoroutine(ChangeScene("Credits"));
+    }
+
+    private IEnumerator ChangeScene(string scene)
+    {
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene(scene);
     }
 }

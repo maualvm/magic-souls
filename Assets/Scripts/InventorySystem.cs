@@ -57,6 +57,7 @@ public class InventorySystem : MonoBehaviour
     private void ModifySouls(string element, int amount)
     {
         Debug.Log("Obtained one " + element + " soul.");
+        AudioManager.PlaySound(AudioManager.Sound.GetSoul);
         TotalSouls += amount;
         ModifiedSouls?.Invoke(TotalSouls);
         if (element == "Fire")
@@ -111,10 +112,12 @@ public class InventorySystem : MonoBehaviour
     {
         if (TrySpendSouls(itemCost, itemElement))
         {
+            AudioManager.PlaySound(AudioManager.Sound.Buy);
             BoughtItem?.Invoke(itemType);
         }
         else
         {
+            AudioManager.PlaySound(AudioManager.Sound.CantBuy);
             TooltipWarningScreenSpaceUI.ShowTooltip_Static("You don't have " + itemCost + " " + itemElement + " Souls!", 1);
         }
     }
