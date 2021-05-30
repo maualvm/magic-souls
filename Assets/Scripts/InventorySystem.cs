@@ -93,6 +93,9 @@ public class InventorySystem : MonoBehaviour
 
     public void ModifyStaminaPotions(int amount)
     {
+        if(StaminaPotions <= 0) {
+            StaminaPotions = 0;
+        }
         StaminaPotions += amount;
         ModifiedStaminaPotions?.Invoke(StaminaPotions);
     }

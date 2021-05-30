@@ -266,6 +266,10 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E)) {
             UseHealthPotion();
         }
+        // Use stamina potion
+        if(Input.GetKeyDown(KeyCode.F)) {
+            UseStaminaPotion();
+        }
     }
 
     public void GetSpellDamage(string typeOfSpell) {
@@ -436,14 +440,26 @@ public class Player : MonoBehaviour
     }
 
     private void UseHealthPotion() {
-        var a = -1;
-        if(inventorySystem.HealthPotions > 0) {
+        if(inventorySystem.HealthPotions > 0 && currentHealth < maxHealth) {
             Debug.Log("The player healed himself.");
             ReceiveDamage(-15);
+            inventorySystem.ModifyHealthPotions(-1);
         }
-        inventorySystem.ModifyHealthPotions(-1);
     }
 
+    private void UseStaminaPotion() {
+        if(inventorySystem.StaminaPotions > 0) {
+            Debug.Log($"The player healed his stamina. Regen speed = {RegenSpeed * 6}");
+            StartCoroutine("StaminaEffect");
+            inventorySystem.ModifyStaminaPotions(-1);
+        }
+    }
+
+    IEnumerator StaminaEffect() {
+        RegenSpeed = 10;
+        yield return new WaitForSeconds(30f);
+        RegenSpeed = 5;
+    }
     private void UseShield() {
         StartCoroutine(ShieldEffect());
     }
