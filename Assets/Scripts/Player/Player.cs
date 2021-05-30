@@ -8,13 +8,14 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float normalSpeed = 7.5f;
-    [SerializeField]
-    private float RunningSpeed = 20f;
-    [SerializeField]
     private int RegenSpeed = 5;
 
+    [SerializeField]
     private float speed;
+    [SerializeField]
+    private float normalSpeed = 6f;
+    [SerializeField]
+    private float RunningSpeed = 8f;
     [SerializeField]
     private float jumpSpeed = 8.0f;
     [SerializeField]
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
 
     public float generic_damage;
     public float total_damage = 5f;
-    public float range = 100f;
+    public float range = 1f;
 
     public int waterLevel = 1;
     public int fireLevel = 1;
@@ -110,6 +111,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"Player speed is: {speed}");
         if(currentHealth <= 0) {
             animator.SetBool("isRunning", false);
             animator.SetBool("isAttacking", false);
@@ -347,7 +349,7 @@ public class Player : MonoBehaviour
     public void Shoot() {
         RaycastHit hit;
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range)) {
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 40f)) {
             Debug.DrawRay(camera.transform.position, camera.transform.forward * hit.distance, Color.yellow, 5);
             Debug.Log(hit.transform.name);
             Enemy enemy = hit.transform.GetComponent<Enemy>(); 
