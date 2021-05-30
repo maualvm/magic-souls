@@ -17,7 +17,7 @@ public class InventorySystem : MonoBehaviour
     private int AirSouls;
 
     [SerializeField]
-    private int HealthPotions;
+    public int HealthPotions;
 
     [SerializeField]
     private int StaminaPotions;
@@ -82,7 +82,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    private void ModifyHealthPotions(int amount)
+    public void ModifyHealthPotions(int amount)
     {
         HealthPotions += amount;
         ModifiedHealthPotions?.Invoke(HealthPotions);

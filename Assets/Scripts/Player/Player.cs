@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     public bool isExhausted;
     public float exhaustedTimer;
 
+    InventorySystem inventorySystem;
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     Vector2 rotation = Vector2.zero;
@@ -103,6 +104,7 @@ public class Player : MonoBehaviour
     {
         camera = GameObject.Find("MainCamera").GetComponent<Camera>();
         characterController = GetComponent<CharacterController>();
+        inventorySystem = GetComponent<InventorySystem>();
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
         speed = normalSpeed;
@@ -258,6 +260,12 @@ public class Player : MonoBehaviour
             animator.SetBool("isIdle", false);
             animator.SetBool("isAttacking", true);
         }
+
+
+        // Use health potion
+        if(Input.GetKeyDown(KeyCode.E)) {
+            UseHealthPotion();
+        }
     }
 
     public void GetSpellDamage(string typeOfSpell) {
@@ -352,7 +360,7 @@ public class Player : MonoBehaviour
     public void Shoot() {
         RaycastHit hit;
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 40f)) {
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 20f)) {
             Debug.DrawRay(camera.transform.position, camera.transform.forward * hit.distance, Color.yellow, 5);
             Debug.Log(hit.transform.name);
             Enemy enemy = hit.transform.GetComponent<Enemy>(); 
@@ -425,6 +433,15 @@ public class Player : MonoBehaviour
                 enemy.ReceiveDamage(total_damage);
             }
         }
+    }
+
+    private void UseHealthPotion() {
+        var a = -1;
+        if(inventorySystem.HealthPotions > 0) {
+            Debug.Log("The player healed himself.");
+            ReceiveDamage(-15);
+        }
+        inventorySystem.ModifyHealthPotions(-1);
     }
 
     private void UseShield() {
