@@ -225,6 +225,6 @@ MonoBehaviour:
   - sound: 27
     audioClip: {fileID: 8300000, guid: 689144ab4e4256e4cb10ebfda669d458, type: 3}
   - sound: 28
-    audioClip: {fileID: 8300000, guid: 8c5fc8c37fed9554b905519d0a084495, type: 3}
+    audioClip: {fileID: 8300000, guid: 8ebe9606a3a7f4349b5029cfb5511c06, type: 3}
   - sound: 29
     audioClip: {fileID: 8300000, guid: 8ebe9606a3a7f4349b5029cfb5511c06, type: 3}

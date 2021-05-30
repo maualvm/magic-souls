@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 
     private bool canMove = true;
     private bool canRun = true;
+    public bool isDead { get; private set; }
 
     public static event Action PlayerKilled, PlayerRespawned;
     public static event Action<float, float> PlayerDamaged;
@@ -103,7 +104,7 @@ public class Player : MonoBehaviour
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
         speed = normalSpeed;
-
+        isDead = false;
         Respawn();
 
     }
@@ -221,6 +222,15 @@ public class Player : MonoBehaviour
             }
 
             moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+            //Play walking sound
+            if(moveDirection.x != 0 || moveDirection.y != 0 || moveDirection.z != 0)
+            {
+                if(speed == RunningSpeed)
+                    AudioManager.PlaySound(AudioManager.Sound.Running, transform.position);
+                else 
+                    AudioManager.PlaySound(AudioManager.Sound.Walking, transform.position);
+            }
 
             if (Input.GetButton("Jump") && canMove)
             {
@@ -405,8 +415,8 @@ public class Player : MonoBehaviour
 
                     case "Air":
                         total_damage = 0;
-                        
-                        if(rb != null) {
+                        AudioManager.PlaySound(AudioManager.Sound.AirAttack, hit.point);
+                        if (rb != null) {
                             Vector3 direction = enemy.transform.position - transform.position;
                             direction.y = 0;
                             GetSpellDamage("Air");
@@ -429,11 +439,15 @@ public class Player : MonoBehaviour
     }
 
     public void Die() {
-        AudioManager.PlaySound(AudioManager.Sound.PlayerDeath, transform.position);
-        canMove = false;
-        canRun = false;
-        PlayerKilled?.Invoke();
-        Cursor.lockState = CursorLockMode.None;
+        if(!isDead)
+        {
+            AudioManager.PlaySound(AudioManager.Sound.PlayerDeath, transform.position);
+            canMove = false;
+            canRun = false;
+            PlayerKilled?.Invoke();
+            Cursor.lockState = CursorLockMode.None;
+            isDead = true;
+        }
     }
 
     public void Respawn() {
@@ -502,8 +516,9 @@ public class Player : MonoBehaviour
 
     public void ReceiveDamage(float Damage)
     {
-        if(Damage > 0)
-            AudioManager.PlaySound(AudioManager.Sound.PlayerDamaged, transform.position);
+        if(Damage > 0 && !isDead)
+            AudioManager.PlaySound(AudioManager.Sound.PlayerDamaged);
+
         currentHealth -= Damage;
         if (currentHealth < 0)
             currentHealth = 0;

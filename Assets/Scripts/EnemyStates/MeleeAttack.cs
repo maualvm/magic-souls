@@ -7,8 +7,8 @@ public class MeleeAttack : Attack
 {
     private float MeleeTimer, MeleeCooldown, Damage;
 
-    public MeleeAttack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target) 
-        : base(elementEnemyData, navMeshAgent, target)
+    public MeleeAttack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target, Transform enemyTransform) 
+        : base(elementEnemyData, navMeshAgent, target, enemyTransform)
     {
         StoppingDistance = elementEnemyData.MeleeDistance;
         MeleeCooldown = elementEnemyData.MeleeCooldown;

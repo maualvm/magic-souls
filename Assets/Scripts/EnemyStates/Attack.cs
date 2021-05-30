@@ -8,7 +8,8 @@ public abstract class Attack : IState
     protected bool bAbilityIsRanged;
     protected NavMeshAgent navMeshAgent;
     protected GameObject Target;
-    public Attack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target)
+    protected Transform enemyTransform;
+    public Attack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target, Transform enemyTransform)
     {
         EnemyType = elementEnemyData.enemyData.enemyType;
         EnemyElement = elementEnemyData.Element;
@@ -17,6 +18,7 @@ public abstract class Attack : IState
         this.bAbilityIsRanged = elementEnemyData.bAbilityIsRanged;
         this.navMeshAgent = navMeshAgent;
         this.Target = target;
+        this.enemyTransform = enemyTransform;
     }
 
     public virtual void Update()
@@ -39,6 +41,7 @@ public abstract class Attack : IState
 
     protected void UseAbility()
     {
+        enemyTransform.GetComponent<Enemy>().PlayEffectSound();
         //Early return if the ability wasn't triggered
         if (Random.Range(0, 100) > AbilityProbability)
             return;

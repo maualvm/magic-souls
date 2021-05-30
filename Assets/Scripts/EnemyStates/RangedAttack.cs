@@ -8,7 +8,7 @@ public class RangedAttack : Attack
     private Transform transform;
     private float RangedTimer, RangedCooldown, Damage;
     public RangedAttack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target, Transform transform)
-        : base(elementEnemyData, navMeshAgent, target)
+        : base(elementEnemyData, navMeshAgent, target, transform)
     {
         StoppingDistance = elementEnemyData.RangedDistance;
         RangedCooldown = elementEnemyData.RangedCooldown;

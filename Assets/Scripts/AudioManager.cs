@@ -67,6 +67,10 @@ public static class AudioManager
             soundGameObject.transform.position = position;
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
             audioSource.clip = GetAudioClip(sound);
+            audioSource.spatialBlend = 1;
+            audioSource.minDistance = 1;
+            audioSource.maxDistance = 5;
+            audioSource.volume = 0.5f;
             audioSource.Play();
 
             Object.Destroy(soundGameObject, audioSource.clip.length);
@@ -79,6 +83,7 @@ public static class AudioManager
         {
             GameObject soundGameObject = new GameObject("Sound");
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.volume = 0.25f;
             audioSource.PlayOneShot(GetAudioClip(sound));
             Object.Destroy(soundGameObject, GetAudioClip(sound).length);
         }
@@ -116,7 +121,7 @@ public static class AudioManager
                 if (soundTimerDictionary.ContainsKey(sound))
                 {
                     float lastTimePlayed = soundTimerDictionary[sound];
-                    float runningTimerMax = 0.5f;
+                    float runningTimerMax = 0.4f;
                     if (lastTimePlayed + runningTimerMax < Time.time)
                     {
                         soundTimerDictionary[sound] = Time.time;
@@ -133,7 +138,7 @@ public static class AudioManager
                 if (soundTimerDictionary.ContainsKey(sound))
                 {
                     float lastTimePlayed = soundTimerDictionary[sound];
-                    float damagedTimerMax = 0.5f;
+                    float damagedTimerMax = 1f;
                     if (lastTimePlayed + damagedTimerMax < Time.time)
                     {
                         soundTimerDictionary[sound] = Time.time;

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private ElementEnemyData enemy;
- 
+
     [SerializeField]
     private float CurrentHealth;
     private float RangedAttackProbability;
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
             return;
         }
         navMeshAgent = GetComponent<NavMeshAgent>();
-        if(navMeshAgent == null)
+        if (navMeshAgent == null)
         {
             Debug.LogError("NavMesh Agent component missing!");
             return;
@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
 
         RangedAttackProbability = enemy.RangedAttackProbability;
 
-        switch(enemy.AttackPreference)
+        switch (enemy.AttackPreference)
         {
             case AttackTypes.Melee:
                 AttackPreference = "melee";
@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
         //States
         var patrol = new Patrol(enemy, navMeshAgent);
         var chase = new Chase(enemy, transform, Target.transform, navMeshAgent);
-        var melee_attack = new MeleeAttack(enemy, navMeshAgent, Target);
+        var melee_attack = new MeleeAttack(enemy, navMeshAgent, Target, transform);
         var ranged_attack = new RangedAttack(enemy, navMeshAgent, Target, transform);
         var die = new Die(this, enemy);
 
@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
     {
         stateMachine.Update();
         Debug.Log(this.stateMachine.CurrentState.ToString());
-        var state =  this.stateMachine.CurrentState.ToString();
+        var state = this.stateMachine.CurrentState.ToString();
         switch (state)
         {
             case "Patrol":
@@ -153,17 +153,87 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        PlayDeathSound();
         EnemyKilled?.Invoke(enemy.Element, 1);
         Destroy(gameObject);
     }
 
     public void ReceiveDamage(float Damage)
     {
-
+        if (Damage > 0)
+        {
+            PlayDamageSound();
+        }
         CurrentHealth -= Damage;
-        if(CurrentHealth > enemy.enemyData.MaxHealth) {
+        if (CurrentHealth > enemy.enemyData.MaxHealth) {
             CurrentHealth = enemy.enemyData.MaxHealth;
         }
         EnemyHealthChanged?.Invoke(CurrentHealth, enemy.enemyData.MaxHealth, this);
+    }
+
+    public void PlayDamageSound()
+    {
+        if (Target.GetComponent<Player>().isDead)
+            return;
+
+        switch (enemy.enemyData.enemyType)
+        {
+            case "Imp":
+                AudioManager.PlaySound(AudioManager.Sound.ImpDamaged, transform.position);
+                break;
+            case "Gargoyle":
+                AudioManager.PlaySound(AudioManager.Sound.GargoyleDamaged, transform.position);
+                break;
+            case "Berserker":
+                AudioManager.PlaySound(AudioManager.Sound.BerserkerDamaged, transform.position);
+                break;
+            case "Ethereal":
+                AudioManager.PlaySound(AudioManager.Sound.EtherealDamaged, transform.position);
+                break;
+        }
+    }
+
+    public void PlayDeathSound()
+    {
+        if (Target.GetComponent<Player>().isDead)
+            return;
+
+        switch (enemy.enemyData.enemyType)
+        {
+            case "Imp":
+                AudioManager.PlaySound(AudioManager.Sound.ImpDeath, transform.position);
+                break;
+            case "Gargoyle":
+                AudioManager.PlaySound(AudioManager.Sound.GargoyleDeath, transform.position);
+                break;
+            case "Berserker":
+                AudioManager.PlaySound(AudioManager.Sound.BerserkerDeath, transform.position);
+                break;
+            case "Ethereal":
+                AudioManager.PlaySound(AudioManager.Sound.EtherealDeath, transform.position);
+                break;
+        }
+    }
+
+    public void PlayEffectSound()
+    {
+        if (Target.GetComponent<Player>().isDead)
+            return;
+
+        switch (enemy.enemyData.enemyType)
+        {
+            case "Imp":
+                AudioManager.PlaySound(AudioManager.Sound.ImpEffect, transform.position);
+                break;
+            case "Gargoyle":
+                AudioManager.PlaySound(AudioManager.Sound.GargoyleEffect, transform.position);
+                break;
+            case "Berserker":
+                AudioManager.PlaySound(AudioManager.Sound.BerserkerEffect, transform.position);
+                break;
+            case "Ethereal":
+                AudioManager.PlaySound(AudioManager.Sound.EtherealEffect, transform.position);
+                break;
+        }
     }
 }
