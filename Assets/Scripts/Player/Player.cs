@@ -9,12 +9,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private int RegenSpeed = 5;
-
-    [SerializeField]
     private float speed;
-    [SerializeField]
     private float normalSpeed = 6f;
-    [SerializeField]
     private float RunningSpeed = 8f;
     [SerializeField]
     private float jumpSpeed = 8.0f;
@@ -75,6 +71,9 @@ public class Player : MonoBehaviour
     public float generic_damage;
     public float total_damage = 5f;
     public float range = 1f;
+
+    public float fireRate = 1.0f;
+    public float nextFire;
 
     public int waterLevel = 1;
     public int fireLevel = 1;
@@ -248,7 +247,8 @@ public class Player : MonoBehaviour
             transform.eulerAngles = new Vector2(0, rotation.y);
         }
 
-        if(Input.GetButtonDown("Fire1")) {
+        if(Input.GetButtonDown("Fire1") && Time.time > nextFire) {
+            nextFire = Time.time + fireRate;
             Shoot();
             animator.SetBool("isDying", false);
             animator.SetBool("isRunning", false);
