@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
+
 
 public abstract class Attack : IState
 {
@@ -8,6 +10,8 @@ public abstract class Attack : IState
     protected bool bAbilityIsRanged;
     protected NavMeshAgent navMeshAgent;
     protected GameObject Target;
+
+    public static event Action gargoyleSpecialAttack;
     public Attack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target)
     {
         EnemyType = elementEnemyData.enemyData.enemyType;
@@ -40,9 +44,10 @@ public abstract class Attack : IState
     protected void UseAbility()
     {
         //Early return if the ability wasn't triggered
-        if (Random.Range(0, 100) > AbilityProbability)
+        if (UnityEngine.Random.Range(0, 100) > AbilityProbability)
             return;
 
+        //imps
         if(EnemyType == "Imp" && EnemyElement == "Fire")
         {
             FireImpAbility();
@@ -58,6 +63,24 @@ public abstract class Attack : IState
         else if (EnemyType == "Imp" && EnemyElement == "Air")
         {
             AirImpAbility();
+        }
+
+        //Gargoyles
+        if (EnemyType == "Gargoyle" && EnemyElement == "Fire")
+        {
+            FireGargoyleAbility();
+        }
+        else if (EnemyType == "Gargoyle" && EnemyElement == "Water")
+        {
+            WaterGargoyleAbility();
+        }
+        else if (EnemyType == "Gargoyle" && EnemyElement == "Earth")
+        {
+            EarthGargoyleAbility();
+        }
+        else if (EnemyType == "Gargoyle" && EnemyElement == "Air")
+        {
+            AirGargoyleAbility();
         }
     }
 
@@ -80,6 +103,29 @@ public abstract class Attack : IState
     }
 
     protected void AirImpAbility()
+    {
+        Debug.Log("The Air Imp pushed you!");
+    }
+
+
+    protected void FireGargoyleAbility()
+    {
+        Debug.Log("The Fire Gargoyle set the area on fire!");
+        gargoyleSpecialAttack?.Invoke();
+
+    }
+
+    protected void WaterGargoyleAbility()
+    {
+        Debug.Log("The Water Imp slowed you down!");
+    }
+
+    protected void EarthGargoyleAbility()
+    {
+        Debug.Log("The Earth Imp stunned you!");
+    }
+
+    protected void AirGargoyleAbility()
     {
         Debug.Log("The Air Imp pushed you!");
     }

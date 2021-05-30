@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     private float RangedAttackProbability;
     private string AttackPreference;
 
+    [SerializeField]
+    private GameObject throwable;
+
+
     private NavMeshAgent navMeshAgent;
 
     private StateMachine stateMachine;
@@ -103,6 +107,16 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        Attack.gargoyleSpecialAttack += GargoyleSpecialAttack;
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -166,4 +180,21 @@ public class Enemy : MonoBehaviour
         }
         EnemyHealthChanged?.Invoke(CurrentHealth, enemy.enemyData.MaxHealth, this);
     }
+
+    public void GargoyleSpecialAttack()
+    {
+        if(throwable != null)
+        {
+            var state = this.stateMachine.CurrentState.ToString();
+            if (state == "MeleeAttack")
+            {
+                Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
+            }
+            
+        } else
+        {
+            return;
+        }
+    }
+
 }

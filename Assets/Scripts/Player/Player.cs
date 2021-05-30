@@ -519,6 +519,11 @@ public class Player : MonoBehaviour
             TriggeredShop?.Invoke(true);
             Cursor.lockState = CursorLockMode.None;
         }
+
+        if (other.name.Contains("BurntArea"))
+        {
+            SetOnFire();
+        }
     }
 
     private void OnTriggerExit(Collider other)
