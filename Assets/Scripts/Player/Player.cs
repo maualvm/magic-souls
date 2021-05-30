@@ -84,6 +84,11 @@ public class Player : MonoBehaviour
 
     public string currentSpell = "Water";
 
+    public bool fireResistance = false;
+    public bool waterResistance = false;
+    public bool earthResistance = false;
+    public bool airResistance = false;
+
     private Camera camera;
 
     private void OnEnable()
@@ -91,6 +96,8 @@ public class Player : MonoBehaviour
         HUD.Respawned += Respawn;
         HUD.SpellChanged += ChangeSpell;
         ShopSystem.ShieldBought += UseShield;
+        // ShopSystem.StrongPotionBought += UseStrongPotion;
+        // ShopSystem.WeakPotionBought = UseWeakPotion;
     }
 
     private void OnDisable()
@@ -98,6 +105,8 @@ public class Player : MonoBehaviour
         HUD.Respawned -= Respawn;
         HUD.SpellChanged -= ChangeSpell;
         ShopSystem.ShieldBought -= UseShield;
+        // ShopSystem.StrongPotionBought -= UseStrongPotion;
+        // ShopSystem.WeakPotionBought -= UseWeakPotion;
     }
 
     void Start()
@@ -437,6 +446,26 @@ public class Player : MonoBehaviour
                 enemy.ReceiveDamage(total_damage);
             }
         }
+    }
+
+    private void UseStrongPotion() {
+        StartCoroutine("StrongEffect");
+    }
+
+    
+
+    IEnumerator StrongEffect() {
+        fireResistance = true;
+        yield return new WaitForSeconds(300f);
+    }
+
+    private void UseWeakPotion() {
+        StartCoroutine("WeakEffect");
+    }
+
+    IEnumerator WeakEffect() {
+        fireResistance = true;
+        yield return new WaitForSeconds(120f);
     }
 
     private void UseHealthPotion() {
