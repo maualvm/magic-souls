@@ -96,8 +96,8 @@ public class Player : MonoBehaviour
         HUD.Respawned += Respawn;
         HUD.SpellChanged += ChangeSpell;
         ShopSystem.ShieldBought += UseShield;
-        // ShopSystem.StrongPotionBought += UseStrongPotion;
-        // ShopSystem.WeakPotionBought = UseWeakPotion;
+        ShopSystem.StrongPotionBought += UseStrongPotion;
+        ShopSystem.WeakPotionBought += UseWeakPotion;
     }
 
     private void OnDisable()
@@ -105,8 +105,8 @@ public class Player : MonoBehaviour
         HUD.Respawned -= Respawn;
         HUD.SpellChanged -= ChangeSpell;
         ShopSystem.ShieldBought -= UseShield;
-        // ShopSystem.StrongPotionBought -= UseStrongPotion;
-        // ShopSystem.WeakPotionBought -= UseWeakPotion;
+        ShopSystem.StrongPotionBought -= UseStrongPotion;
+        ShopSystem.WeakPotionBought -= UseWeakPotion;
     }
 
     void Start()
@@ -448,24 +448,71 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void UseStrongPotion() {
-        StartCoroutine("StrongEffect");
+    private void UseStrongPotion(string type) {
+        StartCoroutine(StrongEffect(type));
     }
 
     
 
-    IEnumerator StrongEffect() {
-        fireResistance = true;
-        yield return new WaitForSeconds(300f);
+    IEnumerator StrongEffect(string type) {
+       switch (type)
+       {
+           case "Fire":
+            fireResistance = true;
+            yield return new WaitForSeconds(300f);
+            fireResistance = false;
+           break;
+           case "Air":
+            airResistance = true;
+            yield return new WaitForSeconds(300f);
+            airResistance = false;
+           break;
+           case "Water":
+            waterResistance = true;
+            yield return new WaitForSeconds(300f);
+            waterResistance = false;
+           break;
+           case "Earth":
+            earthResistance = true;
+            yield return new WaitForSeconds(300f);
+            earthResistance = false;
+           break;
+           default:
+           break;
+       }
+        
     }
 
-    private void UseWeakPotion() {
-        StartCoroutine("WeakEffect");
+    private void UseWeakPotion(string type) {
+        StartCoroutine(WeakEffect(type));
     }
 
-    IEnumerator WeakEffect() {
-        fireResistance = true;
-        yield return new WaitForSeconds(120f);
+    IEnumerator WeakEffect(string type) {
+        switch (type)
+       {
+           case "Fire":
+            fireResistance = true;
+            yield return new WaitForSeconds(120f);
+            fireResistance = false;
+           break;
+           case "Air":
+            airResistance = true;
+            yield return new WaitForSeconds(120f);
+            airResistance = false;
+           break;
+           case "Water":
+            waterResistance = true;
+            yield return new WaitForSeconds(120f);
+            waterResistance = false;
+           break;
+           case "Earth":
+            earthResistance = true;
+            yield return new WaitForSeconds(120f);
+            earthResistance = false;
+           break;
+           default:
+           break;
+       }
     }
 
     private void UseHealthPotion() {
