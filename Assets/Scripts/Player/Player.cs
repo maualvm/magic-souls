@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
 
     public float generic_damage;
     public float total_damage = 5f;
+    public float damageModifier = 1f;
     public float range = 1f;
 
     public float fireRate = 1.0f;
@@ -88,12 +89,14 @@ public class Player : MonoBehaviour
     {
         HUD.Respawned += Respawn;
         HUD.SpellChanged += ChangeSpell;
+        ShopSystem.ShieldBought += UseShield;
     }
 
     private void OnDisable()
     {
         HUD.Respawned -= Respawn;
         HUD.SpellChanged -= ChangeSpell;
+        ShopSystem.ShieldBought -= UseShield;
     }
 
     void Start()
@@ -417,11 +420,21 @@ public class Player : MonoBehaviour
                         }
                     break;
                     
-                }
+                };
                 Debug.Log($"The player dealt {total_damage} to the enemy of type {enemyElement}!\nThe player used spell of type {currentSpell}");
                 enemy.ReceiveDamage(total_damage);
             }
         }
+    }
+
+    private void UseShield() {
+        StartCoroutine(ShieldEffect());
+    }
+
+    IEnumerator ShieldEffect() {
+        damageModifier = 0.9f;
+        yield return new WaitForSeconds(120f);
+        damageModifier = 1f;
     }
 
     private void ChangeStamina(float changeAmount)
@@ -504,6 +517,7 @@ public class Player : MonoBehaviour
 
     public void ReceiveDamage(float Damage)
     {
+        Damage *= damageModifier;
         if(Damage > 0)
             AudioManager.PlaySound(AudioManager.Sound.PlayerDamaged, transform.position);
         currentHealth -= Damage;
