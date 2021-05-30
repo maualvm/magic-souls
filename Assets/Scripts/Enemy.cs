@@ -110,11 +110,13 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         Attack.gargoyleSpecialAttack += GargoyleSpecialAttack;
+        Attack.berserkerSpecialAttack += BerserkerSpecialAttack;
     }
 
     private void OnDisable()
     {
-        
+        Attack.gargoyleSpecialAttack -= GargoyleSpecialAttack;
+        Attack.berserkerSpecialAttack += BerserkerSpecialAttack;
     }
 
     // Update is called once per frame
@@ -192,6 +194,24 @@ public class Enemy : MonoBehaviour
             }
             
         } else
+        {
+            return;
+        }
+    }
+
+    public void BerserkerSpecialAttack()
+    {
+        if (throwable != null)
+        {
+            var state = this.stateMachine.CurrentState.ToString();
+            if (state == "MeleeAttack" || state == "RangedAttack")
+            {
+                Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 5, gameObject.transform.position.z);
+                Instantiate(throwable, pos, Quaternion.identity);
+            }
+
+        }
+        else
         {
             return;
         }

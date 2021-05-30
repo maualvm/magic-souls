@@ -12,6 +12,7 @@ public abstract class Attack : IState
     protected GameObject Target;
 
     public static event Action gargoyleSpecialAttack;
+    public static event Action berserkerSpecialAttack;
     public Attack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target)
     {
         EnemyType = elementEnemyData.enemyData.enemyType;
@@ -82,8 +83,27 @@ public abstract class Attack : IState
         {
             AirGargoyleAbility();
         }
+
+        //Berserkers
+        if (EnemyType == "Berserker" && EnemyElement == "Fire")
+        {
+            FireBerserkerAbility();
+        }
+        else if (EnemyType == "Berserker" && EnemyElement == "Water")
+        {
+            WaterBerserkerAbility();
+        }
+        else if (EnemyType == "Berserker" && EnemyElement == "Earth")
+        {
+            EarthBerserkerAbility();
+        }
+        else if (EnemyType == "Berserker" && EnemyElement == "Air")
+        {
+            AirBerserkerAbility();
+        }
     }
 
+    //imps
     protected void FireImpAbility()
     {
         Debug.Log("The Fire Imp set you on fire!");
@@ -107,7 +127,7 @@ public abstract class Attack : IState
         Debug.Log("The Air Imp pushed you!");
     }
 
-
+    //Gargoyles
     protected void FireGargoyleAbility()
     {
         Debug.Log("The Fire Gargoyle set the area on fire!");
@@ -117,16 +137,39 @@ public abstract class Attack : IState
 
     protected void WaterGargoyleAbility()
     {
-        Debug.Log("The Water Imp slowed you down!");
+
     }
 
     protected void EarthGargoyleAbility()
     {
-        Debug.Log("The Earth Imp stunned you!");
+
     }
 
     protected void AirGargoyleAbility()
     {
-        Debug.Log("The Air Imp pushed you!");
+
+    }
+
+    //Berserkers
+    protected void FireBerserkerAbility()
+    {
+        Debug.Log("The Fire Berserker threw a fire ball!");
+        berserkerSpecialAttack?.Invoke();
+
+    }
+
+    protected void WaterBerserkerAbility()
+    {
+
+    }
+
+    protected void EarthBerserkerAbility()
+    {
+
+    }
+
+    protected void AirBerserkerAbility()
+    {
+
     }
 }
