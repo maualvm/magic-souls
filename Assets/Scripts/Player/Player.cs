@@ -88,12 +88,14 @@ public class Player : MonoBehaviour
     {
         HUD.Respawned += Respawn;
         HUD.SpellChanged += ChangeSpell;
+        FireBall.FireBallCollides += ReceiveDamage;
     }
 
     private void OnDisable()
     {
         HUD.Respawned -= Respawn;
         HUD.SpellChanged -= ChangeSpell;
+        FireBall.FireBallCollides -= ReceiveDamage;
     }
 
     void Start()
