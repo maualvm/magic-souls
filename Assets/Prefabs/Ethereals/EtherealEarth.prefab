@@ -447,8 +447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcb455fd734b0f43aebe992c3ba1c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: 0e06a8b73d8730d46b8b80cc65e5cb27, type: 2}
+  enemy: {fileID: 11400000, guid: 9d0618111eb7cc44c93e4f137334da87, type: 2}
   CurrentHealth: 0
+  throwable: {fileID: 0}
 --- !u!195 &1003006022
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Imp
   m_EditorClassIdentifier: 
   enemyType: Imp
-  MaxHealth: 50
-  Speed: 3
-  DetectRange: 5
-  AttackRange: 2
+  MaxHealth: 125
+  Speed: 6
+  DetectRange: 15
+  AttackRange: 5
   MinWanderTime: 3
   MaxWanderTime: 5
   AbilityCooldown: 5

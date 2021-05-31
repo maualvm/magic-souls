@@ -1572,8 +1572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcb455fd734b0f43aebe992c3ba1c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: d6e8c0abc7b12c64ca2adbd7071a6724, type: 2}
+  enemy: {fileID: 11400000, guid: e8e52979ea8b8614fba3e08badf644b3, type: 2}
   CurrentHealth: 0
+  throwable: {fileID: 0}
 --- !u!95 &1731097866
 Animator:
   serializedVersion: 3

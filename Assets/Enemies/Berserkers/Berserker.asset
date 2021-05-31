@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Berserker
   m_EditorClassIdentifier: 
   enemyType: Berserker
-  MaxHealth: 200
-  Speed: 2
+  MaxHealth: 450
+  Speed: 3
   DetectRange: 20
-  AttackRange: 10
+  AttackRange: 5
   MinWanderTime: 3
   MaxWanderTime: 5
-  AttackDamage: 30
   AbilityCooldown: 3
   AbilityProbability: 60

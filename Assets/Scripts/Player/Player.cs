@@ -100,6 +100,7 @@ public class Player : MonoBehaviour
         ShopSystem.StrongPotionBought += UseStrongPotion;
         ShopSystem.WeakPotionBought += UseWeakPotion;
         FireBall.FireBallCollides += ReceiveDamage;
+        ShopSystem.SpellLevelUp += LevelUpSpell;
     }
 
     private void OnDisable()
@@ -110,6 +111,7 @@ public class Player : MonoBehaviour
         ShopSystem.StrongPotionBought -= UseStrongPotion;
         ShopSystem.WeakPotionBought -= UseWeakPotion;
         FireBall.FireBallCollides -= ReceiveDamage;
+        ShopSystem.SpellLevelUp -= LevelUpSpell;
     }
 
     void Start()
@@ -533,6 +535,8 @@ public class Player : MonoBehaviour
             ReceiveDamage(-15);
             inventorySystem.ModifyHealthPotions(-1);
         }
+        else
+            AudioManager.PlaySound(AudioManager.Sound.CantBuy);
     }
 
     private void UseStaminaPotion() {
@@ -541,6 +545,8 @@ public class Player : MonoBehaviour
             StartCoroutine("StaminaEffect");
             inventorySystem.ModifyStaminaPotions(-1);
         }
+        else
+            AudioManager.PlaySound(AudioManager.Sound.CantBuy);
     }
 
     IEnumerator StaminaEffect() {
@@ -653,6 +659,25 @@ public class Player : MonoBehaviour
         else if (currentHealth > maxHealth)
             currentHealth = maxHealth;
         PlayerDamaged?.Invoke(currentHealth, maxHealth);
+    }
+
+    private void LevelUpSpell(string element, int level)
+    {
+        switch(element)
+        {
+            case "Fire":
+                fireLevel = level;
+                break;
+            case "Water":
+                waterLevel = level;
+                break;
+            case "Earth":
+                earthLevel = level;
+                break;
+            case "Air":
+                airLevel = level;
+                break;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

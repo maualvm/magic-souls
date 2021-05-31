@@ -104,6 +104,9 @@ public class Enemy : MonoBehaviour
         EnemyHealthChanged?.Invoke(CurrentHealth, enemy.enemyData.MaxHealth, this);
         Debug.Log("This is a " + enemy.Element + " " + enemy.enemyData.enemyType);
 
+        gameObject.GetComponent<NavMeshAgent>().speed = enemy.enemyData.Speed;
+
+
         animator = GetComponent<Animator>();
     }
 
@@ -260,6 +263,7 @@ public class Enemy : MonoBehaviour
             if (state == "MeleeAttack")
             {
                 Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
+                AudioManager.PlaySound(AudioManager.Sound.Fire, transform.position);
             }
             
         } else

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6303084c4a7f2f24e8f0dd9255d147ca, type: 3}
-  m_Name: WaterEthereal
+  m_Name: AirEthereal
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 7dddca5458979ed47af8d5393c37ab52, type: 2}
-  Element: Water
+  Element: Air
   AttackPreference: 0
   RangedAttackProbability: 0
   bAbilityIsRanged: 0

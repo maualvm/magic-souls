@@ -37,29 +37,29 @@ public class Item
         switch(itemType)
         {
             default:
-            case ItemType.FireSpell_2:          return 20;
-            case ItemType.FireSpell_3:          return 50;
-            case ItemType.FireSpell_4:          return 120;
-            case ItemType.WaterSpell_2:         return 20;
-            case ItemType.WaterSpell_3:         return 50;
-            case ItemType.WaterSpell_4:         return 120;
-            case ItemType.EarthSpell_2:         return 20;
-            case ItemType.EarthSpell_3:         return 50;
-            case ItemType.EarthSpell_4:         return 120;
-            case ItemType.AirSpell_2:           return 20;
-            case ItemType.AirSpell_3:           return 50;
-            case ItemType.AirSpell_4:           return 120;
-            case ItemType.FirePotion_Strong:    return 15;
-            case ItemType.WaterPotion_Strong:   return 15;
-            case ItemType.EarthPotion_Strong:   return 15;
-            case ItemType.AirPotion_Strong:     return 15;
-            case ItemType.FirePotion_Weak:      return 10;
-            case ItemType.WaterPotion_Weak:     return 10;
-            case ItemType.EarthPotion_Weak:     return 10;
-            case ItemType.AirPotion_Weak:       return 10;
-            case ItemType.HealthPotion:         return 15;
-            case ItemType.StaminaPotion:        return 15;
-            case ItemType.Shield:               return 20;
+            case ItemType.FireSpell_2:          return 1;
+            case ItemType.FireSpell_3:          return 3;
+            case ItemType.FireSpell_4:          return 5;
+            case ItemType.WaterSpell_2:         return 1;
+            case ItemType.WaterSpell_3:         return 3;
+            case ItemType.WaterSpell_4:         return 5;
+            case ItemType.EarthSpell_2:         return 1;
+            case ItemType.EarthSpell_3:         return 3;
+            case ItemType.EarthSpell_4:         return 5;
+            case ItemType.AirSpell_2:           return 1;
+            case ItemType.AirSpell_3:           return 3;
+            case ItemType.AirSpell_4:           return 5;
+            case ItemType.FirePotion_Strong:    return 3;
+            case ItemType.WaterPotion_Strong:   return 3;
+            case ItemType.EarthPotion_Strong:   return 3;
+            case ItemType.AirPotion_Strong:     return 3;
+            case ItemType.FirePotion_Weak:      return 2;
+            case ItemType.WaterPotion_Weak:     return 2;
+            case ItemType.EarthPotion_Weak:     return 2;
+            case ItemType.AirPotion_Weak:       return 2;
+            case ItemType.HealthPotion:         return 1;
+            case ItemType.StaminaPotion:        return 1;
+            case ItemType.Shield:               return 2;
         }
     }
 

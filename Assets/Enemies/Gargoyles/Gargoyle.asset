@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Gargoyle
   m_EditorClassIdentifier: 
   enemyType: Gargoyle
-  MaxHealth: 100
+  MaxHealth: 250
   Speed: 5
   DetectRange: 10
-  AttackRange: 7
+  AttackRange: 5
   MinWanderTime: 3
   MaxWanderTime: 5
-  AttackDamage: 7
-  AbilityCooldown: 0.8
+  AbilityCooldown: 3
   AbilityProbability: 50

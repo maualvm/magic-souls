@@ -14,4 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 0af8728f2445fb148858fa9e3ab8ff1e, type: 2}
   Element: Water
-  Prefab: {fileID: 0}
+  AttackPreference: 0
+  RangedAttackProbability: 0
+  bAbilityIsRanged: 0
+  MeleeAttackDamage: 8
+  MeleeDistance: 2
+  MeleeCooldown: 1
+  RangedAttackDamage: 0
+  RangedDistance: 0
+  RangedCooldown: 0
