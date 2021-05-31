@@ -48,18 +48,22 @@ public abstract class Attack : IState
 
         if(EnemyType == "Imp" && EnemyElement == "Fire")
         {
+            if(Target.GetComponent<Player>().fireResistance) return;
             FireImpAbility();
         }
         else if (EnemyType == "Imp" && EnemyElement == "Water")
         {
+            if(Target.GetComponent<Player>().waterResistance) return;
             WaterImpAbility();
         }
         else if (EnemyType == "Imp" && EnemyElement == "Earth")
         {
+            if(Target.GetComponent<Player>().earthResistance) return;
             EarthImpAbility();
         }
         else if (EnemyType == "Imp" && EnemyElement == "Air")
         {
+            if(Target.GetComponent<Player>().airResistance) return;
             AirImpAbility();
         }
     }

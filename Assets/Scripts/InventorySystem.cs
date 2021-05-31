@@ -17,10 +17,10 @@ public class InventorySystem : MonoBehaviour
     private int AirSouls;
 
     [SerializeField]
-    private int HealthPotions;
+    public int HealthPotions;
 
     [SerializeField]
-    private int StaminaPotions;
+    public int StaminaPotions;
 
     public static event Action<int> ModifiedSouls, ModifiedFireSouls, ModifiedWaterSouls, ModifiedEarthSouls, ModifiedAirSouls, ModifiedHealthPotions, ModifiedStaminaPotions;
     public static event Action<Item.ItemType> BoughtItem;
@@ -82,14 +82,20 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    private void ModifyHealthPotions(int amount)
+    public void ModifyHealthPotions(int amount)
     {
+        if(HealthPotions <= 0) {
+            HealthPotions = 0;
+        }
         HealthPotions += amount;
         ModifiedHealthPotions?.Invoke(HealthPotions);
     }
 
-    private void ModifyStaminaPotions(int amount)
+    public void ModifyStaminaPotions(int amount)
     {
+        if(StaminaPotions <= 0) {
+            StaminaPotions = 0;
+        }
         StaminaPotions += amount;
         ModifiedStaminaPotions?.Invoke(StaminaPotions);
     }

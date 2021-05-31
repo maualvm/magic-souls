@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -8,13 +8,10 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float normalSpeed = 7.5f;
-    [SerializeField]
-    private float RunningSpeed = 20f;
-    [SerializeField]
     private int RegenSpeed = 5;
-
     private float speed;
+    private float normalSpeed = 6f;
+    private float RunningSpeed = 8f;
     [SerializeField]
     private float jumpSpeed = 8.0f;
     [SerializeField]
@@ -49,6 +46,7 @@ public class Player : MonoBehaviour
     public bool isExhausted;
     public float exhaustedTimer;
 
+    InventorySystem inventorySystem;
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     Vector2 rotation = Vector2.zero;
@@ -74,7 +72,11 @@ public class Player : MonoBehaviour
 
     public float generic_damage;
     public float total_damage = 5f;
-    public float range = 100f;
+    public float damageModifier = 1f;
+    public float range = 1f;
+
+    public float fireRate = 1.0f;
+    public float nextFire;
 
     public int waterLevel = 1;
     public int fireLevel = 1;
@@ -83,24 +85,36 @@ public class Player : MonoBehaviour
 
     public string currentSpell = "Water";
 
+    public bool fireResistance = false;
+    public bool waterResistance = false;
+    public bool earthResistance = false;
+    public bool airResistance = false;
+
     private Camera camera;
 
     private void OnEnable()
     {
         HUD.Respawned += Respawn;
         HUD.SpellChanged += ChangeSpell;
+        ShopSystem.ShieldBought += UseShield;
+        ShopSystem.StrongPotionBought += UseStrongPotion;
+        ShopSystem.WeakPotionBought += UseWeakPotion;
     }
 
     private void OnDisable()
     {
         HUD.Respawned -= Respawn;
         HUD.SpellChanged -= ChangeSpell;
+        ShopSystem.ShieldBought -= UseShield;
+        ShopSystem.StrongPotionBought -= UseStrongPotion;
+        ShopSystem.WeakPotionBought -= UseWeakPotion;
     }
 
     void Start()
     {
         camera = GameObject.Find("MainCamera").GetComponent<Camera>();
         characterController = GetComponent<CharacterController>();
+        inventorySystem = GetComponent<InventorySystem>();
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
         speed = normalSpeed;
@@ -111,6 +125,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"Player speed is: {speed}");
         if(currentHealth <= 0) {
             animator.SetBool("isRunning", false);
             animator.SetBool("isAttacking", false);
@@ -256,12 +271,23 @@ public class Player : MonoBehaviour
             transform.eulerAngles = new Vector2(0, rotation.y);
         }
 
-        if(Input.GetButtonDown("Fire1")) {
+        if(Input.GetButtonDown("Fire1") && Time.time > nextFire) {
+            nextFire = Time.time + fireRate;
             Shoot();
             animator.SetBool("isDying", false);
             animator.SetBool("isRunning", false);
             animator.SetBool("isIdle", false);
             animator.SetBool("isAttacking", true);
+        }
+
+
+        // Use health potion
+        if(Input.GetKeyDown(KeyCode.E)) {
+            UseHealthPotion();
+        }
+        // Use stamina potion
+        if(Input.GetKeyDown(KeyCode.F)) {
+            UseStaminaPotion();
         }
     }
 
@@ -357,7 +383,7 @@ public class Player : MonoBehaviour
     public void Shoot() {
         RaycastHit hit;
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range)) {
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 20f)) {
             Debug.DrawRay(camera.transform.position, camera.transform.forward * hit.distance, Color.yellow, 5);
             Debug.Log(hit.transform.name);
             Enemy enemy = hit.transform.GetComponent<Enemy>(); 
@@ -425,11 +451,109 @@ public class Player : MonoBehaviour
                         }
                     break;
                     
-                }
+                };
                 Debug.Log($"The player dealt {total_damage} to the enemy of type {enemyElement}!\nThe player used spell of type {currentSpell}");
                 enemy.ReceiveDamage(total_damage);
             }
         }
+    }
+
+    private void UseStrongPotion(string type) {
+        StartCoroutine(StrongEffect(type));
+    }
+
+    
+
+    IEnumerator StrongEffect(string type) {
+       switch (type)
+       {
+           case "Fire":
+            fireResistance = true;
+            yield return new WaitForSeconds(300f);
+            fireResistance = false;
+           break;
+           case "Air":
+            airResistance = true;
+            yield return new WaitForSeconds(300f);
+            airResistance = false;
+           break;
+           case "Water":
+            waterResistance = true;
+            yield return new WaitForSeconds(300f);
+            waterResistance = false;
+           break;
+           case "Earth":
+            earthResistance = true;
+            yield return new WaitForSeconds(300f);
+            earthResistance = false;
+           break;
+           default:
+           break;
+       }
+        
+    }
+
+    private void UseWeakPotion(string type) {
+        StartCoroutine(WeakEffect(type));
+    }
+
+    IEnumerator WeakEffect(string type) {
+        switch (type)
+       {
+           case "Fire":
+            fireResistance = true;
+            yield return new WaitForSeconds(120f);
+            fireResistance = false;
+           break;
+           case "Air":
+            airResistance = true;
+            yield return new WaitForSeconds(120f);
+            airResistance = false;
+           break;
+           case "Water":
+            waterResistance = true;
+            yield return new WaitForSeconds(120f);
+            waterResistance = false;
+           break;
+           case "Earth":
+            earthResistance = true;
+            yield return new WaitForSeconds(120f);
+            earthResistance = false;
+           break;
+           default:
+           break;
+       }
+    }
+
+    private void UseHealthPotion() {
+        if(inventorySystem.HealthPotions > 0 && currentHealth < maxHealth) {
+            Debug.Log("The player healed himself.");
+            ReceiveDamage(-15);
+            inventorySystem.ModifyHealthPotions(-1);
+        }
+    }
+
+    private void UseStaminaPotion() {
+        if(inventorySystem.StaminaPotions > 0) {
+            Debug.Log($"The player healed his stamina. Regen speed = {RegenSpeed * 6}");
+            StartCoroutine("StaminaEffect");
+            inventorySystem.ModifyStaminaPotions(-1);
+        }
+    }
+
+    IEnumerator StaminaEffect() {
+        RegenSpeed = 10;
+        yield return new WaitForSeconds(30f);
+        RegenSpeed = 5;
+    }
+    private void UseShield() {
+        StartCoroutine(ShieldEffect());
+    }
+
+    IEnumerator ShieldEffect() {
+        damageModifier = 0.9f;
+        yield return new WaitForSeconds(120f);
+        damageModifier = 1f;
     }
 
     private void ChangeStamina(float changeAmount)
@@ -516,6 +640,8 @@ public class Player : MonoBehaviour
 
     public void ReceiveDamage(float Damage)
     {
+        Damage *= damageModifier;
+        
         if(Damage > 0 && !isDead)
             AudioManager.PlaySound(AudioManager.Sound.PlayerDamaged);
 
