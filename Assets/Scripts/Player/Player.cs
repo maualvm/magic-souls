@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
         ShopSystem.ShieldBought += UseShield;
         ShopSystem.StrongPotionBought += UseStrongPotion;
         ShopSystem.WeakPotionBought += UseWeakPotion;
+        FireBall.FireBallCollides += ReceiveDamage;
     }
 
     private void OnDisable()
@@ -108,6 +109,7 @@ public class Player : MonoBehaviour
         ShopSystem.ShieldBought -= UseShield;
         ShopSystem.StrongPotionBought -= UseStrongPotion;
         ShopSystem.WeakPotionBought -= UseWeakPotion;
+        FireBall.FireBallCollides -= ReceiveDamage;
     }
 
     void Start()
@@ -659,6 +661,11 @@ public class Player : MonoBehaviour
         {
             TriggeredShop?.Invoke(true);
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (other.name.Contains("BurntArea"))
+        {
+            SetOnFire();
         }
     }
 

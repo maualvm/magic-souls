@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
+
 
 public abstract class Attack : IState
 {
@@ -9,6 +11,8 @@ public abstract class Attack : IState
     protected NavMeshAgent navMeshAgent;
     protected GameObject Target;
     protected Transform enemyTransform;
+    public static event Action gargoyleSpecialAttack;
+    public static event Action berserkerSpecialAttack;
     public Attack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target, Transform enemyTransform)
     {
         EnemyType = elementEnemyData.enemyData.enemyType;
@@ -43,9 +47,10 @@ public abstract class Attack : IState
     {
         enemyTransform.GetComponent<Enemy>().PlayEffectSound();
         //Early return if the ability wasn't triggered
-        if (Random.Range(0, 100) > AbilityProbability)
+        if (UnityEngine.Random.Range(0, 100) > AbilityProbability)
             return;
 
+        //imps
         if(EnemyType == "Imp" && EnemyElement == "Fire")
         {
             if(Target.GetComponent<Player>().fireResistance) return;
@@ -66,8 +71,45 @@ public abstract class Attack : IState
             if(Target.GetComponent<Player>().airResistance) return;
             AirImpAbility();
         }
+
+        //Gargoyles
+        if (EnemyType == "Gargoyle" && EnemyElement == "Fire")
+        {
+            FireGargoyleAbility();
+        }
+        else if (EnemyType == "Gargoyle" && EnemyElement == "Water")
+        {
+            WaterGargoyleAbility();
+        }
+        else if (EnemyType == "Gargoyle" && EnemyElement == "Earth")
+        {
+            EarthGargoyleAbility();
+        }
+        else if (EnemyType == "Gargoyle" && EnemyElement == "Air")
+        {
+            AirGargoyleAbility();
+        }
+
+        //Berserkers
+        if (EnemyType == "Berserker" && EnemyElement == "Fire")
+        {
+            FireBerserkerAbility();
+        }
+        else if (EnemyType == "Berserker" && EnemyElement == "Water")
+        {
+            WaterBerserkerAbility();
+        }
+        else if (EnemyType == "Berserker" && EnemyElement == "Earth")
+        {
+            EarthBerserkerAbility();
+        }
+        else if (EnemyType == "Berserker" && EnemyElement == "Air")
+        {
+            AirBerserkerAbility();
+        }
     }
 
+    //imps
     protected void FireImpAbility()
     {
         Debug.Log("The Fire Imp set you on fire!");
@@ -89,5 +131,51 @@ public abstract class Attack : IState
     protected void AirImpAbility()
     {
         Debug.Log("The Air Imp pushed you!");
+    }
+
+    //Gargoyles
+    protected void FireGargoyleAbility()
+    {
+        Debug.Log("The Fire Gargoyle set the area on fire!");
+        gargoyleSpecialAttack?.Invoke();
+
+    }
+
+    protected void WaterGargoyleAbility()
+    {
+
+    }
+
+    protected void EarthGargoyleAbility()
+    {
+
+    }
+
+    protected void AirGargoyleAbility()
+    {
+
+    }
+
+    //Berserkers
+    protected void FireBerserkerAbility()
+    {
+        Debug.Log("The Fire Berserker threw a fire ball!");
+        berserkerSpecialAttack?.Invoke();
+
+    }
+
+    protected void WaterBerserkerAbility()
+    {
+
+    }
+
+    protected void EarthBerserkerAbility()
+    {
+
+    }
+
+    protected void AirBerserkerAbility()
+    {
+
     }
 }

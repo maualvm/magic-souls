@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     private float RangedAttackProbability;
     private string AttackPreference;
 
+    [SerializeField]
+    private GameObject throwable;
+
+
     private NavMeshAgent navMeshAgent;
 
     private StateMachine stateMachine;
@@ -101,6 +105,18 @@ public class Enemy : MonoBehaviour
         Debug.Log("This is a " + enemy.Element + " " + enemy.enemyData.enemyType);
 
         animator = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        Attack.gargoyleSpecialAttack += GargoyleSpecialAttack;
+        Attack.berserkerSpecialAttack += BerserkerSpecialAttack;
+    }
+
+    private void OnDisable()
+    {
+        Attack.gargoyleSpecialAttack -= GargoyleSpecialAttack;
+        Attack.berserkerSpecialAttack += BerserkerSpecialAttack;
     }
 
     // Update is called once per frame
@@ -236,4 +252,38 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
+    public void GargoyleSpecialAttack()
+    {
+        if(throwable != null)
+        {
+            var state = this.stateMachine.CurrentState.ToString();
+            if (state == "MeleeAttack")
+            {
+                Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
+            }
+            
+        } else
+        {
+            return;
+        }
+    }
+
+    public void BerserkerSpecialAttack()
+    {
+        if (throwable != null)
+        {
+            var state = this.stateMachine.CurrentState.ToString();
+            if (state == "MeleeAttack" || state == "RangedAttack")
+            {
+                Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 5, gameObject.transform.position.z);
+                Instantiate(throwable, pos, Quaternion.identity);
+            }
+
+        }
+        else
+        {
+            return;
+        }
+    }
+
 }
