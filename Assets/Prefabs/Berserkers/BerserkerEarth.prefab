@@ -239,6 +239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: d3dfc510fa91b59429efdef66daef97c, type: 2}
   CurrentHealth: 0
+  throwable: {fileID: 1688350401226546447, guid: d8fae1bf5e0e17f419c1382c4c22baa6,
+    type: 3}
 --- !u!54 &9056736562790758714
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -101,6 +101,8 @@ public class Player : MonoBehaviour
         ShopSystem.WeakPotionBought += UseWeakPotion;
         FireBall.FireBallCollides += ReceiveDamage;
         ShopSystem.SpellLevelUp += LevelUpSpell;
+
+        Enemy.WaterGargoyleSp += DrainStamina;
     }
 
     private void OnDisable()
@@ -112,6 +114,8 @@ public class Player : MonoBehaviour
         ShopSystem.WeakPotionBought -= UseWeakPotion;
         FireBall.FireBallCollides -= ReceiveDamage;
         ShopSystem.SpellLevelUp -= LevelUpSpell;
+
+        Enemy.WaterGargoyleSp -= DrainStamina;
     }
 
     void Start()
@@ -692,6 +696,14 @@ public class Player : MonoBehaviour
         {
             SetOnFire();
         }
+        if (other.name.Contains("Earthquake"))
+        {
+            ReceiveDamage(15f);
+        }
+        if (other.name.Contains("Charco"))
+        {
+            SetExhausted();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -701,5 +713,12 @@ public class Player : MonoBehaviour
             TriggeredShop?.Invoke(false);
             Cursor.lockState = CursorLockMode.Locked;
         }
+    }
+
+    private void DrainStamina()
+    {
+        stamina = 0;
+        StaminaChanged?.Invoke(stamina, maxStamina);
+        return;
     }
 }

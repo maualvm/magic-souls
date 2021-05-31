@@ -453,6 +453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 88bf400600b81404a83e8dfba5b85efb, type: 2}
   CurrentHealth: 0
+  throwable: {fileID: 1688350401226546447, guid: f8e773c2c369dfc46886fc2f94216376,
+    type: 3}
 --- !u!54 &4686761108157979245
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -317,7 +317,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7510419692952973158}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -401,6 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 1b3d72833475bd0468d2e7deac5b138d, type: 2}
   CurrentHealth: 0
+  throwable: {fileID: 0}
 --- !u!64 &7479742214521595353
 MeshCollider:
   m_ObjectHideFlags: 0

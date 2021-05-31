@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     public static event Action<String, int> EnemyKilled;
     public static event Action<float, float, Enemy> EnemyHealthChanged;
+    public static event Action WaterGargoyleSp;
 
     private void Awake()
     {
@@ -255,32 +256,54 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
-    public void GargoyleSpecialAttack()
+    public void GargoyleSpecialAttack(string type)
     {
-        if(throwable != null)
+        
+        if (throwable != null)
         {
             var state = this.stateMachine.CurrentState.ToString();
-            if (state == "MeleeAttack")
+            if (state == "MeleeAttack" || state == "RangedAttack")
             {
-                Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
-                AudioManager.PlaySound(AudioManager.Sound.Fire, transform.position);
+                if(type == "Fire")
+                {
+                    Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
+                    AudioManager.PlaySound(AudioManager.Sound.Fire, transform.position);
+                }                
             }
             
         } else
         {
-            return;
+             if (type == "Water")
+            {
+                WaterGargoyleSp?.Invoke();
+                //Efectos de sonido de este ataque
+            }
         }
     }
 
-    public void BerserkerSpecialAttack()
+    public void BerserkerSpecialAttack(string type)
     {
         if (throwable != null)
         {
             var state = this.stateMachine.CurrentState.ToString();
             if (state == "MeleeAttack" || state == "RangedAttack")
             {
-                Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 5, gameObject.transform.position.z);
-                Instantiate(throwable, pos, Quaternion.identity);
+                if (type == "Fire")
+                {
+                    Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 5, gameObject.transform.position.z);
+                    Instantiate(throwable, pos, Quaternion.identity);
+                }
+                else if (type == "Earth")
+                {
+                    Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
+                    //Efectos de sonido de agua
+                }
+                else if (type == "Water")
+                {
+                    Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
+                    //Efectos de sonido de tierra
+                }
+
             }
 
         }

@@ -11,8 +11,8 @@ public abstract class Attack : IState
     protected NavMeshAgent navMeshAgent;
     protected GameObject Target;
     protected Transform enemyTransform;
-    public static event Action gargoyleSpecialAttack;
-    public static event Action berserkerSpecialAttack;
+    public static event Action<string> gargoyleSpecialAttack;
+    public static event Action<string> berserkerSpecialAttack;
     public Attack(ElementEnemyData elementEnemyData, NavMeshAgent navMeshAgent, GameObject target, Transform enemyTransform)
     {
         EnemyType = elementEnemyData.enemyData.enemyType;
@@ -137,18 +137,19 @@ public abstract class Attack : IState
     protected void FireGargoyleAbility()
     {
         Debug.Log("The Fire Gargoyle set the area on fire!");
-        gargoyleSpecialAttack?.Invoke();
+        gargoyleSpecialAttack?.Invoke("Fire");
 
     }
 
     protected void WaterGargoyleAbility()
     {
-
+        Debug.Log("The Water Gargoyle stole your stamina!");
+        gargoyleSpecialAttack?.Invoke("Water");
     }
 
     protected void EarthGargoyleAbility()
     {
-
+        
     }
 
     protected void AirGargoyleAbility()
@@ -160,18 +161,20 @@ public abstract class Attack : IState
     protected void FireBerserkerAbility()
     {
         Debug.Log("The Fire Berserker threw a fire ball!");
-        berserkerSpecialAttack?.Invoke();
+        berserkerSpecialAttack?.Invoke("Fire");
 
     }
 
     protected void WaterBerserkerAbility()
     {
-
+        Debug.Log("The Water Berserker laid a pool!");
+        berserkerSpecialAttack?.Invoke("Water");
     }
 
     protected void EarthBerserkerAbility()
     {
-
+        Debug.Log("The Earth Berserker set off an earthquake!");
+        berserkerSpecialAttack?.Invoke("Earth");
     }
 
     protected void AirBerserkerAbility()
