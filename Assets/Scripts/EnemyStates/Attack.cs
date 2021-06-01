@@ -180,6 +180,7 @@ public abstract class Attack : IState
 
     protected void AirBerserkerAbility()
     {
-
+        Debug.Log("The Air Berserker got faster!");
+        berserkerSpecialAttack?.Invoke("Air");
     }
 }

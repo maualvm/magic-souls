@@ -21670,6 +21670,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 830368377, guid: 70e027772b42c884aa0a78c2fc8f350f, type: 3}
+      propertyPath: stunTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1702442847585835840, guid: 70e027772b42c884aa0a78c2fc8f350f,
         type: 3}
       propertyPath: m_RootOrder

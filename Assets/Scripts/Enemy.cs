@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     private string AttackPreference;
 
     [SerializeField]
+    private float enemySpeedUpTime = 10f;
+
+    [SerializeField]
     private GameObject throwable;
 
 
@@ -258,22 +261,22 @@ public class Enemy : MonoBehaviour
     }
     public void GargoyleSpecialAttack(string type)
     {
-        
+
         if (throwable != null)
         {
             var state = this.stateMachine.CurrentState.ToString();
             if (state == "MeleeAttack" || state == "RangedAttack")
             {
-                if(type == "Fire")
+                if (type == "Fire")
                 {
                     Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
                     AudioManager.PlaySound(AudioManager.Sound.Fire, transform.position);
-                }                
+                }
             }
-            
+
         } else
         {
-             if (type == "Water")
+            if (type == "Water")
             {
                 WaterGargoyleSp?.Invoke();
                 //Efectos de sonido de este ataque
@@ -309,8 +312,18 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            return;
+            if (type == "Air")
+            {
+                StartCoroutine(SpeedUpEnemy());
+            }
         }
     }
 
+    IEnumerator SpeedUpEnemy()
+    {
+        float originalSpeed = navMeshAgent.speed;
+        navMeshAgent.speed *= 2;
+        yield return new WaitForSeconds(enemySpeedUpTime);
+        navMeshAgent.speed = originalSpeed;
+    }
 }
