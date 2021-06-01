@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
 
     private bool canMove = true;
     private bool canRun = true;
+    private bool bIsStunned = false;
+    [SerializeField]
+    private float stunTime = 3f;
     public bool isDead { get; private set; }
 
     public static event Action PlayerKilled, PlayerRespawned;
@@ -127,6 +130,7 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         speed = normalSpeed;
         isDead = false;
+        bIsStunned = false;
         Respawn();
 
     }
@@ -185,7 +189,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (characterController.isGrounded)
+        if (characterController.isGrounded && !bIsStunned)
         {
             // We are grounded, so recalculate move direction based on axes
             Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -212,7 +216,7 @@ public class Player : MonoBehaviour
             }
 
             // If the player decides to run, discharge stamina and change speed to running
-            if(canRun && Input.GetKey(KeyCode.LeftShift)) {
+            if(canRun && Input.GetKey(KeyCode.LeftShift) && !bIsStunned) {
                 speed = RunningSpeed;
                 ChangeStamina(-10);
                 if(stamina <= 0) {
@@ -260,6 +264,10 @@ public class Player : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             }
         }
+
+        //check if player is stunned
+        if (bIsStunned)
+            moveDirection = Vector3.zero;
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
@@ -727,5 +735,21 @@ public class Player : MonoBehaviour
         stamina = 0;
         StaminaChanged?.Invoke(stamina, maxStamina);
         return;
+    }
+
+    public void ApplyStun()
+    {
+        StartCoroutine(Stun());
+    }
+
+    IEnumerator Stun()
+    {
+        speed = 0;
+        bIsStunned = true;
+        GameObject stunEffect = Instantiate(GameAssets.i.stunEffect, transform.position, transform.rotation);
+        yield return new WaitForSeconds(stunTime);
+        Destroy(stunEffect);
+        bIsStunned = false;
+        speed = normalSpeed;
     }
 }

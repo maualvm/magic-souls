@@ -18,4 +18,6 @@ public class GameAssets : MonoBehaviour
     public Sprite GeneralSoul, FireSoul, WaterSoul, EarthSoul, AirSoul;
     public Sprite FireSprite, WaterSprite, EarthSprite, AirSprite, FirePotionSprite_Strong, WaterPotionSprite_Strong, EarthPotionSprite_Strong, AirPotionSprite_Strong;
     public Sprite FirePotionSprite_Weak, WaterPotionSprite_Weak, EarthPotionSprite_Weak, AirPotionSprite_Weak, HealthPotionSprite, StaminaPotionSprite, ShieldSprite;
+
+    public GameObject stunEffect;
 }

@@ -125,7 +125,7 @@ public abstract class Attack : IState
     protected void EarthImpAbility()
     {
         Debug.Log("The Earth Imp stunned you!");
-        Target.GetComponent<Player>().ApplyBleed();
+        Target.GetComponent<Player>().ApplyStun();
     }
 
     protected void AirImpAbility()
@@ -149,7 +149,8 @@ public abstract class Attack : IState
 
     protected void EarthGargoyleAbility()
     {
-        
+        Debug.Log("The Earth Gargoyle cut you!");
+        Target.GetComponent<Player>().ApplyBleed();
     }
 
     protected void AirGargoyleAbility()
