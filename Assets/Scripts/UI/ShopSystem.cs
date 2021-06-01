@@ -19,7 +19,6 @@ public class ShopSystem : MonoBehaviour
     [SerializeField]
     Transform MaxedOutTemplate;
 
-    private bool bShopIsOpen;
 
     public static event Action<Item.ItemType, int, string> TryBuyItem;
     public static event Action<string, int> SpellLevelUp;
@@ -30,7 +29,6 @@ public class ShopSystem : MonoBehaviour
     private void Awake()
     {
         ShopUI.SetActive(false);
-        bShopIsOpen = false;
         ShopItemTemplate.gameObject.SetActive(false);
         MaxedOutTemplate.gameObject.SetActive(false);
     }
@@ -272,12 +270,10 @@ public class ShopSystem : MonoBehaviour
         if(bOpenStore)
         {
             ShopUI.SetActive(true);
-            bShopIsOpen = true;
         }
         else
         {
             ShopUI.SetActive(false);
-            bShopIsOpen = false;
         }
     }
 }

@@ -279,7 +279,7 @@ public class Player : MonoBehaviour
             transform.eulerAngles = new Vector2(0, rotation.y);
         }
 
-        if(Input.GetButtonDown("Fire1") && Time.time > nextFire) {
+        if(Input.GetButtonDown("Fire1") && Time.time > nextFire && !isDead) {
             nextFire = Time.time + fireRate;
             Shoot();
             animator.SetBool("isDying", false);
@@ -389,6 +389,8 @@ public class Player : MonoBehaviour
     }
 
     public void Shoot() {
+        
+
         RaycastHit hit;
 
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 20f)) {
@@ -535,6 +537,7 @@ public class Player : MonoBehaviour
 
     private void UseHealthPotion() {
         if(inventorySystem.HealthPotions > 0 && currentHealth < maxHealth) {
+            AudioManager.PlaySound(AudioManager.Sound.Potion);
             Debug.Log("The player healed himself.");
             ReceiveDamage(-15);
             inventorySystem.ModifyHealthPotions(-1);
@@ -545,6 +548,7 @@ public class Player : MonoBehaviour
 
     private void UseStaminaPotion() {
         if(inventorySystem.StaminaPotions > 0) {
+            AudioManager.PlaySound(AudioManager.Sound.Potion);
             Debug.Log($"The player healed his stamina. Regen speed = {RegenSpeed * 6}");
             StartCoroutine("StaminaEffect");
             inventorySystem.ModifyStaminaPotions(-1);
@@ -587,8 +591,10 @@ public class Player : MonoBehaviour
     }
 
     public void Respawn() {
+        AudioManager.PlaySound(AudioManager.Sound.Confirm);
         Cursor.lockState = CursorLockMode.Locked;
         PlayerRespawned?.Invoke();
+        isDead = false;
         canMove = true;
         canRun = true;
         currentHealth = maxHealth;
@@ -667,7 +673,8 @@ public class Player : MonoBehaviour
 
     private void LevelUpSpell(string element, int level)
     {
-        switch(element)
+        AudioManager.PlaySound(AudioManager.Sound.LevelUp);
+        switch (element)
         {
             case "Fire":
                 fireLevel = level;
