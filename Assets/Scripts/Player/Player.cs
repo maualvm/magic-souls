@@ -68,6 +68,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float currentHealth;
     private float Damage;
+
+    [SerializeField]
+    private float mass = 1f;
+    private Vector3 impact;
+    [SerializeField]
+    private float pullTime = 5f;
     
     protected GameObject Target;
 
@@ -276,6 +282,14 @@ public class Player : MonoBehaviour
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
+
+        //Apply impact if pulled by enemy
+        if(impact.magnitude > 0.2f)
+        {
+            characterController.Move(impact * Time.deltaTime);
+        }
+
+        impact = Vector3.Lerp(impact, Vector3.zero, pullTime * Time.deltaTime);
 
         // Player and Camera rotation
         if (canMove)
@@ -602,6 +616,7 @@ public class Player : MonoBehaviour
         AudioManager.PlaySound(AudioManager.Sound.Confirm);
         Cursor.lockState = CursorLockMode.Locked;
         PlayerRespawned?.Invoke();
+        impact = Vector3.zero;
         isDead = false;
         canMove = true;
         canRun = true;
@@ -751,5 +766,10 @@ public class Player : MonoBehaviour
         Destroy(stunEffect);
         bIsStunned = false;
         speed = normalSpeed;
+    }
+
+    public void AddImpact(Vector3 force)
+    {
+        impact += force / mass;
     }
 }

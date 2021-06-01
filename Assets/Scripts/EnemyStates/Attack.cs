@@ -112,75 +112,69 @@ public abstract class Attack : IState
     //imps
     protected void FireImpAbility()
     {
-        Debug.Log("The Fire Imp set you on fire!");
         Target.GetComponent<Player>().SetOnFire();
     }
 
     protected void WaterImpAbility()
     {
-        Debug.Log("The Water Imp slowed you down!");
         Target.GetComponent<Player>().SetExhausted();
     }
 
     protected void EarthImpAbility()
     {
-        Debug.Log("The Earth Imp stunned you!");
         Target.GetComponent<Player>().ApplyStun();
     }
 
     protected void AirImpAbility()
     {
-        Debug.Log("The Air Imp pushed you!");
+        Vector3 direction = enemyTransform.position - Target.transform.position;
+        direction.y = 0;
+        Target.GetComponent<Player>().AddImpact(direction.normalized * 10f);
     }
 
     //Gargoyles
     protected void FireGargoyleAbility()
     {
-        Debug.Log("The Fire Gargoyle set the area on fire!");
         gargoyleSpecialAttack?.Invoke("Fire");
 
     }
 
     protected void WaterGargoyleAbility()
     {
-        Debug.Log("The Water Gargoyle stole your stamina!");
         gargoyleSpecialAttack?.Invoke("Water");
     }
 
     protected void EarthGargoyleAbility()
     {
-        Debug.Log("The Earth Gargoyle cut you!");
         Target.GetComponent<Player>().ApplyBleed();
     }
 
     protected void AirGargoyleAbility()
     {
-
+        Vector3 direction = enemyTransform.position - Target.transform.position;
+        direction.y = 0;
+        Target.GetComponent<Player>().AddImpact(direction.normalized * 20f);
     }
 
     //Berserkers
     protected void FireBerserkerAbility()
     {
-        Debug.Log("The Fire Berserker threw a fire ball!");
         berserkerSpecialAttack?.Invoke("Fire");
 
     }
 
     protected void WaterBerserkerAbility()
     {
-        Debug.Log("The Water Berserker laid a pool!");
         berserkerSpecialAttack?.Invoke("Water");
     }
 
     protected void EarthBerserkerAbility()
     {
-        Debug.Log("The Earth Berserker set off an earthquake!");
         berserkerSpecialAttack?.Invoke("Earth");
     }
 
     protected void AirBerserkerAbility()
     {
-        Debug.Log("The Air Berserker got faster!");
         berserkerSpecialAttack?.Invoke("Air");
     }
 }
