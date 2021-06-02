@@ -387,19 +387,19 @@ public class Player : MonoBehaviour
         if(typeOfSpell == "Air") {
             switch (airLevel) {
                 case 1:
-                    base_damage = 10f;
+                    base_damage = 25f;
                 break;
                 case 2:
-                    base_damage = 200f;
+                    base_damage = 50f;
                 break;
                 case 3:
-                    base_damage = 350f;
+                    base_damage = 75f;
                 break;
                 case 4:
-                    base_damage = 800f;
+                    base_damage = 100f;
                 break;
                 default:
-                    base_damage = 800f;
+                    base_damage = 100f;
                 break;
             }
         }
@@ -425,7 +425,7 @@ public class Player : MonoBehaviour
                 var enemyElement = enemy.gameObject.GetComponent<Enemy>().GetEnemyData().Element;
 
                 // Set the base_damage according to the spell level 
-                var rb = enemy.GetComponent<Rigidbody>();
+                
                 switch (currentSpell)
                 {
                     case "Water":
@@ -472,14 +472,16 @@ public class Player : MonoBehaviour
                     break;
 
                     case "Air":
+                        var rb = enemy.GetComponent<Rigidbody>();
                         total_damage = 0;
                         AudioManager.PlaySound(AudioManager.Sound.AirAttack, hit.point);
                         if (rb != null) {
                             Vector3 direction = enemy.transform.position - transform.position;
                             direction.y = 0;
                             GetSpellDamage("Air");
-                            rb.isKinematic = false;
-                            rb.AddForce(direction.normalized * base_damage, ForceMode.Impulse);
+                            //rb.isKinematic = false;
+                            //rb.AddForce(direction.normalized * base_damage, ForceMode.Impulse);
+                            enemy.AddImpact(direction.normalized * base_damage);
                         }
                     break;
                     

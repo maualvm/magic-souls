@@ -21,6 +21,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject throwable;
 
+    private float mass;
+    private Vector3 impulse;
+    [SerializeField]
+    private float pushTime = 5f;
+
 
     private NavMeshAgent navMeshAgent;
 
@@ -110,6 +115,8 @@ public class Enemy : MonoBehaviour
 
         gameObject.GetComponent<NavMeshAgent>().speed = enemy.enemyData.Speed;
 
+        impulse = Vector3.zero;
+        mass = gameObject.GetComponent<Rigidbody>().mass;
 
         animator = GetComponent<Animator>();
     }
@@ -130,6 +137,16 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
+
+        //apply impulse
+        if(impulse.magnitude > 0.2f)
+        {
+            transform.Translate(impulse * Time.deltaTime, Space.World);
+        }
+
+        impulse = Vector3.Lerp(impulse, Vector3.zero, pushTime * Time.deltaTime);
+
+        //Animations
         Debug.Log(this.stateMachine.CurrentState.ToString());
         var state = this.stateMachine.CurrentState.ToString();
         switch (state)
@@ -325,5 +342,10 @@ public class Enemy : MonoBehaviour
         navMeshAgent.speed *= 2;
         yield return new WaitForSeconds(enemySpeedUpTime);
         navMeshAgent.speed = originalSpeed;
+    }
+
+    public void AddImpact(Vector3 force)
+    {
+        impulse += force / mass;
     }
 }
