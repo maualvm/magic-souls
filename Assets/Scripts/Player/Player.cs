@@ -98,6 +98,10 @@ public class Player : MonoBehaviour
     public bool waterResistance = false;
     public bool earthResistance = false;
     public bool airResistance = false;
+    public GameObject impactEffectWater;
+    public GameObject impactEffectEarth;
+    public GameObject impactEffectFire;
+    public GameObject impactEffectAir;
 
     private Camera camera;
 
@@ -495,6 +499,33 @@ public class Player : MonoBehaviour
                 Debug.Log($"The player dealt {total_damage} to the enemy of type {enemyElement}!\nThe player used spell of type {currentSpell}");
                 enemy.ReceiveDamage(total_damage);
             }
+            showHit(hit);
+            
+            
+        }
+    }
+
+    private void showHit(RaycastHit hit) {
+        switch (currentSpell) {
+            case "Fire":
+                GameObject impactGOFire = Instantiate(impactEffectFire, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(impactGOFire, 2f);
+            break;
+
+            case "Earth":
+                GameObject impactGOEarth = Instantiate(impactEffectEarth, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(impactGOEarth, 2f);
+            break;
+
+            case "Water":
+                GameObject impactGOWater = Instantiate(impactEffectWater, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(impactGOWater, 2f);
+            break;
+
+            case "Air":
+                GameObject impactGOAir = Instantiate(impactEffectAir, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(impactGOAir, 2f);
+            break;
         }
     }
 
