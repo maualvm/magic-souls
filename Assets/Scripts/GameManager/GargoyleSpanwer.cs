@@ -34,6 +34,16 @@ public class GargoyleSpanwer : MonoBehaviour
 
     private SpawnState state = SpawnState.COUTNING;
 
+    private void OnEnable()
+    {
+        Player.PlayerWon += HandleWin;
+    }
+
+    private void OnDisable()
+    {
+        Player.PlayerWon -= HandleWin;
+    }
+
     void Start()
     {
         if (spawnPoints.Length == 0)
@@ -169,5 +179,11 @@ public class GargoyleSpanwer : MonoBehaviour
         {
             Destroy(temp[i]);
         }
+    }
+
+    private void HandleWin()
+    {
+        MatarEnemigos();
+        enabled = false;
     }
 }

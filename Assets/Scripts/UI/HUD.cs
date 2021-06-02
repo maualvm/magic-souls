@@ -66,6 +66,9 @@ public class HUD : MonoBehaviour
     GameObject DeathScreen;
 
     [SerializeField]
+    GameObject WinScreen;
+
+    [SerializeField]
     Button RespawnBtn;
 
     public static event Action Respawned;
@@ -74,6 +77,7 @@ public class HUD : MonoBehaviour
     void Start()
     {
         DeathScreen.SetActive(false);
+        WinScreen.SetActive(false);
         RespawnBtn.onClick.AddListener(() => Respawn());
         SpellSelectionWheel.sprite = WaterSpellSelected;
     }
@@ -108,6 +112,7 @@ public class HUD : MonoBehaviour
         Player.PlayerDamaged += HandleHealthChange;
         Player.StaminaChanged += HandleStaminaChange;
         Player.PlayerKilled += HandlePlayerDeath;
+        Player.PlayerWon += HandleWin;
         InventorySystem.ModifiedSouls += HandleGeneralSoulsChange;
         InventorySystem.ModifiedFireSouls += HandleFireSoulsChange;
         InventorySystem.ModifiedWaterSouls += HandleWaterSoulsChange;
@@ -122,6 +127,7 @@ public class HUD : MonoBehaviour
         Player.PlayerDamaged -= HandleHealthChange;
         Player.StaminaChanged -= HandleStaminaChange;
         Player.PlayerKilled -= HandlePlayerDeath;
+        Player.PlayerWon -= HandleWin;
         InventorySystem.ModifiedSouls -= HandleGeneralSoulsChange;
         InventorySystem.ModifiedFireSouls -= HandleFireSoulsChange;
         InventorySystem.ModifiedWaterSouls -= HandleWaterSoulsChange;
@@ -215,6 +221,11 @@ public class HUD : MonoBehaviour
     {
         DeathScreen.SetActive(false);
         Respawned?.Invoke();
+    }
+
+    private void HandleWin()
+    {
+        WinScreen.SetActive(true);
     }
     
 }

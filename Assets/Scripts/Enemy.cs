@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
     public static event Action<String, int> EnemyKilled;
     public static event Action<float, float, Enemy> EnemyHealthChanged;
-    public static event Action WaterGargoyleSp;
+    public static event Action WaterGargoyleSp, EtherealKilled;
 
     private void Awake()
     {
@@ -194,7 +194,22 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         PlayDeathSound();
-        EnemyKilled?.Invoke(enemy.Element, 1);
+        switch (enemy.enemyData.enemyType)
+        {
+            case "Imp":
+                EnemyKilled?.Invoke(enemy.Element, 1);
+                break;
+            case "Gargoyle":
+                EnemyKilled?.Invoke(enemy.Element, 3);
+                break;
+            case "Berserker":
+                EnemyKilled?.Invoke(enemy.Element, 5);
+                break;
+            case "Ethereal":
+                EnemyKilled?.Invoke(enemy.Element, 10);
+                EtherealKilled?.Invoke();
+                break;
+        }
         Destroy(gameObject);
     }
 

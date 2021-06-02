@@ -12,7 +12,8 @@ public static class AudioManager
         Water,
         Fire,
         Earth,
-        Air
+        Air,
+        PlayerWon
     }
 
     public enum Sound

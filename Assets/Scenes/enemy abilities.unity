@@ -17335,7 +17335,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 539032082, guid: 25acd8ef46a783840aee1d028cf25e51, type: 3}
+    - target: {fileID: 262588781, guid: 25acd8ef46a783840aee1d028cf25e51, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -17448,11 +17448,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 8104366358607642847, guid: 25acd8ef46a783840aee1d028cf25e51,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25acd8ef46a783840aee1d028cf25e51, type: 3}

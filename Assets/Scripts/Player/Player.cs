@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     private float stunTime = 3f;
     public bool isDead { get; private set; }
 
-    public static event Action PlayerKilled, PlayerRespawned;
+    public static event Action PlayerKilled, PlayerRespawned, PlayerWon;
     public static event Action<float, float> PlayerDamaged;
     public static event Action<float, float> StaminaChanged;
     public static event Action<bool> TriggeredShop;
@@ -101,6 +101,9 @@ public class Player : MonoBehaviour
 
     private Camera camera;
 
+    [SerializeField]
+    private int etherealKillCount;
+
     private void OnEnable()
     {
         HUD.Respawned += Respawn;
@@ -112,6 +115,7 @@ public class Player : MonoBehaviour
         ShopSystem.SpellLevelUp += LevelUpSpell;
 
         Enemy.WaterGargoyleSp += DrainStamina;
+        Enemy.EtherealKilled += AddToEtherealKillCount;
     }
 
     private void OnDisable()
@@ -125,6 +129,7 @@ public class Player : MonoBehaviour
         ShopSystem.SpellLevelUp -= LevelUpSpell;
 
         Enemy.WaterGargoyleSp -= DrainStamina;
+        Enemy.EtherealKilled -= AddToEtherealKillCount;
     }
 
     void Start()
@@ -137,6 +142,7 @@ public class Player : MonoBehaviour
         speed = normalSpeed;
         isDead = false;
         bIsStunned = false;
+        etherealKillCount = 0;
         Respawn();
 
     }
@@ -773,5 +779,16 @@ public class Player : MonoBehaviour
     public void AddImpact(Vector3 force)
     {
         impact += force / mass;
+    }
+
+    private void AddToEtherealKillCount()
+    {
+        etherealKillCount++;
+        if(etherealKillCount == 4)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            PlayerWon?.Invoke();
+            enabled = false;
+        }
     }
 }

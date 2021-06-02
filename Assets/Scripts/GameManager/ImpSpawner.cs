@@ -34,6 +34,16 @@ public class ImpSpawner : MonoBehaviour
 
     private SpawnState state = SpawnState.COUTNING;
 
+    private void OnEnable()
+    {
+        Player.PlayerWon += HandleWin;
+    }
+
+    private void OnDisable()
+    {
+        Player.PlayerWon -= HandleWin;
+    }
+
     void Start()
     {
         if (spawnPoints.Length == 0)
@@ -172,5 +182,11 @@ public class ImpSpawner : MonoBehaviour
         {
            Destroy(temp[i]);
         }
+    }
+
+    private void HandleWin()
+    {
+        MatarEnemigos();
+        enabled = false;
     }
 }

@@ -39,6 +39,7 @@ public class MusicController : MonoBehaviour
         AreaTrigger.EnteredArea += HandleEnteredArea;
         Player.PlayerKilled += StopMusic;
         Player.PlayerRespawned += HandleRespawn;
+        Player.PlayerWon += HandlePlayerWon;
     }
 
     private void OnDisable()
@@ -46,6 +47,7 @@ public class MusicController : MonoBehaviour
         AreaTrigger.EnteredArea -= HandleEnteredArea;
         Player.PlayerKilled -= StopMusic;
         Player.PlayerRespawned -= HandleRespawn;
+        Player.PlayerWon -= HandlePlayerWon;
     }
 
     private void HandleEnteredArea(string area)
@@ -76,6 +78,11 @@ public class MusicController : MonoBehaviour
     private void StopMusic()
     {
         audioSource.Stop();
+    }
+
+    private void HandlePlayerWon()
+    {
+        AudioManager.PlayMusic(AudioManager.Music.PlayerWon, audioSource);
     }
 
     // Update is called once per frame
