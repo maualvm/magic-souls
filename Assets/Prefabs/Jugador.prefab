@@ -251,7 +251,13 @@ MonoBehaviour:
   waterResistance: 0
   earthResistance: 0
   airResistance: 0
-  impactEffect: {fileID: 1664070504769183265, guid: 1c64647e7ae0f184c8d7167b0b4b81e6,
+  impactEffectWater: {fileID: 1664070504769183265, guid: d8b8ded6a2cb6144498f8c52a8b58803,
+    type: 3}
+  impactEffectEarth: {fileID: 1664070504769183265, guid: e928485397d0b4d4d80bb19fd87cf353,
+    type: 3}
+  impactEffectFire: {fileID: 1664070504769183265, guid: 7732ca939fd46344d884e029f98ea210,
+    type: 3}
+  impactEffectAir: {fileID: 1664070504769183265, guid: 1c64647e7ae0f184c8d7167b0b4b81e6,
     type: 3}
   etherealKillCount: 0
 --- !u!114 &7170651932460765680
