@@ -18,7 +18,7 @@ MonoBehaviour:
   RangedAttackProbability: 0
   bAbilityIsRanged: 0
   MeleeAttackDamage: 20
-  MeleeDistance: 4
+  MeleeDistance: 6
   MeleeCooldown: 4
   RangedAttackDamage: 0
   RangedDistance: 0

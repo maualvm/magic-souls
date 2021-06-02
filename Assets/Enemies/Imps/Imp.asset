@@ -20,4 +20,4 @@ MonoBehaviour:
   MinWanderTime: 3
   MaxWanderTime: 5
   AbilityCooldown: 5
-  AbilityProbability: 100
+  AbilityProbability: 80

@@ -527,6 +527,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 3b98c0749cafa684d877405decac78aa, type: 2}
   CurrentHealth: 0
+  enemySpeedUpTime: 10
+  throwable: {fileID: 0}
+  throwableSec: {fileID: 0}
+  pushTime: 5
 --- !u!54 &4874471332664227945
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -535,7 +539,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3612119394270798932}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 4
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1

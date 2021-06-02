@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyType: Ethereal
   MaxHealth: 5000
   Speed: 4
-  DetectRange: 10
-  AttackRange: 5
+  DetectRange: 12
+  AttackRange: 8
   MinWanderTime: 3
   MaxWanderTime: 5
   AbilityCooldown: 2

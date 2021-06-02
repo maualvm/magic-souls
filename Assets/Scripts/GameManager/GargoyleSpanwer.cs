@@ -37,11 +37,13 @@ public class GargoyleSpanwer : MonoBehaviour
     private void OnEnable()
     {
         Player.PlayerWon += HandleWin;
+        Player.PlayerRespawned += MatarEnemigos;
     }
 
     private void OnDisable()
     {
         Player.PlayerWon -= HandleWin;
+        Player.PlayerRespawned -= MatarEnemigos;
     }
 
     void Start()
