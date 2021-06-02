@@ -137,25 +137,25 @@ public class BerserkerSpanwer : MonoBehaviour
 
         if (_berserker.name.Contains("Fuego") && FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp = spawnPoints[Random.Range(0, 2)];
+            Transform _sp = spawnPoints[Random.Range(0, 3)];
             Instantiate(_berserker, _sp.position, _sp.rotation);
         }
 
         if (_berserker.name.Contains("Earth") && EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(3, 5)];
+            Transform _sp2 = spawnPoints[Random.Range(3, 6)];
             Instantiate(_berserker, _sp2.position, _sp2.rotation);
         }
 
         if (_berserker.name.Contains("Water") && WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(6, 8)];
+            Transform _sp2 = spawnPoints[Random.Range(6, 9)];
             Instantiate(_berserker, _sp2.position, _sp2.rotation);
         }
 
         if (_berserker.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(9, 10)];
+            Transform _sp2 = spawnPoints[Random.Range(9, 11)];
             Instantiate(_berserker, _sp2.position, _sp2.rotation);
         }
 

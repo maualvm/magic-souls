@@ -107,6 +107,25 @@ public abstract class Attack : IState
         {
             AirBerserkerAbility();
         }
+
+        //Ethereals
+
+        if (EnemyType == "Ethereal" && EnemyElement == "Fire")
+        {
+            FireEtherealAbility();
+        }
+        else if (EnemyType == "Ethereal" && EnemyElement == "Water")
+        {
+            WaterEtherealAbility();
+        }
+        else if (EnemyType == "Ethereal" && EnemyElement == "Earth")
+        {
+            EarthEtherealAbility();
+        }
+        else if (EnemyType == "Ethereal" && EnemyElement == "Air")
+        {
+            AirEtherealAbility();
+        }
     }
 
     //imps
@@ -176,5 +195,79 @@ public abstract class Attack : IState
     protected void AirBerserkerAbility()
     {
         berserkerSpecialAttack?.Invoke("Air");
+    }
+
+    //Ethereals
+
+    protected void FireEtherealAbility()
+    {
+        int hability = UnityEngine.Random.Range(1,4);
+        Debug.Log("RANDOM NUMBER = " + hability);
+        switch (hability)
+        {
+            case 1:
+                FireImpAbility();
+                break;
+            case 2:
+                FireGargoyleAbility();
+                break;
+            case 3:
+                FireBerserkerAbility();
+                break;
+        }
+    }
+
+    protected void WaterEtherealAbility()
+    {
+        int hability = UnityEngine.Random.Range(1, 4);
+        Debug.Log("RANDOM NUMBER = " + hability);
+        switch (hability)
+        {
+            case 1:
+                WaterImpAbility();
+                break;
+            case 2:
+                gargoyleSpecialAttack?.Invoke("WaterEthereal");
+                break;
+            case 3:
+                WaterBerserkerAbility();
+                break;
+        }
+    }
+
+    protected void EarthEtherealAbility()
+    {
+        int hability = UnityEngine.Random.Range(1, 4);
+        Debug.Log("RANDOM NUMBER = " + hability);
+        switch (hability)
+        {
+            case 1:
+                EarthImpAbility();
+                break;
+            case 2:
+                EarthGargoyleAbility();
+                break;
+            case 3:
+                EarthBerserkerAbility();
+                break;
+        }
+    }
+
+    protected void AirEtherealAbility()
+    {
+        int hability = UnityEngine.Random.Range(1, 4);
+        Debug.Log("RANDOM NUMBER = " + hability);
+        switch (hability)
+        {
+            case 1:
+                AirImpAbility();
+                break;
+            case 2:
+                AirGargoyleAbility();
+                break;
+            case 3:
+                AirBerserkerAbility();
+                break;
+        }
     }
 }

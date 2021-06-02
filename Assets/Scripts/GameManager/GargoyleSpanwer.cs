@@ -137,25 +137,25 @@ public class GargoyleSpanwer : MonoBehaviour
 
         if (_gargoyle.name.Contains("Fuego") && FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp = spawnPoints[Random.Range(0, 3)];
+            Transform _sp = spawnPoints[Random.Range(0, 4)];
             Instantiate(_gargoyle, _sp.position, _sp.rotation);
         }
 
         if (_gargoyle.name.Contains("Earth") && EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(4, 7)];
+            Transform _sp2 = spawnPoints[Random.Range(4, 8)];
             Instantiate(_gargoyle, _sp2.position, _sp2.rotation);
         }
 
         if (_gargoyle.name.Contains("Water") && WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(8, 11)];
+            Transform _sp2 = spawnPoints[Random.Range(8, 12)];
             Instantiate(_gargoyle, _sp2.position, _sp2.rotation);
         }
 
         if (_gargoyle.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(12, 14)];
+            Transform _sp2 = spawnPoints[Random.Range(12, 15)];
             Instantiate(_gargoyle, _sp2.position, _sp2.rotation);
         }
 
