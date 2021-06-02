@@ -98,6 +98,7 @@ public class Player : MonoBehaviour
     public bool waterResistance = false;
     public bool earthResistance = false;
     public bool airResistance = false;
+    public GameObject impactEffect;
 
     private Camera camera;
 
@@ -495,6 +496,9 @@ public class Player : MonoBehaviour
                 Debug.Log($"The player dealt {total_damage} to the enemy of type {enemyElement}!\nThe player used spell of type {currentSpell}");
                 enemy.ReceiveDamage(total_damage);
             }
+            GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impactGO, 2f);
+            
         }
     }
 

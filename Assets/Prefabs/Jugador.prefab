@@ -209,8 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d46603053224d47a9848631caf92e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 7.5
-  RunningSpeed: 15
   RegenSpeed: 5
   jumpSpeed: 8
   gravity: 20
@@ -232,17 +230,30 @@ MonoBehaviour:
   bleedingTimer: 0
   isExhausted: 0
   exhaustedTimer: 0
+  stunTime: 3
   maxHealth: 100
   currentHealth: 0
+  mass: 1
+  pullTime: 5
   base_damage: 5
   generic_damage: 0
   total_damage: 5
+  damageModifier: 1
   range: 100
+  fireRate: 1
+  nextFire: 0
   waterLevel: 1
   fireLevel: 1
   earthLevel: 1
   airLevel: 1
   currentSpell: Water
+  fireResistance: 0
+  waterResistance: 0
+  earthResistance: 0
+  airResistance: 0
+  impactEffect: {fileID: 1664070504769183265, guid: 1c64647e7ae0f184c8d7167b0b4b81e6,
+    type: 3}
+  etherealKillCount: 0
 --- !u!114 &7170651932460765680
 MonoBehaviour:
   m_ObjectHideFlags: 0
