@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private GameObject throwable;
+    [SerializeField]
+    private GameObject throwableSec;
 
     private float mass;
     private Vector3 impulse;
@@ -36,8 +38,9 @@ public class Enemy : MonoBehaviour
     private GameObject Target;
 
     public static event Action<String, int> EnemyKilled;
+    public static event Action<String> EtherealKilled;
     public static event Action<float, float, Enemy> EnemyHealthChanged;
-    public static event Action WaterGargoyleSp, EtherealKilled;
+    public static event Action WaterGargoyleSp;
 
     private void Awake()
     {
@@ -207,9 +210,11 @@ public class Enemy : MonoBehaviour
                 break;
             case "Ethereal":
                 EnemyKilled?.Invoke(enemy.Element, 10);
-                EtherealKilled?.Invoke();
+                EtherealKilled?.Invoke(enemy.Element);
                 break;
         }
+    
+        
         Destroy(gameObject);
     }
 
@@ -301,12 +306,13 @@ public class Enemy : MonoBehaviour
             {
                 if (type == "Fire")
                 {
-                    Instantiate(throwable, gameObject.transform.position, Quaternion.identity);
+                    Vector3 pos = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+                    Instantiate(throwable ,pos , Quaternion.identity);
                     AudioManager.PlaySound(AudioManager.Sound.Fire, transform.position);
                 }
             }
 
-        } else
+        } else 
         {
             if (type == "Water")
             {
@@ -314,11 +320,17 @@ public class Enemy : MonoBehaviour
                 //Efectos de sonido de este ataque
             }
         }
+
+        if(type == "WaterEthereal")
+        {
+            WaterGargoyleSp?.Invoke();
+            //Efectos de sonido de este ataque
+        }
     }
 
     public void BerserkerSpecialAttack(string type)
     {
-        if (throwable != null)
+        if (throwable != null && throwableSec == null)
         {
             var state = this.stateMachine.CurrentState.ToString();
             if (state == "MeleeAttack" || state == "RangedAttack")
@@ -341,6 +353,29 @@ public class Enemy : MonoBehaviour
 
             }
 
+        } else if (throwableSec != null)
+        {
+            Debug.Log("ETHERAL USA ATAQUE DE BERSERKER");
+            var state = this.stateMachine.CurrentState.ToString();
+            if (state == "MeleeAttack" || state == "RangedAttack")
+            {
+                if (type == "Fire")
+                {
+                    Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 5, gameObject.transform.position.z);
+                    Instantiate(throwableSec, pos, Quaternion.identity);
+                }
+                else if (type == "Earth")
+                {
+                    Instantiate(throwableSec, gameObject.transform.position, Quaternion.identity);
+                    //Efectos de sonido de agua
+                }
+                else if (type == "Water")
+                {
+                    Instantiate(throwableSec, gameObject.transform.position, Quaternion.identity);
+                    //Efectos de sonido de tierra
+                }
+
+            }
         }
         else
         {

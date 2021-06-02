@@ -151,25 +151,25 @@ public class ImpSpawner : MonoBehaviour
 
         if (_imp.name.Contains("Fuego") && FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp = spawnPoints[Random.Range(0, 4)];
+            Transform _sp = spawnPoints[Random.Range(0, 5)];
             Instantiate(_imp, _sp.position, _sp.rotation);
         }
 
         if (_imp.name.Contains("Earth") && EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(5, 9)];
+            Transform _sp2 = spawnPoints[Random.Range(5, 10)];
             Instantiate(_imp, _sp2.position, _sp2.rotation);
         }
 
         if (_imp.name.Contains("Water") && WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(10, 14)];
+            Transform _sp2 = spawnPoints[Random.Range(10, 15)];
             Instantiate(_imp, _sp2.position, _sp2.rotation);
         }
 
         if (_imp.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
         {
-            Transform _sp2 = spawnPoints[Random.Range(15, 18)];
+            Transform _sp2 = spawnPoints[Random.Range(15, 19)];
             Instantiate(_imp, _sp2.position, _sp2.rotation);
         }
 

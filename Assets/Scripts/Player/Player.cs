@@ -781,7 +781,7 @@ public class Player : MonoBehaviour
         impact += force / mass;
     }
 
-    private void AddToEtherealKillCount()
+    private void AddToEtherealKillCount(String element)
     {
         etherealKillCount++;
         if(etherealKillCount == 4)

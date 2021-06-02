@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EtherealSpanwer : MonoBehaviour
 {
+
+    public bool FireEtherealDefeated;
+    public bool EarthEtherealDefeated;
+    public bool AirEtherealDefeated;
+    public bool WaterEtherealDefeated;
+    private Player player;
     public enum SpawnState { SPAWNING, WAITING, COUTNING };
     [System.Serializable]
     public class Wave
@@ -37,15 +43,23 @@ public class EtherealSpanwer : MonoBehaviour
     private void OnEnable()
     {
         Player.PlayerWon += HandleWin;
+        Enemy.EtherealKilled += EtherealKilled;
     }
 
     private void OnDisable()
     {
         Player.PlayerWon -= HandleWin;
+        Enemy.EtherealKilled -= EtherealKilled;
     }
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        FireEtherealDefeated = false;
+        EarthEtherealDefeated = false;
+        AirEtherealDefeated = false;
+        WaterEtherealDefeated = false;
+
         if (spawnPoints.Length == 0)
         {
             Debug.LogError("No spawn points for this spawner" + name);
@@ -142,28 +156,28 @@ public class EtherealSpanwer : MonoBehaviour
 
     void SpawnGargoyle(Transform _ethereal)
     {
-        Debug.Log("Spawning imp: " + _ethereal.name);
+        Debug.Log("PLAYER FIRE LEVEL: " +  player.fireLevel);
 
 
-        if (_ethereal.name.Contains("Fuego") && FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        if (_ethereal.name.Contains("Fuego") && FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !FireEtherealDefeated && player.fireLevel == 4)
         {
             Transform _sp = spawnPoints[0];
             Instantiate(_ethereal, _sp.position, _sp.rotation);
         }
 
-        if (_ethereal.name.Contains("Earth") && EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        if (_ethereal.name.Contains("Earth") && EarthAreaTrigger.GetComponent<AreaTrigger>().canSpawn &&  !EarthEtherealDefeated && player.earthLevel == 4)
         {
             Transform _sp2 = spawnPoints[1];
             Instantiate(_ethereal, _sp2.position, _sp2.rotation);
         }
 
-        if (_ethereal.name.Contains("Water") && WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        if (_ethereal.name.Contains("Water") && WaterAreaTrigger.GetComponent<AreaTrigger>().canSpawn &&  !WaterEtherealDefeated && player.waterLevel == 4)
         {
             Transform _sp2 = spawnPoints[2];
             Instantiate(_ethereal, _sp2.position, _sp2.rotation);
         }
 
-        if (_ethereal.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
+        if (_ethereal.name.Contains("Air") && AirAreaTrigger.GetComponent<AreaTrigger>().canSpawn && !AirEtherealDefeated && player.airLevel == 4)
         {
             Transform _sp2 = spawnPoints[3];
             Instantiate(_ethereal, _sp2.position, _sp2.rotation);
@@ -185,5 +199,23 @@ public class EtherealSpanwer : MonoBehaviour
     {
         MatarEnemigos();
         enabled = false;
+    }
+    private void EtherealKilled(string type)
+    {
+        switch (type)
+        {
+            case "Fire":
+                FireEtherealDefeated = true;
+                break;
+            case "Water":
+                WaterEtherealDefeated = true;
+                break;
+            case "Earth":
+                EarthEtherealDefeated = true;
+                break;
+            case "Air":
+                AirEtherealDefeated = true;
+                break;
+        }
     }
 }
