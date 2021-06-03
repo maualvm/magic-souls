@@ -24,7 +24,6 @@ public class RangedAttack : Attack
         if (Distance + 0.2f < StoppingDistance)
         {
             Vector3 MovePosition = transform.position - Target.transform.position;
-            Debug.Log("Distance: " + Distance + " MovePosition: " + MovePosition);
             transform.LookAt(MovePosition);
             navMeshAgent.SetDestination(MovePosition);
         }
@@ -62,7 +61,6 @@ public class RangedAttack : Attack
     public override void OnEnter()
     {
         base.OnEnter();
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting the ranged atack");
         navMeshAgent.stoppingDistance = StoppingDistance;
         RangedTimer = RangedCooldown;
     }
@@ -70,12 +68,10 @@ public class RangedAttack : Attack
     public override void OnExit()
     {
         base.OnExit();
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is stopping the ranged attack");
     }
 
     public override void DoDamage()
     {
-        Debug.Log("The enemy did " + Damage + " damage to the player");
-        //Target.ReceiveDamage(Damage);
+
     }
 }

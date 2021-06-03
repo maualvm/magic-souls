@@ -27,18 +27,17 @@ public abstract class Attack : IState
 
     public virtual void Update()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is attacking");
+
     }
 
     public virtual void OnEnter()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting to atack");
         AbilityTimer = AbilityCooldown;
     }
 
     public virtual void OnExit()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is stopping the attack");
+
     }
 
     public abstract void DoDamage();
@@ -202,7 +201,6 @@ public abstract class Attack : IState
     protected void FireEtherealAbility()
     {
         int hability = UnityEngine.Random.Range(1,4);
-        Debug.Log("RANDOM NUMBER = " + hability);
         switch (hability)
         {
             case 1:
@@ -220,7 +218,6 @@ public abstract class Attack : IState
     protected void WaterEtherealAbility()
     {
         int hability = UnityEngine.Random.Range(1, 4);
-        Debug.Log("RANDOM NUMBER = " + hability);
         switch (hability)
         {
             case 1:
@@ -238,7 +235,6 @@ public abstract class Attack : IState
     protected void EarthEtherealAbility()
     {
         int hability = UnityEngine.Random.Range(1, 4);
-        Debug.Log("RANDOM NUMBER = " + hability);
         switch (hability)
         {
             case 1:
@@ -256,7 +252,6 @@ public abstract class Attack : IState
     protected void AirEtherealAbility()
     {
         int hability = UnityEngine.Random.Range(1, 4);
-        Debug.Log("RANDOM NUMBER = " + hability);
         switch (hability)
         {
             case 1:

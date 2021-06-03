@@ -37,11 +37,13 @@ public class BerserkerSpanwer : MonoBehaviour
     private void OnEnable()
     {
         Player.PlayerWon += HandleWin;
+        AreaTrigger.EnteredArea += KillOtherEnemies;
     }
 
     private void OnDisable()
     {
         Player.PlayerWon -= HandleWin;
+        AreaTrigger.EnteredArea -= KillOtherEnemies;
     }
 
     void Start()
@@ -97,7 +99,6 @@ public class BerserkerSpanwer : MonoBehaviour
 
     void WaveCompleted()
     {
-        Debug.Log("Wave completed!");
         state = SpawnState.COUTNING;
         waveCountdown = timeBetweenWaves;
     }
@@ -123,7 +124,6 @@ public class BerserkerSpanwer : MonoBehaviour
 
     IEnumerator SpawnWave(Wave _wave)  //metodos que esperan x segundos antes de enecutarse
     {
-        Debug.Log("Spawing wave: " + _wave.name);
         state = SpawnState.SPAWNING;
 
         for (int i = 0; i < _wave.count; i++)
@@ -142,7 +142,6 @@ public class BerserkerSpanwer : MonoBehaviour
 
     void SpawnBerserker(Transform _berserker)
     {
-        Debug.Log("Spawning imp: " + _berserker.name);
 
 
         if (_berserker.name.Contains("Fuego") && FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn)
@@ -169,6 +168,11 @@ public class BerserkerSpanwer : MonoBehaviour
             Instantiate(_berserker, _sp2.position, _sp2.rotation);
         }
 
+    }
+
+    private void KillOtherEnemies(string area)
+    {
+        MatarEnemigos();
     }
 
     void MatarEnemigos()

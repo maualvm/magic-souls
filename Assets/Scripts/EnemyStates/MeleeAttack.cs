@@ -48,7 +48,6 @@ public class MeleeAttack : Attack
     public override void OnEnter()
     {
         base.OnEnter();
- //       Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting the melee atack");
         navMeshAgent.stoppingDistance = StoppingDistance;
         MeleeTimer = MeleeCooldown;
     }
@@ -56,12 +55,10 @@ public class MeleeAttack : Attack
     public override void OnExit()
     {
         base.OnExit();
-//        Debug.Log("The " + EnemyElement + " " + EnemyType + " is stopping the melee attack");
     }
 
     public override void DoDamage() 
     {
-    //    Debug.Log("The enemy did " + Damage + " damage to the player");
         Target.GetComponent<Player>().ReceiveDamage(Damage);
     }
 }

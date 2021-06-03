@@ -114,7 +114,6 @@ public class Enemy : MonoBehaviour
     {
         CurrentHealth = enemy.enemyData.MaxHealth;
         EnemyHealthChanged?.Invoke(CurrentHealth, enemy.enemyData.MaxHealth, this);
-        Debug.Log("This is a " + enemy.Element + " " + enemy.enemyData.enemyType);
 
         gameObject.GetComponent<NavMeshAgent>().speed = enemy.enemyData.Speed;
 
@@ -150,7 +149,6 @@ public class Enemy : MonoBehaviour
         impulse = Vector3.Lerp(impulse, Vector3.zero, pushTime * Time.deltaTime);
 
         //Animations
-        Debug.Log(this.stateMachine.CurrentState.ToString());
         var state = this.stateMachine.CurrentState.ToString();
         switch (state)
         {
@@ -355,7 +353,6 @@ public class Enemy : MonoBehaviour
 
         } else if (throwableSec != null)
         {
-            Debug.Log("ETHERAL USA ATAQUE DE BERSERKER");
             var state = this.stateMachine.CurrentState.ToString();
             if (state == "MeleeAttack" || state == "RangedAttack")
             {

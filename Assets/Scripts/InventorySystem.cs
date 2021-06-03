@@ -56,7 +56,6 @@ public class InventorySystem : MonoBehaviour
 
     private void ModifySouls(string element, int amount)
     {
-        Debug.Log("Obtained one " + element + " soul.");
         AudioManager.PlaySound(AudioManager.Sound.GetSoul);
         TotalSouls += amount;
         ModifiedSouls?.Invoke(TotalSouls);

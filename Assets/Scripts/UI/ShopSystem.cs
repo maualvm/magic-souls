@@ -157,7 +157,6 @@ public class ShopSystem : MonoBehaviour
 
     private void HandleItemBought(Item.ItemType itemType)
     {
-        Debug.Log("Bought item : " + itemType);
         switch (itemType)
         {
             default:

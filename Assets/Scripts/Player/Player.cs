@@ -143,6 +143,7 @@ public class Player : MonoBehaviour
         inventorySystem = GetComponent<InventorySystem>();
         rotation.y = transform.eulerAngles.y;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         speed = normalSpeed;
         isDead = false;
         bIsStunned = false;
@@ -153,7 +154,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"Player speed is: {speed}");
         if(currentHealth <= 0) {
             animator.SetBool("isRunning", false);
             animator.SetBool("isAttacking", false);
@@ -426,8 +426,6 @@ public class Player : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 20f)) {
-            Debug.DrawRay(camera.transform.position, camera.transform.forward * hit.distance, Color.yellow, 5);
-            Debug.Log(hit.transform.name);
             Enemy enemy = hit.transform.GetComponent<Enemy>(); 
 
             // The player hits an enemy, so we calculate the corresponding damage
@@ -496,7 +494,6 @@ public class Player : MonoBehaviour
                     break;
                     
                 };
-                Debug.Log($"The player dealt {total_damage} to the enemy of type {enemyElement}!\nThe player used spell of type {currentSpell}");
                 enemy.ReceiveDamage(total_damage);
             }
             showHit(hit);
@@ -599,7 +596,6 @@ public class Player : MonoBehaviour
     private void UseHealthPotion() {
         if(inventorySystem.HealthPotions > 0 && currentHealth < maxHealth) {
             AudioManager.PlaySound(AudioManager.Sound.Potion);
-            Debug.Log("The player healed himself.");
             ReceiveDamage(-15);
             inventorySystem.ModifyHealthPotions(-1);
         }
@@ -610,7 +606,6 @@ public class Player : MonoBehaviour
     private void UseStaminaPotion() {
         if(inventorySystem.StaminaPotions > 0) {
             AudioManager.PlaySound(AudioManager.Sound.Potion);
-            Debug.Log($"The player healed his stamina. Regen speed = {RegenSpeed * 6}");
             StartCoroutine("StaminaEffect");
             inventorySystem.ModifyStaminaPotions(-1);
         }
@@ -636,6 +631,8 @@ public class Player : MonoBehaviour
     private void ChangeStamina(float changeAmount)
     {
         stamina += changeAmount * Time.deltaTime;
+        if (stamina > maxStamina)
+            stamina = maxStamina;
         StaminaChanged?.Invoke(stamina, maxStamina);
     }
 
@@ -647,6 +644,7 @@ public class Player : MonoBehaviour
             canRun = false;
             PlayerKilled?.Invoke();
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             isDead = true;
         }
     }
@@ -654,6 +652,7 @@ public class Player : MonoBehaviour
     public void Respawn() {
         AudioManager.PlaySound(AudioManager.Sound.Confirm);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         PlayerRespawned?.Invoke();
         impact = Vector3.zero;
         isDead = false;
@@ -688,7 +687,6 @@ public class Player : MonoBehaviour
         childObject.transform.parent = this.transform;
         onFireTimer = 0;
         onFire = true;
-        Debug.Log("Jugador is on fire!!");
 
     }
 
@@ -701,7 +699,6 @@ public class Player : MonoBehaviour
         childObject.transform.parent = this.transform;
         bleedingTimer = 0;
         bleeding = true;
-        Debug.Log("Jugador is bleeding!!");
     }
 
     public void SetExhausted()
@@ -713,9 +710,6 @@ public class Player : MonoBehaviour
         childObject.transform.parent = this.transform;
         exhaustedTimer = 0;
         isExhausted = true;
-        Debug.Log("Jugador is exhausted!!");
-
-        
     }
 
     public void ReceiveDamage(float Damage)
@@ -759,6 +753,7 @@ public class Player : MonoBehaviour
         {
             TriggeredShop?.Invoke(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         if (other.name.Contains("BurntArea"))
@@ -781,6 +776,7 @@ public class Player : MonoBehaviour
         {
             TriggeredShop?.Invoke(false);
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
@@ -818,6 +814,11 @@ public class Player : MonoBehaviour
         if(etherealKillCount == 4)
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isDying", false);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isIdle", true);
             PlayerWon?.Invoke();
             enabled = false;
         }

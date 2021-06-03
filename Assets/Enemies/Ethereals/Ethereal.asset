@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ethereal
   m_EditorClassIdentifier: 
   enemyType: Ethereal
-  MaxHealth: 5000
+  MaxHealth: 2500
   Speed: 4
   DetectRange: 12
   AttackRange: 8

@@ -99,7 +99,6 @@ public class GargoyleSpanwer : MonoBehaviour
 
     void WaveCompleted()
     {
-        Debug.Log("Wave completed!");
         state = SpawnState.COUTNING;
         waveCountdown = timeBetweenWaves;
     }
@@ -125,7 +124,6 @@ public class GargoyleSpanwer : MonoBehaviour
 
     IEnumerator SpawnWave(Wave _wave)  //metodos que esperan x segundos antes de enecutarse
     {
-        Debug.Log("Spawing wave: " + _wave.name);
         state = SpawnState.SPAWNING;
 
         for (int i = 0; i < _wave.count; i++)
@@ -144,7 +142,6 @@ public class GargoyleSpanwer : MonoBehaviour
 
     void SpawnGargoyle(Transform _gargoyle)
     {
-        Debug.Log("Spawning imp: " + _gargoyle.name);
 
 
         if (_gargoyle.name.Contains("Fuego") && FireAreaTrigger.GetComponent<AreaTrigger>().canSpawn)

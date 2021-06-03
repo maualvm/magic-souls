@@ -20,19 +20,17 @@ public class Chase : IState
 
     public void Update()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is chasing");
         transform.LookAt(Target);
         navMeshAgent.SetDestination(Target.position);
     }
 
     public void OnEnter()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is starting to chase");
         navMeshAgent.stoppingDistance = StoppingDistance;
     }
 
     public void OnExit()
     {
-        Debug.Log("The " + EnemyElement + " " + EnemyType + " is leaving chase");
+
     }
 }

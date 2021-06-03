@@ -15,13 +15,11 @@ public class ShopItemUI : MonoBehaviour
 
     public void ShowMyText()
     {
-        Debug.Log("Cursor Entering " + name + " GameObject");
         TooltipScreenSpaceUI.ShowTooltip_Static(_description);
     }
 
     public void HideMyText()
     {
-        Debug.Log("Cursor Exiting " + name + " GameObject");
         TooltipScreenSpaceUI.HideTooltip_Static();
     }
 }
