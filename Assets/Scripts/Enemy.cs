@@ -328,6 +328,8 @@ public class Enemy : MonoBehaviour
 
     public void BerserkerSpecialAttack(string type)
     {
+        if (this == null)
+            return;
         if (throwable != null && throwableSec == null)
         {
             var state = this.stateMachine.CurrentState.ToString();
