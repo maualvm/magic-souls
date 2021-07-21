@@ -47,8 +47,7 @@ public class HUD : MonoBehaviour
     [SerializeField]
     TMP_Text StaminaPotionsCount;
 
-    [SerializeField]
-    Image SpellSelectionWheel;
+    
 
     [SerializeField]
     Sprite WaterSpellSelected;
@@ -71,6 +70,22 @@ public class HUD : MonoBehaviour
     [SerializeField]
     Button RespawnBtn;
 
+    [Header("Spell Selection")]
+    [SerializeField]
+    Image SpellSelectionWheel;
+
+    [SerializeField]
+    TMP_Text WaterLevelTxt;
+
+    [SerializeField]
+    TMP_Text FireLevelTxt;
+
+    [SerializeField]
+    TMP_Text EarthLevelTxt;
+
+    [SerializeField]
+    TMP_Text AirLevelTxt;
+
     public static event Action Respawned;
     public static event Action<String> SpellChanged;
     // Start is called before the first frame update
@@ -92,8 +107,8 @@ public class HUD : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SpellSelectionWheel.sprite = FireSpellSelected;
-            SpellChanged?.Invoke("Fire");
+            SpellSelectionWheel.sprite = EarthSpellSelected;
+            SpellChanged?.Invoke("Earth");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -102,8 +117,8 @@ public class HUD : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            SpellSelectionWheel.sprite = EarthSpellSelected;
-            SpellChanged?.Invoke("Earth");
+            SpellSelectionWheel.sprite = FireSpellSelected; 
+             SpellChanged?.Invoke("Fire");
         }
     }
 
@@ -120,6 +135,7 @@ public class HUD : MonoBehaviour
         InventorySystem.ModifiedAirSouls += HandleAirSoulsChange;
         InventorySystem.ModifiedHealthPotions += HandleHealthPotionChange;
         InventorySystem.ModifiedStaminaPotions += HandleStaminaPotionChange;
+        ShopSystem.SpellLevelUp += HandleSpellLevelUp;
     }
 
     private void OnDisable()
@@ -135,6 +151,27 @@ public class HUD : MonoBehaviour
         InventorySystem.ModifiedAirSouls -= HandleAirSoulsChange;
         InventorySystem.ModifiedHealthPotions -= HandleHealthPotionChange;
         InventorySystem.ModifiedStaminaPotions -= HandleStaminaPotionChange;
+        ShopSystem.SpellLevelUp -= HandleSpellLevelUp;
+    }
+
+    private void HandleSpellLevelUp(string element, int level)
+    {
+        if (element == "Fire")
+        {
+            FireLevelTxt.text = level.ToString();
+        }
+        else if (element == "Water")
+        {
+            WaterLevelTxt.text = level.ToString();
+        }
+        else if (element == "Earth")
+        {
+            EarthLevelTxt.text = level.ToString();
+        }
+        else if (element == "Air")
+        {
+            AirLevelTxt.text = level.ToString();
+        }
     }
 
     private void HandleHealthChange(float newHealth, float maxHealth)
