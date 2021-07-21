@@ -10,6 +10,11 @@ public class GoToMenu : MonoBehaviour
         StartCoroutine(ChangeScene("MainMenu"));
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     private IEnumerator ChangeScene(string scene)
     {
         yield return new WaitForSeconds(0.8f);
