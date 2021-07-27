@@ -137,7 +137,7 @@ public class ShopSystem : MonoBehaviour
         //Set shop item position
         float shopItemHeight = 90f;
         float shopItemWidth = 370f;
-        rect.anchoredPosition = new Vector2(shopItemWidth * ((positionIndex % 4) - 2), -shopItemHeight * (positionIndex / 4));
+        rect.anchoredPosition = new Vector2((shopItemWidth * ((positionIndex % 4) - 2) + 30), -shopItemHeight * (positionIndex / 4));
 
         if (positionIndex % 4 != 0)
         {
