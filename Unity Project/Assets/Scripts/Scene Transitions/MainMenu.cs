@@ -20,9 +20,14 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(ChangeScene("Credits"));
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     private IEnumerator ChangeScene(string scene)
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSecondsRealtime(0.8f);
         SceneManager.LoadScene(scene);
     }
 }

@@ -47,8 +47,7 @@ public class HUD : MonoBehaviour
     [SerializeField]
     TMP_Text StaminaPotionsCount;
 
-    [SerializeField]
-    Image SpellSelectionWheel;
+    
 
     [SerializeField]
     Sprite WaterSpellSelected;
@@ -63,13 +62,34 @@ public class HUD : MonoBehaviour
     Sprite EarthSpellSelected;
 
     [SerializeField]
+    Button RespawnBtn;
+
+    [Header("Screens")]
+    [SerializeField]
     GameObject DeathScreen;
 
     [SerializeField]
     GameObject WinScreen;
 
     [SerializeField]
-    Button RespawnBtn;
+    GameObject PauseScreen;
+
+
+    [Header("Spell Selection")]
+    [SerializeField]
+    Image SpellSelectionWheel;
+
+    [SerializeField]
+    TMP_Text WaterLevelTxt;
+
+    [SerializeField]
+    TMP_Text FireLevelTxt;
+
+    [SerializeField]
+    TMP_Text EarthLevelTxt;
+
+    [SerializeField]
+    TMP_Text AirLevelTxt;
 
     public static event Action Respawned;
     public static event Action<String> SpellChanged;
@@ -78,6 +98,7 @@ public class HUD : MonoBehaviour
     {
         DeathScreen.SetActive(false);
         WinScreen.SetActive(false);
+        PauseScreen.SetActive(false);
         RespawnBtn.onClick.AddListener(() => Respawn());
         SpellSelectionWheel.sprite = WaterSpellSelected;
     }
@@ -85,26 +106,30 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(!Player.gameIsPaused)
         {
-            SpellSelectionWheel.sprite = WaterSpellSelected;
-            SpellChanged?.Invoke("Water");
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpellSelectionWheel.sprite = WaterSpellSelected;
+                SpellChanged?.Invoke("Water");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                SpellSelectionWheel.sprite = EarthSpellSelected;
+                SpellChanged?.Invoke("Earth");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                SpellSelectionWheel.sprite = AirSpellSelected;
+                SpellChanged?.Invoke("Air");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                SpellSelectionWheel.sprite = FireSpellSelected;
+                SpellChanged?.Invoke("Fire");
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SpellSelectionWheel.sprite = FireSpellSelected;
-            SpellChanged?.Invoke("Fire");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SpellSelectionWheel.sprite = AirSpellSelected;
-            SpellChanged?.Invoke("Air");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SpellSelectionWheel.sprite = EarthSpellSelected;
-            SpellChanged?.Invoke("Earth");
-        }
+        
     }
 
     private void OnEnable()
@@ -113,6 +138,7 @@ public class HUD : MonoBehaviour
         Player.StaminaChanged += HandleStaminaChange;
         Player.PlayerKilled += HandlePlayerDeath;
         Player.PlayerWon += HandleWin;
+        Player.GamePaused += HandleGamePaused;
         InventorySystem.ModifiedSouls += HandleGeneralSoulsChange;
         InventorySystem.ModifiedFireSouls += HandleFireSoulsChange;
         InventorySystem.ModifiedWaterSouls += HandleWaterSoulsChange;
@@ -120,6 +146,7 @@ public class HUD : MonoBehaviour
         InventorySystem.ModifiedAirSouls += HandleAirSoulsChange;
         InventorySystem.ModifiedHealthPotions += HandleHealthPotionChange;
         InventorySystem.ModifiedStaminaPotions += HandleStaminaPotionChange;
+        ShopSystem.SpellLevelUp += HandleSpellLevelUp;
     }
 
     private void OnDisable()
@@ -128,6 +155,7 @@ public class HUD : MonoBehaviour
         Player.StaminaChanged -= HandleStaminaChange;
         Player.PlayerKilled -= HandlePlayerDeath;
         Player.PlayerWon -= HandleWin;
+        Player.GamePaused -= HandleGamePaused;
         InventorySystem.ModifiedSouls -= HandleGeneralSoulsChange;
         InventorySystem.ModifiedFireSouls -= HandleFireSoulsChange;
         InventorySystem.ModifiedWaterSouls -= HandleWaterSoulsChange;
@@ -135,6 +163,35 @@ public class HUD : MonoBehaviour
         InventorySystem.ModifiedAirSouls -= HandleAirSoulsChange;
         InventorySystem.ModifiedHealthPotions -= HandleHealthPotionChange;
         InventorySystem.ModifiedStaminaPotions -= HandleStaminaPotionChange;
+        ShopSystem.SpellLevelUp -= HandleSpellLevelUp;
+    }
+
+    private void HandleGamePaused(bool isPaused)
+    {
+        if(isPaused)
+            PauseScreen.SetActive(true);
+        else
+            PauseScreen.SetActive(false);
+    }
+
+    private void HandleSpellLevelUp(string element, int level)
+    {
+        if (element == "Fire")
+        {
+            FireLevelTxt.text = level.ToString();
+        }
+        else if (element == "Water")
+        {
+            WaterLevelTxt.text = level.ToString();
+        }
+        else if (element == "Earth")
+        {
+            EarthLevelTxt.text = level.ToString();
+        }
+        else if (element == "Air")
+        {
+            AirLevelTxt.text = level.ToString();
+        }
     }
 
     private void HandleHealthChange(float newHealth, float maxHealth)

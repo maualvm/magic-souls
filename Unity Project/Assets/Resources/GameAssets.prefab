@@ -43,11 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabbde3fc8674da4480c3129e390cb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GeneralSoul: {fileID: 21300000, guid: 96f6b1f648df6714c9fec83fa7ca1046, type: 3}
-  FireSoul: {fileID: 21300000, guid: b1cc5a0b74678624781f018afe931f3e, type: 3}
-  WaterSoul: {fileID: 21300000, guid: 559e7ea7da27a004484424a722e1e089, type: 3}
-  EarthSoul: {fileID: 21300000, guid: 6581f4d6de8c30f4eab63be279dbb1e4, type: 3}
-  AirSoul: {fileID: 21300000, guid: da4b2c44c7dab1041af857957f0b96d7, type: 3}
+  GeneralSoul: {fileID: 21300000, guid: 5bb171931518e1645885b257ab69e3c2, type: 3}
+  FireSoul: {fileID: 21300000, guid: 8737d5dcb7ed6734eb67879c17cc2363, type: 3}
+  WaterSoul: {fileID: 21300000, guid: ef7d54ad40aeca049ad80d5933b5867d, type: 3}
+  EarthSoul: {fileID: 21300000, guid: ca5afecaac0e5f34990c984d515c53f5, type: 3}
+  AirSoul: {fileID: 21300000, guid: 66328112b74c0ec4cb71c9441fcf095e, type: 3}
   FireSprite: {fileID: 21300000, guid: 9bdf2961655b6d54c9f794f81cec0edc, type: 3}
   WaterSprite: {fileID: 21300000, guid: 2cc4a02d3d0eeb14fb91ea922d4951c3, type: 3}
   EarthSprite: {fileID: 21300000, guid: e4f62afd078873f49a644e25ad88a1bc, type: 3}
@@ -71,6 +71,6 @@ MonoBehaviour:
   HealthPotionSprite: {fileID: 21300000, guid: 94d7545779f9d5e439ab63314a531960, type: 3}
   StaminaPotionSprite: {fileID: 21300000, guid: fc6fba6cce617ee48802aadd945b1878,
     type: 3}
-  ShieldSprite: {fileID: 21300000, guid: ad122ba62a60a5740a2ba2f2d0323ddf, type: 3}
+  ShieldSprite: {fileID: 21300000, guid: 149d8dc04dcd02145b9be2f96d4c95ad, type: 3}
   stunEffect: {fileID: 5010351357003794695, guid: 46ecbb94cdea8e24b886fedb5159aebd,
     type: 3}

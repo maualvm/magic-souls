@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public static class AudioManager 
 {
@@ -52,12 +53,15 @@ public static class AudioManager
 
     private static Dictionary<Sound, float> soundTimerDictionary;
 
-    public static void Initialize()
+    private static AudioMixerGroup soundMixerGroup;
+
+    public static void Initialize(AudioMixerGroup audioMixerGroup)
     {
         soundTimerDictionary = new Dictionary<Sound, float>();
         soundTimerDictionary[Sound.Walking] = 0f;
         soundTimerDictionary[Sound.Running] = 0f;
         soundTimerDictionary[Sound.PlayerDamaged] = 0f;
+        soundMixerGroup = audioMixerGroup;
     }
 
     public static void PlaySound(Sound sound, Vector3 position)
@@ -72,6 +76,7 @@ public static class AudioManager
             audioSource.minDistance = 1;
             audioSource.maxDistance = 5;
             audioSource.volume = 0.5f;
+            audioSource.outputAudioMixerGroup = soundMixerGroup;
             audioSource.Play();
 
             Object.Destroy(soundGameObject, audioSource.clip.length);
@@ -84,7 +89,9 @@ public static class AudioManager
         {
             GameObject soundGameObject = new GameObject("Sound");
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.ignoreListenerPause = true;
             audioSource.volume = 0.25f;
+            audioSource.outputAudioMixerGroup = soundMixerGroup;
             audioSource.PlayOneShot(GetAudioClip(sound));
             Object.Destroy(soundGameObject, GetAudioClip(sound).length);
         }

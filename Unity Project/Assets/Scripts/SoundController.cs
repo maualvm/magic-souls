@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [System.Serializable]
 public class SoundAudioClip
@@ -11,6 +12,9 @@ public class SoundAudioClip
 public class SoundController : MonoBehaviour
 {
     [SerializeField]
+    AudioMixerGroup soundMixerGroup;
+
+    [SerializeField]
     SoundAudioClip[] _soundAudioClipArray;
 
     public static SoundAudioClip[] soundAudioClipArray;
@@ -18,6 +22,6 @@ public class SoundController : MonoBehaviour
     private void Awake()
     {
         soundAudioClipArray = _soundAudioClipArray;
-        AudioManager.Initialize();
+        AudioManager.Initialize(soundMixerGroup);
     }
 }

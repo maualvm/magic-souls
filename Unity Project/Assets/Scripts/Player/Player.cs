@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     public static event Action PlayerKilled, PlayerRespawned, PlayerWon;
     public static event Action<float, float> PlayerDamaged;
     public static event Action<float, float> StaminaChanged;
-    public static event Action<bool> TriggeredShop;
+    public static event Action<bool> TriggeredShop, GamePaused;
 
     [SerializeField]
     private float maxHealth = 100;
@@ -108,6 +108,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int etherealKillCount;
 
+    public static bool gameIsPaused;
+    private bool inShop;
+
     private void OnEnable()
     {
         HUD.Respawned += Respawn;
@@ -138,6 +141,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        gameIsPaused = false;
+        inShop = false;
         camera = GameObject.Find("MainCamera").GetComponent<Camera>();
         characterController = GetComponent<CharacterController>();
         inventorySystem = GetComponent<InventorySystem>();
@@ -154,183 +159,230 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(currentHealth <= 0) {
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isAttacking", false);
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isDying", true);
-            Die();
+        //Check if game is paused or unpaused
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameIsPaused)
+                ResumeGame();
+            else
+                PauseGame();
         }
 
-        if (onFire)
+        if (!gameIsPaused)
         {
-
-            float damage = 5 * Time.deltaTime;
-            ReceiveDamage(damage);
-            onFireTimer = onFireTimer +1 * Time.deltaTime;
-
-            if(onFireTimer >= 5)
+            if (currentHealth <= 0)
             {
-                onFire = false;
-                onFireTimer = 0f;
-                Destroy(GameObject.Find("PlayerOnFire(Clone)")) ;
+                animator.SetBool("isRunning", false);
+                animator.SetBool("isAttacking", false);
+                animator.SetBool("isIdle", false);
+                animator.SetBool("isDying", true);
+                Die();
             }
-        }
 
-        if (bleeding)
-        {
-            float damage = 5 * Time.deltaTime;
-            ReceiveDamage(damage);
-            bleedingTimer = bleedingTimer + 1 * Time.deltaTime;
-
-            if (bleedingTimer >= 9)
+            if (onFire)
             {
-                bleeding = false;
-                bleedingTimer = 0f;
-                Destroy(GameObject.Find("PlayerBleeding(Clone)"));
-            }
-        }
 
-        if (isExhausted)
-        {
-            speed = 2f;
-            exhaustedTimer = exhaustedTimer + 1 * Time.deltaTime;
+                float damage = 5 * Time.deltaTime;
+                ReceiveDamage(damage);
+                onFireTimer = onFireTimer + 1 * Time.deltaTime;
 
-            if (exhaustedTimer >= 5)
-            {
-                isExhausted = false;
-                exhaustedTimer = 0f;
-                Destroy(GameObject.Find("PlayerExhaust(Clone)"));
-                speed = normalSpeed;
-            }
-        }
-
-        if (characterController.isGrounded && !bIsStunned)
-        {
-            // We are grounded, so recalculate move direction based on axes
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
-            Vector3 right = transform.TransformDirection(Vector3.right);
-            float curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
-            float curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
-
-            // If the player is not trying to run, always regenerate stamina until 100 and set speed to normal
-            if(!Input.GetKey(KeyCode.LeftShift)) {
-                if(stamina >= 100) {
-                    stamina = 100;
-                }
-                if(stamina <= 100 && stamina > 0) {
-                    canRun = true;
-                }
-                speed = normalSpeed;
-
-                if(curSpeedX == 0 && curSpeedY == 0 && characterController.isGrounded) {
-                    ChangeStamina(RegenSpeed * 3);
-
-                } else {
-                    ChangeStamina(RegenSpeed);
+                if (onFireTimer >= 5)
+                {
+                    onFire = false;
+                    onFireTimer = 0f;
+                    Destroy(GameObject.Find("PlayerOnFire(Clone)"));
                 }
             }
 
-            // If the player decides to run, discharge stamina and change speed to running
-            if(canRun && Input.GetKey(KeyCode.LeftShift) && !bIsStunned) {
-                speed = RunningSpeed;
-                ChangeStamina(-10);
-                if(stamina <= 0) {
-                    canRun = false;
+            if (bleeding)
+            {
+                float damage = 5 * Time.deltaTime;
+                ReceiveDamage(damage);
+                bleedingTimer = bleedingTimer + 1 * Time.deltaTime;
+
+                if (bleedingTimer >= 9)
+                {
+                    bleeding = false;
+                    bleedingTimer = 0f;
+                    Destroy(GameObject.Find("PlayerBleeding(Clone)"));
+                }
+            }
+
+            if (isExhausted)
+            {
+                speed = 2f;
+                exhaustedTimer = exhaustedTimer + 1 * Time.deltaTime;
+
+                if (exhaustedTimer >= 5)
+                {
+                    isExhausted = false;
+                    exhaustedTimer = 0f;
+                    Destroy(GameObject.Find("PlayerExhaust(Clone)"));
                     speed = normalSpeed;
                 }
             }
 
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && !animator.GetBool("isAttacking"))
+            if (characterController.isGrounded && !bIsStunned)
             {
-                animator.SetBool("isAttacking", false);
-                animator.SetBool("isIdle", false);
-                animator.SetBool("isDying", false);
-                animator.SetBool("isRunning", true);
-            } else
-            {
-                if(currentHealth > 0)
+                // We are grounded, so recalculate move direction based on axes
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 right = transform.TransformDirection(Vector3.right);
+                float curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
+                float curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
+
+                // If the player is not trying to run, always regenerate stamina until 100 and set speed to normal
+                if (!Input.GetKey(KeyCode.LeftShift))
+                {
+                    if (stamina >= 100)
+                    {
+                        stamina = 100;
+                    }
+                    if (stamina <= 100 && stamina > 0)
+                    {
+                        canRun = true;
+                    }
+                    speed = normalSpeed;
+
+                    if (curSpeedX == 0 && curSpeedY == 0 && characterController.isGrounded)
+                    {
+                        ChangeStamina(RegenSpeed * 3);
+
+                    }
+                    else
+                    {
+                        ChangeStamina(RegenSpeed);
+                    }
+                }
+
+                // If the player decides to run, discharge stamina and change speed to running
+                if (canRun && Input.GetKey(KeyCode.LeftShift) && !bIsStunned)
+                {
+                    speed = RunningSpeed;
+                    ChangeStamina(-10);
+                    if (stamina <= 0)
+                    {
+                        canRun = false;
+                        speed = normalSpeed;
+                    }
+                }
+
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && !animator.GetBool("isAttacking"))
                 {
                     animator.SetBool("isAttacking", false);
+                    animator.SetBool("isIdle", false);
                     animator.SetBool("isDying", false);
-                    animator.SetBool("isRunning", false);
-                    animator.SetBool("isIdle", true);
+                    animator.SetBool("isRunning", true);
                 }
-                
+                else
+                {
+                    if (currentHealth > 0)
+                    {
+                        animator.SetBool("isAttacking", false);
+                        animator.SetBool("isDying", false);
+                        animator.SetBool("isRunning", false);
+                        animator.SetBool("isIdle", true);
+                    }
+
+                }
+
+                if (currentHealth <= 0)
+                {
+                    animator.SetBool("isRunning", false);
+                }
+
+                moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+                //Play walking sound
+                if (moveDirection.x != 0 || moveDirection.y != 0 || moveDirection.z != 0)
+                {
+                    if (speed == RunningSpeed)
+                        AudioManager.PlaySound(AudioManager.Sound.Running, transform.position);
+                    else
+                        AudioManager.PlaySound(AudioManager.Sound.Walking, transform.position);
+                }
+
+                if (Input.GetButton("Jump") && canMove)
+                {
+                    moveDirection.y = jumpSpeed;
+                }
             }
 
-            if(currentHealth <= 0)
+            //check if player is stunned
+            if (bIsStunned)
+                moveDirection = Vector3.zero;
+
+            // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
+            // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
+            // as an acceleration (ms^-2)
+            moveDirection.y -= gravity * Time.deltaTime;
+
+            // Move the controller
+            characterController.Move(moveDirection * Time.deltaTime);
+
+            //Apply impact if pulled by enemy
+            if (impact.magnitude > 0.2f)
             {
+                characterController.Move(impact * Time.deltaTime);
+            }
+
+            impact = Vector3.Lerp(impact, Vector3.zero, pullTime * Time.deltaTime);
+
+            // Player and Camera rotation
+            if (canMove)
+            {
+                rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
+                rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
+                rotation.x = Mathf.Clamp(rotation.x, -lookXLimit, lookXLimit);
+                playerCameraParent.localRotation = Quaternion.Euler(rotation.x, 0, 0);
+                transform.eulerAngles = new Vector2(0, rotation.y);
+            }
+
+            if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !isDead)
+            {
+                nextFire = Time.time + fireRate;
+                Shoot();
+                animator.SetBool("isDying", false);
                 animator.SetBool("isRunning", false);
+                animator.SetBool("isIdle", false);
+                animator.SetBool("isAttacking", true);
             }
 
-            moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-            //Play walking sound
-            if(moveDirection.x != 0 || moveDirection.y != 0 || moveDirection.z != 0)
+            // Use health potion
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if(speed == RunningSpeed)
-                    AudioManager.PlaySound(AudioManager.Sound.Running, transform.position);
-                else 
-                    AudioManager.PlaySound(AudioManager.Sound.Walking, transform.position);
+                UseHealthPotion();
             }
-
-            if (Input.GetButton("Jump") && canMove)
+            // Use stamina potion
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                moveDirection.y = jumpSpeed;
+                UseStaminaPotion();
             }
-        }
+        } 
+    }
 
-        //check if player is stunned
-        if (bIsStunned)
-            moveDirection = Vector3.zero;
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+        gameIsPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GamePaused?.Invoke(true);
+    }
 
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
-        moveDirection.y -= gravity * Time.deltaTime;
-
-        // Move the controller
-        characterController.Move(moveDirection * Time.deltaTime);
-
-        //Apply impact if pulled by enemy
-        if(impact.magnitude > 0.2f)
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        gameIsPaused = false;
+        if(!inShop)
         {
-            characterController.Move(impact * Time.deltaTime);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
+        GamePaused?.Invoke(false);
 
-        impact = Vector3.Lerp(impact, Vector3.zero, pullTime * Time.deltaTime);
-
-        // Player and Camera rotation
-        if (canMove)
-        {
-            rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
-            rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotation.x = Mathf.Clamp(rotation.x, -lookXLimit, lookXLimit);
-            playerCameraParent.localRotation = Quaternion.Euler(rotation.x, 0, 0);
-            transform.eulerAngles = new Vector2(0, rotation.y);
-        }
-
-        if(Input.GetButtonDown("Fire1") && Time.time > nextFire && !isDead) {
-            nextFire = Time.time + fireRate;
-            Shoot();
-            animator.SetBool("isDying", false);
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isAttacking", true);
-            StartCoroutine(AttackTimer());
-
-        }
-
-
-        // Use health potion
-        if(Input.GetKeyDown(KeyCode.E)) {
-            UseHealthPotion();
-        }
-        // Use stamina potion
-        if(Input.GetKeyDown(KeyCode.F)) {
-            UseStaminaPotion();
-        }
     }
 
     IEnumerator AttackTimer()
@@ -761,6 +813,7 @@ public class Player : MonoBehaviour
         if(other.tag == "Shop")
         {
             TriggeredShop?.Invoke(true);
+            inShop = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -784,6 +837,7 @@ public class Player : MonoBehaviour
         if (other.tag == "Shop")
         {
             TriggeredShop?.Invoke(false);
+            inShop = false;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
