@@ -6,6 +6,8 @@ public class GoToMenu : MonoBehaviour
 {
     public void Menu()
     {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
         AudioManager.PlaySound(AudioManager.Sound.Confirm);
         StartCoroutine(ChangeScene("MainMenu"));
     }
@@ -17,7 +19,7 @@ public class GoToMenu : MonoBehaviour
 
     private IEnumerator ChangeScene(string scene)
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSecondsRealtime(0.8f);
         SceneManager.LoadScene(scene);
     }
 }

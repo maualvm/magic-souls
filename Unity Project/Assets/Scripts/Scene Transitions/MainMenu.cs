@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator ChangeScene(string scene)
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSecondsRealtime(0.8f);
         SceneManager.LoadScene(scene);
     }
 }
