@@ -115,15 +115,18 @@ public class InventorySystem : MonoBehaviour
 
     private void TryToBuyItem(Item.ItemType itemType, int itemCost, string itemElement)
     {
-        if (TrySpendSouls(itemCost, itemElement))
+        if(!Player.gameIsPaused)
         {
-            AudioManager.PlaySound(AudioManager.Sound.Buy);
-            BoughtItem?.Invoke(itemType);
-        }
-        else
-        {
-            AudioManager.PlaySound(AudioManager.Sound.CantBuy);
-            TooltipWarningScreenSpaceUI.ShowTooltip_Static("You don't have " + itemCost + " " + itemElement + " Souls!", 1);
+            if (TrySpendSouls(itemCost, itemElement))
+            {
+                AudioManager.PlaySound(AudioManager.Sound.Buy);
+                BoughtItem?.Invoke(itemType);
+            }
+            else
+            {
+                AudioManager.PlaySound(AudioManager.Sound.CantBuy);
+                TooltipWarningScreenSpaceUI.ShowTooltip_Static("You don't have " + itemCost + " " + itemElement + " Souls!", 1);
+            }
         }
     }
 

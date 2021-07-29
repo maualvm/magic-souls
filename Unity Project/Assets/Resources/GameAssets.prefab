@@ -71,6 +71,6 @@ MonoBehaviour:
   HealthPotionSprite: {fileID: 21300000, guid: 94d7545779f9d5e439ab63314a531960, type: 3}
   StaminaPotionSprite: {fileID: 21300000, guid: fc6fba6cce617ee48802aadd945b1878,
     type: 3}
-  ShieldSprite: {fileID: 21300000, guid: ad122ba62a60a5740a2ba2f2d0323ddf, type: 3}
+  ShieldSprite: {fileID: 21300000, guid: 149d8dc04dcd02145b9be2f96d4c95ad, type: 3}
   stunEffect: {fileID: 5010351357003794695, guid: 46ecbb94cdea8e24b886fedb5159aebd,
     type: 3}

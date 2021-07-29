@@ -89,6 +89,7 @@ public static class AudioManager
         {
             GameObject soundGameObject = new GameObject("Sound");
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.ignoreListenerPause = true;
             audioSource.volume = 0.25f;
             audioSource.outputAudioMixerGroup = soundMixerGroup;
             audioSource.PlayOneShot(GetAudioClip(sound));
