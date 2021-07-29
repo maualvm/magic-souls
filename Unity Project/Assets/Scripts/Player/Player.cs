@@ -318,6 +318,8 @@ public class Player : MonoBehaviour
             animator.SetBool("isRunning", false);
             animator.SetBool("isIdle", false);
             animator.SetBool("isAttacking", true);
+            StartCoroutine(AttackTimer());
+
         }
 
 
@@ -329,6 +331,13 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F)) {
             UseStaminaPotion();
         }
+    }
+
+    IEnumerator AttackTimer()
+    {
+        animator.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("isAttacking", false);
     }
 
     public void GetSpellDamage(string typeOfSpell) {
