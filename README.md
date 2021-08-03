@@ -22,11 +22,5 @@ By doing so, Fulir will once again be the peaceful valley that it once was and G
 #### Don't die
 ![Death Image](./images/death.png "You loose all your souls on death!")
 
-## How to Play
-1. Download and extract the most current build in the Builds folder.
-2. Execute the Magic Souls application.
-3. Enjoy!
-
-## Coming next...
-The team is planning to make some minor improvements to the game and release it on itch.io in the near future. 
-Stay tuned and star the project to know when we release it.
+## Released on itch.io!
+The game has been released for free on itch.io. [Click here to download it!](https://blime.itch.io/magic-souls)
