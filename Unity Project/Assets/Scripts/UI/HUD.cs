@@ -179,19 +179,37 @@ public class HUD : MonoBehaviour
         if (element == "Fire")
         {
             FireLevelTxt.text = level.ToString();
+            if(level == 4)
+            {
+                FireLevelTxt.color = Color.red;
+            }
         }
         else if (element == "Water")
         {
             WaterLevelTxt.text = level.ToString();
+            if (level == 4)
+            {
+                WaterLevelTxt.color = Color.red;
+            }
         }
         else if (element == "Earth")
         {
             EarthLevelTxt.text = level.ToString();
+            if (level == 4)
+            {
+                EarthLevelTxt.color = Color.red;
+            }
         }
         else if (element == "Air")
         {
             AirLevelTxt.text = level.ToString();
+            if (level == 4)
+            {
+                AirLevelTxt.color = Color.red;
+            }
         }
+
+
     }
 
     private void HandleHealthChange(float newHealth, float maxHealth)
